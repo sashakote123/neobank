@@ -88,9 +88,6 @@
 
     margin-bottom: 12px;
 }
-.item__text {
-}
-
 @media (max-width: 700px) {
     .banner {
         margin-bottom: 30px;
