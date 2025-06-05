@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__logo {
+}
+.header__nav {
+}
+.nav__list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.list__item a {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    color: #1d1929;
+}
+
+.active-link {
+    color: #b2a35f !important;
+}
