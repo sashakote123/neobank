@@ -1,0 +1,25 @@
+.map {
+    margin-bottom: 48px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.map__title {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 167%;
+    text-align: center;
+    color: #1c1c1c;
+
+    margin-bottom: 10px;
+}
+.map__subtitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 312%;
+    text-align: center;
+    color: #1c1c1e;
+
+    margin-bottom: 48px;
+}

@@ -3,6 +3,7 @@ import './nullstyle.css'
 import Header from './components/header/Header';
 import { Route, Routes } from 'react-router';
 import MainPage from './components/mainPage/MainPage';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/account' element={<>Account</>} />
         <Route path='/resoures' element={<>Resoures</>} />
       </Routes>
+      <Footer />
     </div>
   );
 }
