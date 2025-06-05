@@ -2,15 +2,24 @@ import MainBtn from '../mainBtn/MainBtn';
 import './styles.css'
 
 import logo from './../../sources/images/header/NeoBank.svg'
+import burger from './../../sources/images/header/burger.svg'
 import { Link, NavLink } from 'react-router';
+import { useState } from 'react';
+import SideMenu from '../sideMenu/SideMenu';
 
 type active = {
     isActive: boolean,
 }
 
 const Header = () => {
+    const [isOpen, setIsOpen] = useState(false)
+
 
     const setActive = ({ isActive }: active) => isActive ? 'active-link' : '';
+
+    const menuHandler = () => {
+        setIsOpen(prev => !prev)
+    }
 
     return (
         <div className="container">
@@ -32,7 +41,12 @@ const Header = () => {
                         </li>
                     </ul>
                 </nav>
-                <MainBtn title='Online Bank' />
+                <div className='header__buttons'>
+                    <MainBtn title='Online Bank' />
+                    {!isOpen ? <img onClick={menuHandler} className='btn-burger' src={burger} alt="burger" /> : null}
+                    {/* <img onClick={menuHandler} className='btn-burger' src={burger} alt="burger" /> */}
+                </div>
+                {isOpen ? <SideMenu handler={menuHandler} /> : null}
             </header>
         </div>
 

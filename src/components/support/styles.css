@@ -72,7 +72,6 @@
     top: 50%;
     transform: translateY(-50%);
 
-
     display: flex;
     gap: 11px;
     justify-content: center;
@@ -94,4 +93,44 @@
     font-size: 16px;
     line-height: 127%;
     color: #fff;
+}
+
+@media screen and (max-width: 550px) {
+    .support {
+        margin-bottom: 50px;
+    }
+
+    .suppor__title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .support__subtitle {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    .support__subsubtitle {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form__input {
+        width: 350px;
+    }
+
+    .form__input input {
+        width: 200px;
+    }
+
+    .form__button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .form__button img {
+        left: 3px;
+    }
+
+    .form__button button {
+        display: none;
+    }
 }

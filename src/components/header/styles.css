@@ -1,7 +1,20 @@
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    background-color: white;
+
+    padding: 24px 15px;
+
+    z-index: 100;
+
 }
 .header__logo {
 }
@@ -22,4 +35,28 @@
 
 .active-link {
     color: #b2a35f !important;
+}
+
+
+.btn-burger{
+    display: none;
+}
+
+.header__buttons{
+    transition: all 0.2s ease-in;
+    display: flex;
+    gap: 15px;
+}
+.header__buttons button{
+    transition: all 0.2s ease-in;
+}
+
+@media screen and (max-width: 700px) {
+    .header__nav{
+        display: none;
+    }
+
+    .btn-burger{
+        display: block;
+    }
 }
