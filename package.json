@@ -1,5 +1,6 @@
 {
   "name": "neobank-react",
+  "homepage": "https://sashakote123.github.io/neobank",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
