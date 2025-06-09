@@ -3,8 +3,11 @@
     top: 0;
     left: 0;
 
-
     width: 100%;
+    max-width: 1300px;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +17,6 @@
     padding: 24px 15px;
 
     z-index: 100;
-
 }
 .header__logo {
 }
@@ -37,26 +39,25 @@
     color: #b2a35f !important;
 }
 
-
-.btn-burger{
+.btn-burger {
     display: none;
 }
 
-.header__buttons{
+.header__buttons {
     transition: all 0.2s ease-in;
     display: flex;
     gap: 15px;
 }
-.header__buttons button{
+.header__buttons button {
     transition: all 0.2s ease-in;
 }
 
 @media screen and (max-width: 700px) {
-    .header__nav{
+    .header__nav {
         display: none;
     }
 
-    .btn-burger{
+    .btn-burger {
         display: block;
     }
 }

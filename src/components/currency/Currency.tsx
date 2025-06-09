@@ -56,17 +56,14 @@ const Currency = () => {
     useEffect(() => {
         fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_7sdww4ZUYaqyAWlAfxyLdw5G76TXj90nsJFNw69e")
             .then(resp => resp.json())
-            // .then(json => setData(json))
             .then(json => {
-                console.log(json.data['usd'.toUpperCase()]);
                 const roubleCource: number = json.data.RUB.value.toFixed(3)
                 const newData = imgArray.map((item: IImage) => ({
                     img: item.img,
                     name: json.data[item.code.toUpperCase()]?.code || item.code,
                     value: +(roubleCource / json.data[item.code.toUpperCase()]?.value).toFixed(2),
                 }));
-                setData(newData);
-                console.log(newData);
+                setTimeout(() => setData(newData), 1500);
             })
     }, [])
 
@@ -78,42 +75,16 @@ const Currency = () => {
                 <div className="converter__subtitle">Currency</div>
                 <ul className="currency__list">
 
-                    {data.map((item: ICurrency) => {
+                    {data.length !== 0 ? data.map((item: ICurrency) => {
                         return (
-                            <li className="currency__item">
+                            <li key={item.name} className="currency__item">
                                 <img src={item.img} alt="123" className="item__image" />
                                 <div id="usdName" className="item__name">{item.name}:</div>
                                 <div id="usd" className="item__value">{item.value}</div>
                             </li>
                         )
-                    })}
+                    }) : <>loading...</>}
 
-
-                    {/* <li className="currency__item">
-                        <img src={rub} alt="123" className="item__image" />
-                        <div id="rubName" className="item__name">RUB:</div>
-                        <div id="rub" className="item__value">123</div>
-                    </li>
-                    <li className="currency__item">
-                        <img src={eur} alt="123" className="item__image" />
-                        <div id="eurName" className="item__name">EUR:</div>
-                        <div id="eur" className="item__value">123</div>
-                    </li>
-                    <li className="currency__item">
-                        <img src={chf} alt="123" className="item__image" />
-                        <div id="chfName" className="item__name">CHF:</div>
-                        <div id="chf" className="item__value">123</div>
-                    </li>
-                    <li className="currency__item">
-                        <img src={cny} alt="123" className="item__image" />
-                        <div id="cnyName" className="item__name">CNY:</div>
-                        <div id="cny" className="item__value">123</div>
-                    </li>
-                    <li className="currency__item">
-                        <img src={gbp} alt="123" className="item__image" />
-                        <div id="gbpName" className="item__name">GBP:</div>
-                        <div id="gbp" className="item__value">123</div>
-                    </li> */}
                 </ul>
             </div>
 

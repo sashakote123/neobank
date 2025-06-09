@@ -8,12 +8,12 @@ const Footer = () => {
                 <div className="footer__heading">
                     <img src={logo} alt="" className="footer__logo" />
                     <div className="footer__contacts">
-                        <div className="contacts__number">
+                        <a href='tel:+74959842513' className="contacts__number">
                             +7 (495) 984 25 13
-                        </div>
-                        <div className="contacts__mail">
+                        </a>
+                        <a href='mailto:info@neoflex.ru' className="contacts__mail">
                             info@neoflex.ru
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <ul className="footer__links">
