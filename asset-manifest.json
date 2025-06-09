@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/neobank/static/css/main.4c433da7.css",
+    "main.js": "/neobank/static/js/main.24b00402.js",
+    "static/media/footerLogo.svg": "/neobank/static/media/footerLogo.b6417d41ad3135530ae7ac2343215aa8.svg",
+    "static/media/Huge Global.svg": "/neobank/static/media/Huge Global.dc612d3001feaa509412a83622419c34.svg",
+    "static/media/cardImage3.png": "/neobank/static/media/cardImage3.627dc632efff52a1a266.png",
+    "static/media/cardImage4.png": "/neobank/static/media/cardImage4.76ae0baf28ef8d100c17.png",
+    "static/media/cardImage1.png": "/neobank/static/media/cardImage1.559559f06384a98037a9.png",
+    "static/media/cardImage2.png": "/neobank/static/media/cardImage2.b941534ffed5872586f4.png",
+    "static/media/demo1.jpg": "/neobank/static/media/demo1.8c4f03501eaa93be6a7f.jpg",
+    "static/media/Illustration.svg": "/neobank/static/media/Illustration.5ca4173b591d2407b1a81f63176fed0e.svg",
+    "static/media/NeoBank.svg": "/neobank/static/media/NeoBank.c2a96dd7fd7cdad7126d9b15a4ef8cba.svg",
+    "static/media/send.svg": "/neobank/static/media/send.15d92be0e6f834f938f6ae188865a852.svg",
+    "static/media/email.svg": "/neobank/static/media/email.18b6b74d012c8a7f39af38677fbbe5e4.svg",
+    "static/media/usd.svg": "/neobank/static/media/usd.5ab556ba79199c0b0209159af792d708.svg",
+    "index.html": "/neobank/index.html",
+    "static/media/check.svg": "/neobank/static/media/check.61eb3697ab1b11e8ddddcecd0eba06d1.svg",
+    "static/media/gbp.svg": "/neobank/static/media/gbp.36da5ee961b4fef5fc815212ba92a52e.svg",
+    "static/media/eur.svg": "/neobank/static/media/eur.d8028191cb13393518a16c1eeeb71edc.svg",
+    "static/media/bank.svg": "/neobank/static/media/bank.0ff264c53c53b7c7f857e30bf2f7007c.svg",
+    "static/media/left-end.svg": "/neobank/static/media/left-end.9253e70c01b7f0fa01697210133eb09d.svg",
+    "static/media/left.svg": "/neobank/static/media/left.75dbd143ed7e8f27c62ed90a3e6b83dc.svg",
+    "static/media/right.svg": "/neobank/static/media/right.87999784ab5ae0c2921a72523abe2d13.svg",
+    "static/media/right-end.svg": "/neobank/static/media/right-end.95e99a9d0a864aabc26330ee39477452.svg",
+    "static/media/jpy.svg": "/neobank/static/media/jpy.4a8cfed0509a0bdfd012bf091c0653e1.svg",
+    "static/media/cny.svg": "/neobank/static/media/cny.8084a48902a111b9d47bb4decdd6aa79.svg",
+    "static/media/chf.svg": "/neobank/static/media/chf.38fb99edff7169926ffa8e087cbe174a.svg",
+    "static/media/burger.svg": "/neobank/static/media/burger.a925d721da55fc5c5a7c2df0bf9132fb.svg",
+    "static/media/burgerlight.svg": "/neobank/static/media/burgerlight.bc8b0010a6bb835b97a8d2f8e8c88e4c.svg",
+    "main.4c433da7.css.map": "/neobank/static/css/main.4c433da7.css.map",
+    "main.24b00402.js.map": "/neobank/static/js/main.24b00402.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c433da7.css",
+    "static/js/main.24b00402.js"
+  ]
+}
