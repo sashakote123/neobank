@@ -89,3 +89,9 @@
         margin-top: 20px;
     }
 }
+
+
+.converter__error{
+    font-size: 24px;
+    color: #7e0000;
+}
