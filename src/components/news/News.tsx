@@ -7,7 +7,7 @@ import right from './../../sources/images/news/right.svg'
 import leftend from './../../sources/images/news/left-end.svg'
 import rightend from './../../sources/images/news/right-end.svg'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import MainBtn from '../mainBtn/MainBtn'
 import { oldNewsArray } from '../../mock/oldNewsArray'
 

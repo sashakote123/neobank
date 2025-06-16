@@ -27,8 +27,6 @@
     grid-template-columns: repeat(2, 250px);
     gap: 16px;
 }
-.grid__image {
-}
 
 @media (max-width: 1150px) {
     .banner {

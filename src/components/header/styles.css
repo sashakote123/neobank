@@ -18,10 +18,7 @@
 
     z-index: 100;
 }
-.header__logo {
-}
-.header__nav {
-}
+
 .nav__list {
     display: flex;
     align-items: center;

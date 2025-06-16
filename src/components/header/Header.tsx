@@ -3,7 +3,7 @@ import './styles.css'
 
 import logo from './../../sources/images/header/NeoBank.svg'
 import burger from './../../sources/images/header/burger.svg'
-import { Link, NavLink } from 'react-router';
+import { NavLink } from 'react-router';
 import { useState } from 'react';
 import SideMenu from '../sideMenu/SideMenu';
 
