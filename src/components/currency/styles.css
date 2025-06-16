@@ -91,7 +91,7 @@
 }
 
 
-.converter__error{
-    font-size: 24px;
-    color: #7e0000;
+.converter__alert{
+    color: #740404;
+    font-size: 20px;
 }

@@ -55,21 +55,18 @@ const Currency = () => {
     const [error, setError] = useState<boolean>(false)
 
     useEffect(() => {
-        fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_O35uaZRjpDW2RvjqP2BDjKViJ7rkXQYmrPQ9mVuaDELETE")
+        fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_O35uaZRjpDW2RvjqP2BDjKViJ7rkXQYmrPQ9mVua")
             .then(resp => resp.json())
-            // .then(json => setData(json))
             .then(json => {
-                console.log(json.data['usd'.toUpperCase()]);
                 const roubleCource: number = json.data.RUB.value.toFixed(3)
                 const newData = imgArray.map((item: IImage) => ({
                     img: item.img,
                     name: json.data[item.code.toUpperCase()]?.code || item.code,
                     value: +(roubleCource / json.data[item.code.toUpperCase()]?.value).toFixed(2),
                 }));
-                setData(newData);
-                console.log(newData);
+                setTimeout(() => setData(newData), 1500);
             })
-            .catch(error => setError(true))
+            .catch(e => setError(true))
     }, [])
 
 
@@ -78,19 +75,21 @@ const Currency = () => {
             <div className="left">
                 <div className="converter__title">Exchange rate in Internet bank</div>
                 <div className="converter__subtitle">Currency</div>
-                {error ? <div className="converter__error">Failed to fetch actual currency</div> :
+                {error ? <div className="converter__alert">Failed to fetch actual currency</div> :
                     <ul className="currency__list">
 
-                        {data.map((item: ICurrency, index: number) => {
+                        {data.length !== 0 ? data.map((item: ICurrency) => {
                             return (
-                                <li key={index} className="currency__item">
+                                <li key={item.name} className="currency__item">
                                     <img src={item.img} alt="123" className="item__image" />
                                     <div id="usdName" className="item__name">{item.name}:</div>
                                     <div id="usd" className="item__value">{item.value}</div>
                                 </li>
                             )
-                        })}
+                        }) : <>loading...</>}
+
                     </ul>}
+
             </div>
 
             <div className="right">

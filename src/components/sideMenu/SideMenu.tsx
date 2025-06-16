@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 import './styles.css'
-import burger from './../../sources/images/header/burger.svg'
+import burger from './../../sources/images/header/burgerlight.svg'
 
 
 type active = {

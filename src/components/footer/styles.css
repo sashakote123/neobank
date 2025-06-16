@@ -1,8 +1,7 @@
 .footer {
-    background-color: #f4f4f4;
-
-    position: sticky;
-    top: 100vh;
+    margin-top: auto;
+    background-color: #d9d9d9;
+    width: 100%;
 }
 .footer__heading {
     margin-top: 96px;
