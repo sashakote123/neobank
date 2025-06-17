@@ -1,0 +1,6 @@
+.news__slider {
+    display: flex;
+    gap: 80px;
+    transition: all 0.5s;
+    margin-bottom: 48px;
+}

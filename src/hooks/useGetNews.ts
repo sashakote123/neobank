@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
+import { INews } from "../types/types";
 
-// interface NewsData {
-//     [key: string]: {
-//         code: string;
-//         value: number;
-//     };
-// }
-
-interface INews {
-    urlToImage: string,
-    url: string,
-    title: string,
-    description: string,
-}
 
 interface HookResult {
     data: INews[] | null,

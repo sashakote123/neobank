@@ -27,12 +27,7 @@
     margin: 0 auto;
 }
 
-.news__slider {
-    display: flex;
-    gap: 80px;
-    transition: all 0.5s;
-    margin-bottom: 48px;
-}
+
 
 @media screen and (max-width: 1300px) {
     .carousel {
@@ -51,24 +46,8 @@
     }
 }
 
-.slider__item {
-    flex: 0 0 320px;
-
-    border: 1px solid rgba(187, 187, 187, 0.2);
-    border-radius: 28px;
-
-    height: 448px;
-    padding: 32px;
-
-    box-shadow:
-        0 2px 4px 0 rgba(0, 0, 0, 0.2),
-        0 0 4px 0 rgba(0, 0, 0, 0.08);
-    background: #fff;
-}
-
 .news__alert {
     font-size: 20px;
-
 
     display: flex;
     flex-direction: column;
@@ -76,74 +55,3 @@
     height: 150px;
 }
 
-.item__title {
-    display: block;
-    color: #000;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 125%;
-}
-
-.slider__item a {
-    margin-bottom: 32px;
-    text-align: center !important;
-}
-.item__subtitle {
-    margin-top: 32px;
-    height: 96px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 144%;
-    text-align: center;
-    color: #000;
-
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-}
-.slider__image {
-    width: 256px;
-    height: 120px;
-
-    margin-bottom: 32px;
-}
-.news__buttons {
-    display: flex;
-    justify-content: end;
-    gap: 20px;
-}
-.buttons__button {
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #003cff;
-    border-radius: 50px;
-    padding: 8px;
-    width: 64px;
-    height: 64px;
-
-    background: #fff;
-}
-
-.buttons__button-end {
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #003cff;
-    border-radius: 50px;
-    padding: 8px;
-    width: 64px;
-    height: 64px;
-
-    background: #003cff;
-}
