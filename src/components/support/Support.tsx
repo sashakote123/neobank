@@ -10,12 +10,12 @@ const Support = () => {
             <h4 className="support__subsubtitle">Bank News</h4>
             <form className='support__form' action="">
                 <div className="form__input">
-                    <img src={img1} alt="" />
+                    <img src={img1} alt="inputImg" />
                     <input placeholder='Your email' type="mail" />
                 </div>
 
                 <div className="form__button">
-                    <img src={img2} alt="" />
+                    <img src={img2} alt="inputImg" />
                     <button>Subscribe</button>
                 </div>
 

@@ -9,17 +9,7 @@ import jpy from './../../sources/images/currency/jpy.svg'
 import bank from './../../sources/images/currency/bank.svg'
 import { useEffect, useState } from 'react'
 import { useGetCurrency } from '../../hooks/useGetCurrency'
-
-interface ICurrency {
-    img: string,
-    name: string,
-    value: number,
-}
-
-interface IImage {
-    img: string,
-    code: string
-}
+import { ICurrency, IImage } from '../../types/types'
 
 const imgArray: IImage[] = [
     {
@@ -46,16 +36,11 @@ const imgArray: IImage[] = [
         img: gbp,
         code: 'gbp'
     },
-
-
 ]
 
 const Currency = () => {
-
-
     const { data, loading, error } = useGetCurrency('https://api.currencyapi.com/v3/latest?apikey=123', process.env.REACT_APP_CURRENCY_APIKEY)
     const [convertedData, setConvertedData] = useState<any[]>([]);
-
 
     useEffect(() => {
         if (data) {
@@ -77,11 +62,10 @@ const Currency = () => {
                 <div className="converter__subtitle">Currency</div>
                 {error ? <div className="converter__alert">Failed to fetch actual currency</div> :
                     <ul className="currency__list">
-
                         {convertedData.map((item: ICurrency) => {
                             return (
                                 <li key={item.name} className="currency__item">
-                                    <img src={item.img} alt="123" className="item__image" />
+                                    <img src={item.img} alt="itemImage" className="item__image" />
                                     <div id="usdName" className="item__name">{item.name}:</div>
                                     <div id="usd" className="item__value">{item.value}</div>
                                 </li>
@@ -89,7 +73,6 @@ const Currency = () => {
                         })}
 
                     </ul>}
-
             </div>
 
             <div className="right">
@@ -97,17 +80,10 @@ const Currency = () => {
                     Update every 15 minutes
                     <div id="metaDate"></div>
                 </div>
-                <img src={bank} alt="" className="right__photo" />
+                <img src={bank} alt="bank" className="right__photo" />
             </div>
         </div>
     )
-
 }
-
-
-
-
-
-
 
 export default Currency;

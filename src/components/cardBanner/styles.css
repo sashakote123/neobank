@@ -80,12 +80,7 @@
 .options__list {
     grid-column: 2;
 }
-.options__item {
-    display: flex;
-    column-gap: 16px;
 
-    margin-bottom: 12px;
-}
 @media (max-width: 700px) {
     .banner {
         margin-bottom: 30px;

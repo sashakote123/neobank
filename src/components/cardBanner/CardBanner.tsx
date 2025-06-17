@@ -7,7 +7,11 @@ import card3 from './../../sources/images/mainPage/cardImage3.png'
 import card4 from './../../sources/images/mainPage/cardImage4.png'
 
 import illustration from './../../sources/images/mainPage/Illustration.svg'
-import check from './../../sources/images/mainPage/check.svg'
+import OptionsListItem from '../optionsListItem/OptionsListItem';
+
+
+const optionsArray: string[] = ['Powerfull online protection.', 'Cashback without borders.', 'Personal design.', 'Work anywhere in the world.']
+const imagesArray: string[] = [card1, card2, card3, card4]
 
 const CardBanner = () => {
     return (
@@ -19,10 +23,9 @@ const CardBanner = () => {
                 </div>
 
                 <div className="banner__grid">
-                    <img className='grid__image' src={card1} alt="img" />
-                    <img className='grid__image' src={card2} alt="img" />
-                    <img className='grid__image' src={card3} alt="img" />
-                    <img className='grid__image' src={card4} alt="img" />
+                    {imagesArray.map((item: string) => {
+                        return <img key={item} className='grid__image' src={item} alt="img" />
+                    })}
                 </div>
             </div>
 
@@ -31,22 +34,7 @@ const CardBanner = () => {
                 <h2 className='options__subtitle'>We Provide Many Features You Can Use</h2>
                 <h3 className="options__desc">You can explore the features that we provide with fun and have their own functions each feature</h3>
                 <ul className="options__list">
-                    <li className="options__item">
-                        <img src={check} alt="check" />
-                        <div className="item__text">Powerfull online protection.</div>
-                    </li>
-                    <li className="options__item">
-                        <img src={check} alt="check" />
-                        <div className="item__text">Cashback without borders.</div>
-                    </li>
-                    <li className="options__item">
-                        <img src={check} alt="check" />
-                        <div className="item__text">Personal design</div>
-                    </li>
-                    <li className="options__item">
-                        <img src={check} alt="check" />
-                        <div className="item__text">Work anywhere in the world</div>
-                    </li>
+                    {optionsArray.map((item: string) => <OptionsListItem key={item} text={item} />)}
                 </ul>
             </div>
 

@@ -1,11 +1,6 @@
+import { INews } from '../types/types'
 import img1 from './../sources/images/news/demo1.jpg'
 
-interface INews {
-    urlToImage: string,
-    url: string,
-    title: string,
-    description: string,
-}
 
 export const oldNewsArray: INews[] = [
     {

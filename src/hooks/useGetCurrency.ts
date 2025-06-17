@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-
-interface CurrencyData {
-    [key: string]: {
-        code: string;
-        value: number;
-    };
-}
+import { CurrencyData } from "../types/types";
 
 interface HookResult {
     data: CurrencyData | null,

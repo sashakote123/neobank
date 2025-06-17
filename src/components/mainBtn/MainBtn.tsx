@@ -1,10 +1,10 @@
 import './styles.css'
 
-interface props {
+interface Props {
     title: string
 }
 
-const MainBtn: React.FC<props> = ({ title }) => {
+const MainBtn: React.FC<Props> = ({ title }) => {
     return (
         <button className='button'>
             {title}
