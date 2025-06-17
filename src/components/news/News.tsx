@@ -10,6 +10,7 @@ import rightend from './../../sources/images/news/right-end.svg'
 import { useEffect, useState } from 'react'
 import MainBtn from '../mainBtn/MainBtn'
 import { oldNewsArray } from '../../mock/oldNewsArray'
+import { useGetNews } from '../../hooks/useGetNews'
 
 interface INews {
     urlToImage: string,
@@ -27,16 +28,16 @@ const News = () => {
     const [leftEnd, setLeftEnd] = useState<boolean>(true)
     const [rightEnd, setRightEnd] = useState<boolean>(false)
 
+    const [isError, setIsError] = useState<boolean>(false)
+
+    const { data, loading, error } = useGetNews('https://newsapi.org/v2/everything?q=bitcoin&apiKey=123', process.env.REACT_APP_NEWS_APIKEY)
     const [newsArray, setNewsArray] = useState<INews[]>()
 
-    const [error, setError] = useState<boolean>(false)
-
     useEffect(() => {
-        fetch('https://newsapi.org/v2/everything?q=bitcoin&apiKey=abaaefa084a84cae8fccaa669d4e55b6')
-            .then(resp => resp.json())
-            .then(json => setNewsArray(json.articles.slice(0, 10)))
-            .catch(err => setError(true))
-    }, [])
+        setIsError(error)
+        if (data)
+            setNewsArray(data.slice(0, 10))
+    }, [data, error])
 
 
     const leftHandler = () => {
@@ -57,7 +58,7 @@ const News = () => {
     }
 
     const showOldNews = () => {
-        setError(false)
+        setIsError(false)
         setNewsArray(oldNewsArray)
     }
 
@@ -67,7 +68,7 @@ const News = () => {
             <h3 className="news__subtitle">We update the news feed every 15 minutes. You can learn more by clicking on the news you are interested in.
 
             </h3>
-            {error ? <div className='news__alert'>
+            {isError ? <div className='news__alert'>
                 Failed to fetch actual news
                 <div onClick={showOldNews}>
                     <MainBtn title='Show latest news' />

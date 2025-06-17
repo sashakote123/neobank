@@ -8,6 +8,7 @@ import gbp from './../../sources/images/currency/gbp.svg'
 import jpy from './../../sources/images/currency/jpy.svg'
 import bank from './../../sources/images/currency/bank.svg'
 import { useEffect, useState } from 'react'
+import { useGetCurrency } from '../../hooks/useGetCurrency'
 
 interface ICurrency {
     img: string,
@@ -51,24 +52,23 @@ const imgArray: IImage[] = [
 
 const Currency = () => {
 
-    const [data, setData] = useState<ICurrency[]>([])
-    const [error, setError] = useState<boolean>(false)
+
+    const { data, loading, error } = useGetCurrency('https://api.currencyapi.com/v3/latest?apikey=123', process.env.REACT_APP_CURRENCY_APIKEY)
+    const [convertedData, setConvertedData] = useState<any[]>([]);
+
 
     useEffect(() => {
-        fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_O35uaZRjpDW2RvjqP2BDjKViJ7rkXQYmrPQ9mVua")
-            .then(resp => resp.json())
-            .then(json => {
-                const roubleCource: number = json.data.RUB.value.toFixed(3)
-                const newData = imgArray.map((item: IImage) => ({
-                    img: item.img,
-                    name: json.data[item.code.toUpperCase()]?.code || item.code,
-                    value: +(roubleCource / json.data[item.code.toUpperCase()]?.value).toFixed(2),
-                }));
-                setTimeout(() => setData(newData), 1500);
-            })
-            .catch(e => setError(true))
-    }, [])
+        if (data) {
 
+            const roubleCourse = Number(data.RUB?.value.toFixed(3));
+            const newData = imgArray.map((item) => ({
+                img: item.img,
+                name: data[item.code.toUpperCase()]?.code || item.code,
+                value: +(roubleCourse / data[item.code.toUpperCase()]?.value).toFixed(2),
+            }));
+            setConvertedData(newData);
+        }
+    }, [data, error, loading]);
 
     return (
         <div className="converter">
@@ -78,7 +78,7 @@ const Currency = () => {
                 {error ? <div className="converter__alert">Failed to fetch actual currency</div> :
                     <ul className="currency__list">
 
-                        {data.length !== 0 ? data.map((item: ICurrency) => {
+                        {convertedData.map((item: ICurrency) => {
                             return (
                                 <li key={item.name} className="currency__item">
                                     <img src={item.img} alt="123" className="item__image" />
@@ -86,7 +86,7 @@ const Currency = () => {
                                     <div id="usd" className="item__value">{item.value}</div>
                                 </li>
                             )
-                        }) : <>loading...</>}
+                        })}
 
                     </ul>}
 
