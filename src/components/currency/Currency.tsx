@@ -39,7 +39,7 @@ const imgArray: IImage[] = [
 ]
 
 const Currency = () => {
-    const { data, loading, error } = useGetCurrency('https://api.currencyapi.com/v3/latest?apikey=123', process.env.REACT_APP_CURRENCY_APIKEY)
+    const { data, loading, error } = useGetCurrency('https://api.currencyapi.com/v3/latest?apikey=', process.env.REACT_APP_CURRENCY_APIKEY)
     const [convertedData, setConvertedData] = useState<any[]>([]);
 
     useEffect(() => {
