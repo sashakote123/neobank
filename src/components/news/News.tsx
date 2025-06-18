@@ -2,9 +2,9 @@ import './styles.css'
 
 import { useEffect, useState } from 'react'
 import MainBtn from '../mainBtn/MainBtn'
-import { oldNewsArray } from '../../mock/oldNewsArray'
-import { useGetNews } from '../../hooks/useGetNews'
-import { INews } from '../../types/types'
+import { oldNewsArray } from '@/src/mock/oldNewsArray'
+import { useGetNews } from '@/src/hooks/useGetNews'
+import { INews } from '@/src/types/types'
 import NewsButtons from '../newsButtons/NewsButtons'
 import NewsSlider from '../newsSlider/NewsSlider'
 

@@ -1,12 +1,12 @@
 import MainBtn from '../mainBtn/MainBtn';
 import './styles.css'
 
-import bankCardImage1 from './../../sources/images/mainPage/cardImage1.png'
-import bankCardImage2 from './../../sources/images/mainPage/cardImage2.png'
-import bankCardImage3 from './../../sources/images/mainPage/cardImage3.png'
-import bankCardImage4 from './../../sources/images/mainPage/cardImage4.png'
+import bankCardImage1 from '@images/mainPage/cardImage1.png'
+import bankCardImage2 from '@images/mainPage/cardImage2.png'
+import bankCardImage3 from '@images/mainPage/cardImage3.png'
+import bankCardImage4 from '@images/mainPage/cardImage4.png'
 
-import illustration from './../../sources/images/mainPage/Illustration.svg'
+import illustration from '@images/mainPage/Illustration.svg'
 import OptionsListItem from '../optionsListItem/OptionsListItem';
 
 

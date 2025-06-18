@@ -1,5 +1,5 @@
 import './styles.css'
-import checkImage from './../../sources/images/mainPage/check.svg'
+import checkImage from '@images/mainPage/check.svg'
 
 interface Props {
     text: string

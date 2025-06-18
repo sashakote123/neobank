@@ -1,4 +1,4 @@
-import { INews } from '../../types/types';
+import { INews } from '@/src/types/types';
 import NewsItem from '../newsItem/NewsItem';
 import './styles.css'
 

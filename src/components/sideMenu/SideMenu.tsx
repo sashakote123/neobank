@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router';
 import './styles.css'
-import burger from './../../sources/images/header/burgerlight.svg'
-import { ILink } from '../../types/types';
+import burger from '@images/header/burgerlight.svg'
+import { ILink } from '@/src/types/types';
 
 
 type active = {

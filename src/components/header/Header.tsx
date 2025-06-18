@@ -1,12 +1,12 @@
 import MainBtn from '../mainBtn/MainBtn';
 import './styles.css'
 
-import logo from './../../sources/images/header/NeoBank.svg'
-import burger from './../../sources/images/header/burger.svg'
+import logo from '@images/header/NeoBank.svg'
+import burger from '@images/header/burger.svg'
 import { NavLink } from 'react-router';
 import { useState } from 'react';
 import SideMenu from '../sideMenu/SideMenu';
-import { ILink } from '../../types/types';
+import { ILink } from '@/src/types/types';
 
 type active = {
     isActive: boolean,

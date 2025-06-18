@@ -1,5 +1,5 @@
 import './styles.css'
-import logo from './../../sources/images/footer/footerLogo.svg'
+import logo from '@images/footer/footerLogo.svg'
 
 
 const linksArray: string[] = [

@@ -1,5 +1,5 @@
 import './styles.css'
-import map from './../../sources/images/Huge Global.svg'
+import map from '@images/Huge Global.svg'
 
 const Map = () => {
     return (

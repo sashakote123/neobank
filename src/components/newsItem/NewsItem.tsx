@@ -1,6 +1,6 @@
-import { INews } from '../../types/types';
+import { INews } from '@/src/types/types';
 import './styles.css'
-import sliderImage from './../../sources/images/news/demo1.jpg'
+import sliderImage from '@images/news/demo1.jpg'
 
 
 interface Props {

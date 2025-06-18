@@ -1,7 +1,7 @@
 import './styles.css'
 
-import emailImage from './../../sources/images/support/email.svg'
-import sendBtnImage from './../../sources/images/support/send.svg'
+import emailImage from '@images/support/email.svg'
+import sendBtnImage from '@images/support/send.svg'
 const Support = () => {
     return (
         <section className='support'>

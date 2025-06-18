@@ -1,15 +1,15 @@
 import './styles.css'
 
-import usd from './../../sources/images/currency/usd.svg'
-import chf from './../../sources/images/currency/chf.svg'
-import cny from './../../sources/images/currency/cny.svg'
-import eur from './../../sources/images/currency/eur.svg'
-import gbp from './../../sources/images/currency/gbp.svg'
-import jpy from './../../sources/images/currency/jpy.svg'
-import bankIcon from './../../sources/images/currency/bank.svg';
+import usd from '@images/currency/usd.svg'
+import chf from '@images/currency/chf.svg'
+import cny from '@images/currency/cny.svg'
+import eur from '@images/currency/eur.svg'
+import gbp from '@images/currency/gbp.svg'
+import jpy from '@images/currency/jpy.svg'
+import bankIcon from '@images/currency/bank.svg';
 import { useEffect, useState } from 'react'
-import { useGetCurrency } from '../../hooks/useGetCurrency'
-import { ICurrency, IImage } from '../../types/types'
+import { useGetCurrency } from '@/src/hooks/useGetCurrency'
+import { ICurrency, IImage } from '@/src/types/types'
 
 const imgArray: IImage[] = [
     {

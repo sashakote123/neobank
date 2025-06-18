@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './styles.css'
 
-import leftArrow from './../../sources/images/news/left.svg'
-import rightArrow from './../../sources/images/news/right.svg'
+import leftArrow from '@images/news/left.svg'
+import rightArrow from '@images/news/right.svg'
 
-import leftArrowInTheEnd from './../../sources/images/news/left-end.svg'
-import rightArrowInTheEnd from './../../sources/images/news/right-end.svg'
-import { INews } from '../../types/types'
+import leftArrowInTheEnd from '@images/news/left-end.svg'
+import rightArrowInTheEnd from '@images/news/right-end.svg'
+import { INews } from '@/src/types/types'
 
 interface Props {
     setLeftScroll: (prev: React.SetStateAction<number>) => void,
