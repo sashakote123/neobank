@@ -1,17 +1,17 @@
 import MainBtn from '../mainBtn/MainBtn';
 import './styles.css'
 
-import card1 from './../../sources/images/mainPage/cardImage1.png'
-import card2 from './../../sources/images/mainPage/cardImage2.png'
-import card3 from './../../sources/images/mainPage/cardImage3.png'
-import card4 from './../../sources/images/mainPage/cardImage4.png'
+import bankCardImage1 from './../../sources/images/mainPage/cardImage1.png'
+import bankCardImage2 from './../../sources/images/mainPage/cardImage2.png'
+import bankCardImage3 from './../../sources/images/mainPage/cardImage3.png'
+import bankCardImage4 from './../../sources/images/mainPage/cardImage4.png'
 
 import illustration from './../../sources/images/mainPage/Illustration.svg'
 import OptionsListItem from '../optionsListItem/OptionsListItem';
 
 
 const optionsArray: string[] = ['Powerfull online protection.', 'Cashback without borders.', 'Personal design.', 'Work anywhere in the world.']
-const imagesArray: string[] = [card1, card2, card3, card4]
+const imagesArray: string[] = [bankCardImage1, bankCardImage2, bankCardImage3, bankCardImage4]
 
 const CardBanner = () => {
     return (

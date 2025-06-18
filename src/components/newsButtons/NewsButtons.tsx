@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './styles.css'
 
-import left from './../../sources/images/news/left.svg'
-import right from './../../sources/images/news/right.svg'
+import leftArrow from './../../sources/images/news/left.svg'
+import rightArrow from './../../sources/images/news/right.svg'
 
-import leftend from './../../sources/images/news/left-end.svg'
-import rightend from './../../sources/images/news/right-end.svg'
+import leftArrowInTheEnd from './../../sources/images/news/left-end.svg'
+import rightArrowInTheEnd from './../../sources/images/news/right-end.svg'
 import { INews } from '../../types/types'
 
 interface Props {
@@ -41,17 +41,17 @@ const NewsButtons: React.FC<Props> = ({ newsArray, setLeftScroll }) => {
     return (
         <div className="news__buttons">
             {!leftEnd ? <div onClick={leftHandler} className="buttons__button-end">
-                <img src={leftend} alt="left" />
+                <img src={leftArrowInTheEnd} alt="left" />
             </div> :
                 <div onClick={leftHandler} className="buttons__button">
-                    <img src={left} alt="left" />
+                    <img src={leftArrow} alt="left" />
                 </div>}
 
             {!rightEnd ? <div onClick={rightHandler} className="buttons__button-end">
-                <img src={rightend} alt="right" />
+                <img src={rightArrowInTheEnd} alt="right" />
             </div> :
                 <div onClick={rightHandler} className="buttons__button">
-                    <img src={right} alt="right" />
+                    <img src={rightArrow} alt="right" />
                 </div>}
         </div>
     );

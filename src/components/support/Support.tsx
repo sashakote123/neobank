@@ -1,7 +1,7 @@
 import './styles.css'
 
-import img1 from './../../sources/images/support/email.svg'
-import img2 from './../../sources/images/support/send.svg'
+import emailImage from './../../sources/images/support/email.svg'
+import sendBtnImage from './../../sources/images/support/send.svg'
 const Support = () => {
     return (
         <section className='support'>
@@ -10,12 +10,12 @@ const Support = () => {
             <h4 className="support__subsubtitle">Bank News</h4>
             <form className='support__form' action="">
                 <div className="form__input">
-                    <img src={img1} alt="inputImg" />
+                    <img src={emailImage} alt="inputImg" />
                     <input placeholder='Your email' type="mail" />
                 </div>
 
                 <div className="form__button">
-                    <img src={img2} alt="inputImg" />
+                    <img src={sendBtnImage} alt="inputImg" />
                     <button>Subscribe</button>
                 </div>
 

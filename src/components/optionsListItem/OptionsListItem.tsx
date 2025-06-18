@@ -1,5 +1,5 @@
 import './styles.css'
-import check from './../../sources/images/mainPage/check.svg'
+import checkImage from './../../sources/images/mainPage/check.svg'
 
 interface Props {
     text: string
@@ -8,7 +8,7 @@ interface Props {
 const OptionsListItem: React.FC<Props> = ({ text }) => {
     return (
         <li className="options__item">
-            <img src={check} alt="check" />
+            <img src={checkImage} alt="check" />
             <div className="item__text">{text}</div>
         </li>
     );

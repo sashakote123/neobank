@@ -1,6 +1,6 @@
 import { INews } from '../../types/types';
 import './styles.css'
-import img1 from './../../sources/images/news/demo1.jpg'
+import sliderImage from './../../sources/images/news/demo1.jpg'
 
 
 interface Props {
@@ -14,10 +14,10 @@ const NewsItem: React.FC<Props> = ({ item }) => {
                 src={item.urlToImage}
                 onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = img1;
+                    target.src = sliderImage;
                 }}
                 className='slider__image' alt="img" /> :
-                <img src={img1} className='slider__image' alt="img" />}
+                <img src={sliderImage} className='slider__image' alt="img" />}
             <a href={item.url} className="item__title">{item.title}</a>
             <div className="item__subtitle">{item.description}</div>
         </li>
