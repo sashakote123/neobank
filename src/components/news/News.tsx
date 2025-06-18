@@ -14,7 +14,7 @@ const News = () => {
 
     const [isError, setIsError] = useState<boolean>(false)
 
-    const { data, error } = useGetNews('https://newsapi.org/v2/everything?q=bitcoin&apiKey=123', process.env.REACT_APP_NEWS_APIKEY)
+    const { data, error } = useGetNews('https://newsapi.org/v2/everything?q=bitcoin&apiKey=', process.env.REACT_APP_NEWS_APIKEY)
     const [newsArray, setNewsArray] = useState<INews[]>()
 
     useEffect(() => {
