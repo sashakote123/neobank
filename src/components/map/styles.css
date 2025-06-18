@@ -10,7 +10,7 @@
     font-size: 30px;
     line-height: 167%;
     text-align: center;
-    color: #1c1c1c;
+    color: var(--primary-dark);
 
     margin-bottom: 10px;
 }
@@ -19,7 +19,7 @@
     font-size: 16px;
     line-height: 312%;
     text-align: center;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 
     margin-bottom: 48px;
 }

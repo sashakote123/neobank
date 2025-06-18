@@ -13,7 +13,7 @@
     font-weight: 700;
     font-size: 48px;
     line-height: 104%;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 }
 .main-btn {
     position: relative;
@@ -65,7 +65,7 @@
     font-weight: 500;
     font-size: 35px;
     line-height: 143%;
-    color: #0b132a;
+    color: var(--dark-blue);
 }
 .options__desc {
     grid-column: 2;

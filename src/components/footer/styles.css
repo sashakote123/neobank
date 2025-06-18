@@ -24,7 +24,7 @@
     font-size: 30px;
     line-height: 147%;
     text-align: center;
-    color: #000;
+    color: var(--text-color);
 }
 .contacts__mail {
     font-weight: 500;
@@ -32,7 +32,7 @@
     line-height: 147%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #2d3748;
+    color: var(--dark-blue);
 }
 .footer__links {
     display: flex;
@@ -47,7 +47,7 @@
     line-height: 147%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #000;
+    color: var(--text-color);
 }
 .footer__alert {
     padding-top: 32px;
@@ -57,7 +57,7 @@
     font-size: 16px;
     line-height: 147%;
     letter-spacing: 0.02em;
-    color: #2d3748;
+    color: var(--dark-blue);
 
     margin-bottom: 92px;
 }

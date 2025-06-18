@@ -6,7 +6,7 @@ import cny from './../../sources/images/currency/cny.svg'
 import eur from './../../sources/images/currency/eur.svg'
 import gbp from './../../sources/images/currency/gbp.svg'
 import jpy from './../../sources/images/currency/jpy.svg'
-import bank from './../../sources/images/currency/bank.svg'
+import bank from './../../sources/images/currency/bank.svg';
 import { useEffect, useState } from 'react'
 import { useGetCurrency } from '../../hooks/useGetCurrency'
 import { ICurrency, IImage } from '../../types/types'

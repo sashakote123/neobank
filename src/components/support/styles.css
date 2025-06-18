@@ -21,7 +21,7 @@
     line-height: 120%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 
     margin-bottom: 27px;
 }
@@ -31,7 +31,7 @@
     line-height: 147%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 
     margin-bottom: 62px;
 }
@@ -49,7 +49,7 @@
 
     border-radius: 20px;
     box-shadow: 0 10px 20px 0 rgba(54, 58, 120, 0.1);
-    background: #fff;
+    background: var(--white);
 }
 .form__input input {
     width: 250px;
@@ -92,7 +92,7 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 127%;
-    color: #fff;
+    color: var(--white);
 }
 
 @media screen and (max-width: 550px) {

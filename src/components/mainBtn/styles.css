@@ -4,13 +4,13 @@
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 
     height: 50px;
     min-width: 140px;
     padding: 0px 16px;
 
-    background: #003cff;
+    background: var(--primary-blue);
     border-radius: 16px;
 
 

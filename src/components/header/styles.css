@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: white;
+    background-color: var(--white);
 
     padding: 24px 15px;
 
@@ -29,11 +29,11 @@
     font-size: 16px;
     line-height: 112%;
     letter-spacing: 0.02em;
-    color: #1d1929;
+    color: var(--dark-blue);
 }
 
 .active-link {
-    color: #b2a35f !important;
+    color:  var(--active-color) !important;
 }
 
 .btn-burger {

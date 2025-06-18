@@ -27,11 +27,11 @@
     font-size: 24px;
     line-height: 112%;
     letter-spacing: 0.02em;
-    color: #ffffff;
+    color: var(--white);
 }
 
 .active-link {
-    color: #b2a35f !important;
+    color: var(--active-color) !important;
 }
 
 .side-burger{

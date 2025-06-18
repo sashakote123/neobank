@@ -10,13 +10,13 @@
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #003cff;
+    border: 1px solid var(--primary-blue);
     border-radius: 50px;
     padding: 8px;
     width: 64px;
     height: 64px;
 
-    background: #fff;
+    background: var(--white);
 }
 
 .buttons__button-end {
@@ -26,11 +26,11 @@
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #003cff;
+    border: 1px solid var(--primary-blue);
     border-radius: 50px;
     padding: 8px;
     width: 64px;
     height: 64px;
 
-    background: #003cff;
+    background: var(--primary-blue);
 }
