@@ -9,14 +9,13 @@ import rightArrowInTheEnd from './../../sources/images/news/right-end.svg'
 import { INews } from '../../types/types'
 
 interface Props {
-    setLeftScroll: (prev:React.SetStateAction<number>) => void,
+    setLeftScroll: (prev: React.SetStateAction<number>) => void,
     newsArray: INews[] | undefined
 }
 
 const NewsButtons: React.FC<Props> = ({ newsArray, setLeftScroll }) => {
 
-    const [showed, setShowed] = useState(Math.trunc(window.screen.width / 360))
-
+    const [showed, setShowed] = useState(() => Math.trunc(window.screen.width / 360))
     const [leftEnd, setLeftEnd] = useState<boolean>(true)
     const [rightEnd, setRightEnd] = useState<boolean>(false)
 
