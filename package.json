@@ -49,8 +49,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "file-loader": "^6.2.0",
-    "gh-pages": "^6.3.0",
-    "url-loader": "^4.1.1"
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "gh-pages": "^6.3.0"
   }
 }

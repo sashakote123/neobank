@@ -75,23 +75,19 @@
 }
 .right__photo {
     width: 130px;
-
-
 }
-
 
 @media screen and (max-width: 700px) {
     .right__photo {
-       display: none;
+        display: none;
     }
 
-    .right__meta{
+    .right__meta {
         margin-top: 20px;
     }
 }
 
-
-.converter__alert{
+.converter__alert {
     color: #740404;
     font-size: 20px;
 }

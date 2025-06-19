@@ -1,8 +1,8 @@
-import './styles.css'
-import checkImage from '@images/mainPage/check.svg'
+import './styles.css';
+import checkImage from '@images/mainPage/check.svg';
 
 interface Props {
-    text: string
+    text: string;
 }
 
 const OptionsListItem: React.FC<Props> = ({ text }) => {
@@ -12,5 +12,5 @@ const OptionsListItem: React.FC<Props> = ({ text }) => {
             <div className="item__text">{text}</div>
         </li>
     );
-}
+};
 export default OptionsListItem;
