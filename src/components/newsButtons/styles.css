@@ -1,0 +1,36 @@
+.news__buttons {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+.buttons__button {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--primary-blue);
+    border-radius: 50px;
+    padding: 8px;
+    width: 64px;
+    height: 64px;
+
+    background: var(--white);
+}
+
+.buttons__button-end {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--primary-blue);
+    border-radius: 50px;
+    padding: 8px;
+    width: 64px;
+    height: 64px;
+
+    background: var(--primary-blue);
+}

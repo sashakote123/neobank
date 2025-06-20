@@ -1,14 +1,9 @@
-import './styles.css'
-
-interface props {
-    title: string
+import './styles.css';
+interface Props {
+    title: string;
 }
 
-const MainBtn: React.FC<props> = ({ title }) => {
-    return (
-        <button className='button'>
-            {title}
-        </button>
-    );
-}
+const MainBtn: React.FC<Props> = ({ title }) => {
+    return <button className="button">{title}</button>;
+};
 export default MainBtn;
