@@ -10,7 +10,7 @@ import jpy from "@images/currency/jpy.svg";
 
 interface HookResult {
   convertedData: ICurrency[] | null;
-  loading: boolean;
+  isLoading: boolean;
   error: Error | undefined;
 }
 
@@ -41,10 +41,10 @@ const CURRENCY_IMAGES: IImage[] = [
   },
 ];
 
-const CURRENCY_API_URL = `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_CURRENCY_APIKEY}`;
+const CURRENCY_API_URL = `https://api.currencyapi.com/v3/latest?apikey=$123{process.env.REACT_APP_CURRENCY_APIKEY}`;
 
 export const useGetCurrency = (): HookResult => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [convertedData, setConvertedData] = useState<ICurrency[]>([]);
 
@@ -88,11 +88,11 @@ export const useGetCurrency = (): HookResult => {
           err instanceof Error ? err : new Error("An unknown error occurred")
         );
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
     fetchCurrencyData();
   }, []);
-  return { convertedData, loading, error };
+  return { convertedData, isLoading, error };
 };

@@ -10,7 +10,7 @@ import NewsSlider from "../newsSlider/NewsSlider";
 const News = () => {
   const [leftScroll, setLeftScroll] = useState(1);
 
-  const [isError, setIsError] = useState<boolean>(false);
+  const [isError, setIsError] = useState<Error>();
 
   const { data, error } = useGetNews();
   const [newsArray, setNewsArray] = useState<INews[]>();
@@ -21,7 +21,7 @@ const News = () => {
   }, [data, error]);
 
   const showOldNews = () => {
-    setIsError(false);
+    setIsError(undefined);
     setNewsArray(oldNewsArray);
   };
 
@@ -40,14 +40,15 @@ const News = () => {
           </div>
         </div>
       ) : newsArray ? (
-        <div className="carousel">
-          <NewsSlider leftScroll={leftScroll} newsArray={newsArray} />
-        </div>
+        <>
+          <div className="carousel">
+            <NewsSlider leftScroll={leftScroll} newsArray={newsArray} />
+          </div>
+          <NewsButtons newsArray={newsArray} setLeftScroll={setLeftScroll} />
+        </>
       ) : (
         <>loading...</>
       )}
-
-      <NewsButtons newsArray={newsArray} setLeftScroll={setLeftScroll} />
     </section>
   );
 };
