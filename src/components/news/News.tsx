@@ -17,7 +17,7 @@ const News = () => {
 
   useEffect(() => {
     setIsError(error);
-    if (data) setNewsArray(data.slice(0, 10));
+    if (data) setNewsArray(data);
   }, [data, error]);
 
   const showOldNews = () => {
