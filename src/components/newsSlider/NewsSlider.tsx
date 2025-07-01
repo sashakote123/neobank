@@ -3,16 +3,19 @@ import { INews } from "@/src/types/types";
 import NewsItem from "../newsItem/NewsItem";
 
 interface Props {
-  leftScroll: number;
+  offset: number;
   newsArray: INews[];
 }
 
-const NewsSlider: React.FC<Props> = ({ leftScroll, newsArray }) => {
+const NewsSlider: React.FC<Props> = ({ offset, newsArray }) => {
   return (
-    <ul style={{ marginLeft: `${leftScroll}px` }} className="news__slider">
-      {newsArray.map((item: INews, index: number) => {
-        return <NewsItem key={index} item={item} />;
-      })}
+    <ul
+      style={{ transform: `translateX(${offset}px)` }}
+      className="news__slider"
+    >
+      {newsArray.map((item, index) => (
+        <NewsItem key={index} item={item} />
+      ))}
     </ul>
   );
 };

@@ -1,9 +1,10 @@
-.news__buttons {
+.news-navigation {
     display: flex;
     justify-content: end;
     gap: 20px;
 }
-.buttons__button {
+
+.navigation-button {
     cursor: pointer;
 
     display: flex;
@@ -19,7 +20,7 @@
     background: var(--white);
 }
 
-.buttons__button-end {
+.navigation-button--active {
     cursor: pointer;
 
     display: flex;

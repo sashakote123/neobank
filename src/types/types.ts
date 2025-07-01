@@ -1,3 +1,10 @@
+export interface NewsNavigationProps {
+  currentIndex: number;
+  itemsCount: number;
+  onNavigate: (direction: "prev" | "next") => void;
+  itemWidth?: number;
+}
+
 export interface INews {
   urlToImage: string;
   url: string;
