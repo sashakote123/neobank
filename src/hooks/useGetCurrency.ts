@@ -68,7 +68,6 @@ export const useGetCurrency = (): HookResult => {
         if (isNaN(rubValue)) {
           throw new Error("Invalid RUB value");
         }
-        console.log(data);
         const processedData = CURRENCY_IMAGES.map(({ img, code }) => {
           const currency = data[code.toUpperCase()];
           if (!currency) {
