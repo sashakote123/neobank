@@ -6,24 +6,19 @@ import rightArrow from "@images/news/right.svg";
 import leftArrowInTheEnd from "@images/news/left-end.svg";
 import rightArrowInTheEnd from "@images/news/right-end.svg";
 import { NewsNavigationProps } from "@/src/types/types";
+import useResize from "@/src/hooks/useResize";
 
 export const NewsNavigation: React.FC<NewsNavigationProps> = ({
   currentIndex,
   itemsCount,
   onNavigate,
-  itemWidth = 360,
+  itemWidth = 400,
 }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { windowWidth } = useResize();
 
   const visibleItems = Math.max(1, Math.floor(windowWidth / itemWidth));
   const isAtStart = currentIndex >= 0;
-  const isAtEnd = currentIndex <= -(itemsCount - visibleItems) * itemWidth;
+  const isAtEnd = currentIndex <= -(itemsCount - visibleItems + 2) * itemWidth;
 
   const ArrowButton = ({ direction }: { direction: "prev" | "next" }) => {
     const isPrev = direction === "prev";
@@ -43,7 +38,7 @@ export const NewsNavigation: React.FC<NewsNavigationProps> = ({
         className={`navigation-button ${isDisabled ? "" : "navigation-button--active"}`}
         aria-label={`Scroll ${direction}`}
       >
-        <img src={icon} alt={direction} />
+        <img className="button__image" src={icon} alt={direction} />
       </button>
     );
   };

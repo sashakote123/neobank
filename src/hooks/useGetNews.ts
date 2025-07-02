@@ -7,7 +7,7 @@ interface HookResult {
   error: Error | undefined;
 }
 
-const NEWS_API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${process.env.REACT_APP_NEWS_APIKEY}`;
+const NEWS_API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=123${process.env.REACT_APP_NEWS_APIKEY}`;
 const MAX_NEWS_ITEMS = 10;
 
 export const useGetNews = (): HookResult => {

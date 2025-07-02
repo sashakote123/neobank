@@ -12,7 +12,7 @@ const News = () => {
   const { data, error } = useGetNews();
   const [isError, setIsError] = useState<Error | undefined>(error);
   const [newsArray, setNewsArray] = useState<INews[]>([]);
-  const itemWidth = 360;
+  const itemWidth = 400;
 
   useEffect(() => {
     setIsError(error);
@@ -31,8 +31,7 @@ const News = () => {
           1,
           Math.floor(window.innerWidth / itemWidth)
         );
-        const maxOffset = -(newsArray.length - visibleItems) * itemWidth;
-
+        const maxOffset = -(newsArray.length - visibleItems + 2) * itemWidth;
         if (direction === "prev") {
           return Math.min(0, prev + itemWidth);
         } else {

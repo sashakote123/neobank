@@ -4,6 +4,10 @@
     gap: 20px;
 }
 
+.button__image {
+    user-select: none;
+}
+
 .navigation-button {
     cursor: pointer;
 
