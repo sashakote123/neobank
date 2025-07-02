@@ -41,7 +41,7 @@
     gap: 32px;
     margin-bottom: 28px;
 }
-.links__item {
+.links__item a {
     font-weight: 500;
     font-size: 16px;
     line-height: 147%;

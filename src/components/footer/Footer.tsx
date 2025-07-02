@@ -1,17 +1,18 @@
+import { ILink } from "@/src/types/types";
 import "./styles.css";
 import logo from "@images/footer/footerLogo.svg";
 
-const linksArray: string[] = [
-  "About bank",
-  "Ask a Question",
-  "Quality of service",
-  "Requisites",
-  "Press center",
-  "Bank career",
-  "Investors",
-  "Analytics",
-  "Business and processes",
-  "Compliance and business ethics",
+const linksArray: ILink[] = [
+  { text: "About bank", to: "!#" },
+  { text: "Ask a Question", to: "!#" },
+  { text: "Quality of service", to: "!#" },
+  { text: "Requisites", to: "!#" },
+  { text: "Press center", to: "!#" },
+  { text: "Bank career", to: "!#" },
+  { text: "Investors", to: "!#" },
+  { text: "Analytics", to: "!#" },
+  { text: "Business and processes", to: "!#" },
+  { text: "Compliance and business ethics", to: "!#" },
 ];
 
 const Footer: React.FC = () => {
@@ -30,10 +31,10 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <ul className="footer__links">
-          {linksArray.map((item: string) => {
+          {linksArray.map((item: ILink) => {
             return (
-              <li key={item} className="links__item">
-                {item}
+              <li key={item.text} className="links__item">
+                <a href={item.to}>{item.text}</a>
               </li>
             );
           })}
