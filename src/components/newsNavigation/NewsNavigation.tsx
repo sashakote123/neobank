@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./styles.css";
 
 import leftArrow from "@images/news/left.svg";
@@ -7,6 +6,7 @@ import leftArrowInTheEnd from "@images/news/left-end.svg";
 import rightArrowInTheEnd from "@images/news/right-end.svg";
 import { NewsNavigationProps } from "@/src/types/types";
 import useResize from "@/src/hooks/useResize";
+import clsx from "clsx";
 
 export const NewsNavigation: React.FC<NewsNavigationProps> = ({
   currentIndex,
@@ -31,11 +31,16 @@ export const NewsNavigation: React.FC<NewsNavigationProps> = ({
         ? leftArrowInTheEnd
         : rightArrowInTheEnd;
 
+    const buttonClass = clsx("navigation-button", {
+      "": isDisabled,
+      "navigation-button--active": !isDisabled,
+    });
+
     return (
       <button
         onClick={() => onNavigate(direction)}
         disabled={isDisabled}
-        className={`navigation-button ${isDisabled ? "" : "navigation-button--active"}`}
+        className={buttonClass}
         aria-label={`Scroll ${direction}`}
       >
         <img className="button__image" src={icon} alt={direction} />
