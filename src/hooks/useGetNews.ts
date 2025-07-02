@@ -4,13 +4,13 @@ import { INews } from "../types/types";
 interface HookResult {
   data: INews[] | null;
   isLoading: boolean;
-  error: Error | undefined;
+  error?: Error;
 }
 
 const NEWS_API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=123${process.env.REACT_APP_NEWS_APIKEY}`;
 const MAX_NEWS_ITEMS = 10;
 
-export const useGetNews = (): HookResult => {
+const useGetNews = (): HookResult => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [data, setData] = useState<INews[] | null>(null);
@@ -45,3 +45,5 @@ export const useGetNews = (): HookResult => {
 
   return { data, isLoading, error };
 };
+
+export default useGetNews;

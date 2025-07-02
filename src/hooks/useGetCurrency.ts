@@ -11,7 +11,7 @@ import jpy from "@images/currency/jpy.svg";
 interface HookResult {
   convertedData: ICurrency[] | null;
   isLoading: boolean;
-  error: Error | undefined;
+  error?: Error;
 }
 
 const CURRENCY_IMAGES: IImage[] = [
@@ -41,9 +41,9 @@ const CURRENCY_IMAGES: IImage[] = [
   },
 ];
 
-const CURRENCY_API_URL = `https://api.currencyapi.com/v3/latest?apikey=123${process.env.REACT_APP_CURRENCY_APIKEY}`;
+const CURRENCY_API_URL = `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_CURRENCY_APIKEY}`;
 
-export const useGetCurrency = (): HookResult => {
+const useGetCurrency = (currenciesArray = CURRENCY_IMAGES): HookResult => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [convertedData, setConvertedData] = useState<ICurrency[]>([]);
@@ -68,19 +68,21 @@ export const useGetCurrency = (): HookResult => {
         if (isNaN(rubValue)) {
           throw new Error("Invalid RUB value");
         }
-        const processedData = CURRENCY_IMAGES.map(({ img, code }) => {
-          const currency = data[code.toUpperCase()];
-          if (!currency) {
-            console.warn(`Currency data not found for: ${code}`);
-            return null;
-          }
+        const processedData = currenciesArray
+          .map(({ img, code }) => {
+            const currency = data[code.toUpperCase()];
+            if (!currency) {
+              console.warn(`Currency data not found for: ${code}`);
+              return null;
+            }
 
-          return {
-            img,
-            name: code,
-            value: parseFloat((rubValue / currency.value).toFixed(2)),
-          };
-        }).filter((item): item is ICurrency => item !== null);
+            return {
+              img,
+              name: code,
+              value: parseFloat((rubValue / currency.value).toFixed(2)),
+            };
+          })
+          .filter((item): item is ICurrency => item !== null);
 
         setConvertedData(processedData);
       } catch (err) {
@@ -93,6 +95,8 @@ export const useGetCurrency = (): HookResult => {
     };
 
     fetchCurrencyData();
-  }, []);
+  }, [currenciesArray]);
   return { convertedData, isLoading, error };
 };
+
+export default useGetCurrency;

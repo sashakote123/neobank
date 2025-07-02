@@ -1,7 +1,7 @@
 import "./styles.css";
 
 import bankIcon from "@images/currency/bank.svg";
-import { useGetCurrency } from "@/src/hooks/useGetCurrency";
+import useGetCurrency from "@/src/hooks/useGetCurrency";
 import { ICurrency } from "@/src/types/types";
 
 const Currency = () => {

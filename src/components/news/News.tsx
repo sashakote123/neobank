@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import "./styles.css";
 import MainBtn from "../mainBtn/MainBtn";
 import { oldNewsArray } from "@/src/mock/oldNewsArray";
-import { useGetNews } from "@/src/hooks/useGetNews";
+import useGetNews from "@/src/hooks/useGetNews";
 import NewsSlider from "../newsSlider/NewsSlider";
 import { NewsNavigation } from "../newsNavigation/NewsNavigation";
 import { INews } from "@/src/types/types";
