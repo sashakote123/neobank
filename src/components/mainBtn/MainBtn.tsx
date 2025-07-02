@@ -1,9 +1,14 @@
-import './styles.css';
+import "./styles.css";
 interface Props {
-    title: string;
+  title: string;
+  onClick?: () => void;
 }
 
-const MainBtn: React.FC<Props> = ({ title }) => {
-    return <button className="button">{title}</button>;
+const MainBtn: React.FC<Props> = ({ title, onClick }) => {
+  return (
+    <button onClick={onClick} className="button">
+      {title}
+    </button>
+  );
 };
 export default MainBtn;

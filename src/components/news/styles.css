@@ -27,8 +27,6 @@
     margin: 0 auto;
 }
 
-
-
 @media screen and (max-width: 1300px) {
     .carousel {
         width: 900px;
@@ -49,9 +47,10 @@
 .news__alert {
     font-size: 20px;
 
+    margin-top: 50px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 150px;
 }
-

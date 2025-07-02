@@ -48,9 +48,7 @@ const News = () => {
         <h2 className="news__title">Current news from the world of finance</h2>
         <div className="news__alert">
           Failed to fetch actual news
-          <div onClick={showOldNews}>
-            <MainBtn title="Show latest news" />
-          </div>
+          <MainBtn onClick={showOldNews} title="Show latest news" />
         </div>
       </section>
     );
