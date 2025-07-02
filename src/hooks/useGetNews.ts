@@ -7,7 +7,7 @@ interface HookResult {
   error?: Error;
 }
 
-const NEWS_API_URL = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=123${process.env.REACT_APP_NEWS_APIKEY}`;
+const NEWS_API_URL = `https://newsdata.io/api/1/latest?apikey=${process.env.REACT_APP_NEWS_APIKEY}&q=banking`;
 const MAX_NEWS_ITEMS = 10;
 
 const useGetNews = (): HookResult => {
@@ -25,12 +25,11 @@ const useGetNews = (): HookResult => {
         }
 
         const result = await response.json();
-
-        if (!result?.articles) {
+        if (!result?.results) {
           throw new Error("No articles data received from API");
         }
 
-        setData(result.articles.slice(0, MAX_NEWS_ITEMS));
+        setData(result.results.slice(0, MAX_NEWS_ITEMS));
       } catch (err) {
         setError(
           err instanceof Error ? err : new Error("An unknown error occurred")
@@ -39,10 +38,8 @@ const useGetNews = (): HookResult => {
         setIsLoading(false);
       }
     };
-
     fetchNewsData();
   }, []);
-
   return { data, isLoading, error };
 };
 

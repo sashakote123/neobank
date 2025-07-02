@@ -6,8 +6,8 @@ export interface NewsNavigationProps {
 }
 
 export interface INews {
-  urlToImage: string;
-  url: string;
+  image_url: string;
+  link: string;
   title: string;
   description: string;
 }
@@ -33,11 +33,4 @@ export interface CurrencyData {
     code: string;
     value: number;
   };
-}
-
-export interface INews {
-  urlToImage: string;
-  url: string;
-  title: string;
-  description: string;
 }
