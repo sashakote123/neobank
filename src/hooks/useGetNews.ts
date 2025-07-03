@@ -3,29 +3,44 @@ import { INews } from "../types/types";
 
 interface HookResult {
   data: INews[] | null;
-  loading: boolean;
-  error: boolean;
+  isLoading: boolean;
+  error?: Error;
 }
 
-export const useGetNews = (): HookResult => {
-  const [data, setData] = useState<INews[] | null>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
+const NEWS_API_URL = `https://newsdata.io/api/1/latest?apikey=${process.env.REACT_APP_NEWS_APIKEY}&q=banking`;
+const MAX_NEWS_ITEMS = 10;
+
+const useGetNews = (): HookResult => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error>();
+  const [data, setData] = useState<INews[] | null>(null);
 
   useEffect(() => {
-    fetch(
-      `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${process.env.REACT_APP_NEWS_APIKEY}`
-    )
-      .then((resp) => {
-        if (resp.ok) return resp.json();
-        else throw new Error();
-      })
-      .catch(() => setError(true))
-      .then((json) =>
-        json ? setData(json.articles.slice(0, 10)) : setData(json)
-      )
-      .finally(() => setLoading(false));
-  }, []);
+    const fetchNewsData = async () => {
+      try {
+        const response = await fetch(NEWS_API_URL);
 
-  return { data, loading, error };
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        if (!result?.results) {
+          throw new Error("No articles data received from API");
+        }
+
+        setData(result.results.slice(0, MAX_NEWS_ITEMS));
+      } catch (err) {
+        setError(
+          err instanceof Error ? err : new Error("An unknown error occurred")
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchNewsData();
+  }, []);
+  return { data, isLoading, error };
 };
+
+export default useGetNews;

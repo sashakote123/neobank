@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CurrencyData, IImage } from "../types/types";
+import { CurrencyData, ICurrency, IImage } from "../types/types";
 
 import usd from "@images/currency/usd.svg";
 import chf from "@images/currency/chf.svg";
@@ -9,12 +9,12 @@ import gbp from "@images/currency/gbp.svg";
 import jpy from "@images/currency/jpy.svg";
 
 interface HookResult {
-  convertedData: any | null;
-  loading: boolean;
-  error: boolean;
+  convertedData: ICurrency[] | null;
+  isLoading: boolean;
+  error?: Error;
 }
 
-const imgArray: IImage[] = [
+const CURRENCY_IMAGES: IImage[] = [
   {
     img: usd,
     code: "usd",
@@ -41,39 +41,62 @@ const imgArray: IImage[] = [
   },
 ];
 
-export const useGetCurrency = (): HookResult => {
-  const [data, setData] = useState<CurrencyData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-  const [convertedData, setConvertedData] = useState<any[]>([]);
+const CURRENCY_API_URL = `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_CURRENCY_APIKEY}`;
+
+const useGetCurrency = (currenciesArray = CURRENCY_IMAGES): HookResult => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error>();
+  const [convertedData, setConvertedData] = useState<ICurrency[]>([]);
 
   useEffect(() => {
-    fetch(
-      `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_CURRENCY_APIKEY}`
-    )
-      .then((resp) => {
-        if (resp.ok) return resp.json();
-        else throw new Error();
-      })
-      .catch(() => setError(true))
-      .then((json) => {
-        json ? setData(json.data) : setData(json);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    const fetchCurrencyData = async () => {
+      try {
+        const response = await fetch(CURRENCY_API_URL);
 
-  useEffect(() => {
-    if (data) {
-      const roubleCourse = Number(data.RUB?.value.toFixed(3));
-      const newData = imgArray.map((item) => ({
-        img: item.img,
-        name: data[item.code.toUpperCase()]?.code || item.code,
-        value: +(roubleCourse / data[item.code.toUpperCase()]?.value).toFixed(
-          2
-        ),
-      }));
-      setConvertedData(newData);
-    }
-  }, [data]);
-  return { convertedData, loading, error };
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        const data: CurrencyData = result.data;
+
+        if (!data) {
+          throw new Error("No data received from API");
+        }
+
+        const rubValue = parseFloat(data.RUB?.value.toFixed(3));
+        if (isNaN(rubValue)) {
+          throw new Error("Invalid RUB value");
+        }
+        const processedData = currenciesArray
+          .map(({ img, code }) => {
+            const currency = data[code.toUpperCase()];
+            if (!currency) {
+              console.warn(`Currency data not found for: ${code}`);
+              return null;
+            }
+
+            return {
+              img,
+              name: code,
+              value: parseFloat((rubValue / currency.value).toFixed(2)),
+            };
+          })
+          .filter((item): item is ICurrency => item !== null);
+
+        setConvertedData(processedData);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err : new Error("An unknown error occurred")
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCurrencyData();
+  }, [currenciesArray]);
+  return { convertedData, isLoading, error };
 };
+
+export default useGetCurrency;

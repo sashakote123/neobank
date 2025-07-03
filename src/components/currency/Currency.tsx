@@ -1,7 +1,7 @@
 import "./styles.css";
 
 import bankIcon from "@images/currency/bank.svg";
-import { useGetCurrency } from "@/src/hooks/useGetCurrency";
+import useGetCurrency from "@/src/hooks/useGetCurrency";
 import { ICurrency } from "@/src/types/types";
 
 const Currency = () => {
@@ -18,19 +18,25 @@ const Currency = () => {
           </div>
         ) : (
           <ul className="currency__list">
-            {convertedData.map((item: ICurrency) => {
-              return (
-                <li key={item.name} className="currency__item">
-                  <img src={item.img} alt="itemImage" className="item__image" />
-                  <div id="usdName" className="item__name">
-                    {item.name}:
-                  </div>
-                  <div id="usd" className="item__value">
-                    {item.value}
-                  </div>
-                </li>
-              );
-            })}
+            {convertedData
+              ? convertedData.map((item: ICurrency) => {
+                  return (
+                    <li key={item.name} className="currency__item">
+                      <img
+                        src={item.img}
+                        alt="itemImage"
+                        className="item__image"
+                      />
+                      <div id="usdName" className="item__name">
+                        {item.name}:
+                      </div>
+                      <div id="usd" className="item__value">
+                        {item.value}
+                      </div>
+                    </li>
+                  );
+                })
+              : null}
           </ul>
         )}
       </div>
