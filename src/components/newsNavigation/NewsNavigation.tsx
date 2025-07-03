@@ -5,53 +5,65 @@ import rightArrow from "@images/news/right.svg";
 import leftArrowInTheEnd from "@images/news/left-end.svg";
 import rightArrowInTheEnd from "@images/news/right-end.svg";
 import { NewsNavigationProps } from "@/src/types/types";
-import useResize from "@/src/hooks/useResize";
-import clsx from "clsx";
+import { clsx } from "clsx";
+
+const ArrowButton = ({
+  direction,
+  isDisabled,
+  onNavigate,
+}: {
+  direction: "prev" | "next";
+  isDisabled: boolean;
+  onNavigate: (direction: "prev" | "next") => void;
+}) => {
+  const isPrev = direction === "prev";
+  const icon = isDisabled
+    ? isPrev
+      ? leftArrow
+      : rightArrow
+    : isPrev
+      ? leftArrowInTheEnd
+      : rightArrowInTheEnd;
+
+  const buttonClass = clsx("navigation-button", {
+    "navigation-button--active": !isDisabled,
+  });
+
+  return (
+    <button
+      onClick={() => onNavigate(direction)}
+      disabled={isDisabled}
+      className={buttonClass}
+      aria-label={`Scroll ${direction}`}
+    >
+      <img className="button__image" src={icon} alt={direction} />
+    </button>
+  );
+};
 
 export const NewsNavigation: React.FC<NewsNavigationProps> = ({
   currentIndex,
   itemsCount,
   onNavigate,
   itemWidth = 400,
+  visibleItems,
 }) => {
-  const { windowWidth } = useResize();
-
-  const visibleItems = Math.max(1, Math.floor(windowWidth / itemWidth));
   const isAtStart = currentIndex >= 0;
-  const isAtEnd = currentIndex <= -(itemsCount - visibleItems + 2) * itemWidth;
-
-  const ArrowButton = ({ direction }: { direction: "prev" | "next" }) => {
-    const isPrev = direction === "prev";
-    const isDisabled = isPrev ? isAtStart : isAtEnd;
-    const icon = isDisabled
-      ? isPrev
-        ? leftArrow
-        : rightArrow
-      : isPrev
-        ? leftArrowInTheEnd
-        : rightArrowInTheEnd;
-
-    const buttonClass = clsx("navigation-button", {
-      "": isDisabled,
-      "navigation-button--active": !isDisabled,
-    });
-
-    return (
-      <button
-        onClick={() => onNavigate(direction)}
-        disabled={isDisabled}
-        className={buttonClass}
-        aria-label={`Scroll ${direction}`}
-      >
-        <img className="button__image" src={icon} alt={direction} />
-      </button>
-    );
-  };
-
+  const isAtEnd = visibleItems
+    ? currentIndex <= -(itemsCount - visibleItems) * itemWidth
+    : false;
   return (
     <div className="news-navigation">
-      <ArrowButton direction="prev" />
-      <ArrowButton direction="next" />
+      <ArrowButton
+        direction="prev"
+        isDisabled={isAtStart}
+        onNavigate={onNavigate}
+      />
+      <ArrowButton
+        direction="next"
+        isDisabled={isAtEnd}
+        onNavigate={onNavigate}
+      />
     </div>
   );
 };

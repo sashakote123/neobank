@@ -3,6 +3,7 @@ export interface NewsNavigationProps {
   itemsCount: number;
   onNavigate: (direction: "prev" | "next") => void;
   itemWidth?: number;
+  visibleItems?: number;
 }
 
 export interface INews {

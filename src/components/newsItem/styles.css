@@ -17,6 +17,8 @@
 }
 
 .item__title {
+    width: 255px;
+
     display: block;
     color: var(--text-color);
     font-weight: 500;
@@ -37,6 +39,8 @@
     text-align: center !important;
 }
 .item__subtitle {
+    width: 255px;
+
     margin-top: 32px;
     height: 96px;
     font-weight: 500;

@@ -41,7 +41,7 @@ const CURRENCY_IMAGES: IImage[] = [
   },
 ];
 
-const CURRENCY_API_URL = `https://api.currencyapi.com/v3/latest?apikey=${process.env.REACT_APP_CURRENCY_APIKEY}`;
+const CURRENCY_API_URL = `https://api.currencyapi.com/v3/latest?apikey=123${process.env.REACT_APP_CURRENCY_APIKEY}`;
 
 const useGetCurrency = (currenciesArray = CURRENCY_IMAGES): HookResult => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

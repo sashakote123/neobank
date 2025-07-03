@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import "./styles.css";
 import MainBtn from "../mainBtn/MainBtn";
 import { oldNewsArray } from "@/src/mock/oldNewsArray";
@@ -6,6 +6,7 @@ import useGetNews from "@/src/hooks/useGetNews";
 import NewsSlider from "../newsSlider/NewsSlider";
 import { NewsNavigation } from "../newsNavigation/NewsNavigation";
 import { INews } from "@/src/types/types";
+import useElementWidth from "@/src/hooks/useElementWidth";
 
 const News = () => {
   const [offset, setOffset] = useState(0);
@@ -13,6 +14,10 @@ const News = () => {
   const [isError, setIsError] = useState<Error | undefined>(error);
   const [newsArray, setNewsArray] = useState<INews[]>([]);
   const itemWidth = 400;
+
+  const [visibleItems, setVisibleItems] = useState<number>(1);
+  const newsRef = useRef<HTMLDivElement>(null);
+  const newsWidth = useElementWidth(newsRef);
 
   useEffect(() => {
     setIsError(error);
@@ -27,11 +32,8 @@ const News = () => {
   const handleNavigate = useCallback(
     (direction: "prev" | "next") => {
       setOffset((prev) => {
-        const visibleItems = Math.max(
-          1,
-          Math.floor(window.innerWidth / itemWidth)
-        );
-        const maxOffset = -(newsArray.length - visibleItems + 2) * itemWidth;
+        setVisibleItems(Math.max(1, Math.floor(newsWidth / itemWidth)));
+        const maxOffset = -(newsArray.length - visibleItems) * itemWidth;
         if (direction === "prev") {
           return Math.min(0, prev + itemWidth);
         } else {
@@ -39,7 +41,7 @@ const News = () => {
         }
       });
     },
-    [itemWidth, newsArray.length]
+    [newsArray.length, newsWidth, visibleItems]
   );
 
   if (isError) {
@@ -59,7 +61,7 @@ const News = () => {
   }
 
   return (
-    <section className="news">
+    <section ref={newsRef} className="news">
       <h2 className="news__title">Current news from the world of finance</h2>
       <h3 className="news__subtitle">
         We update the news feed every 15 minutes. You can learn more by clicking
@@ -73,6 +75,7 @@ const News = () => {
           itemsCount={newsArray.length}
           onNavigate={handleNavigate}
           itemWidth={itemWidth}
+          visibleItems={visibleItems}
         />
       </div>
     </section>
