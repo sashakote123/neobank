@@ -1,5 +1,7 @@
+import { useState } from "react";
 import styles from "./styles.module.css";
 import { IQuestion, ISection } from "./types";
+import QuestionItem from "@/src/entities/questionItem/QuestionItem";
 
 const questionsArray: ISection[] = [
   {
@@ -60,23 +62,31 @@ const questionsArray: ISection[] = [
 ];
 
 const Questions = () => {
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+
+  const handleToggle = (question: string) => {
+    setOpenQuestion((prev) => (prev === question ? null : question));
+  };
+
   return (
     <section className={styles.container}>
       <ul className={styles.questionsList}>
         {questionsArray.map((item: ISection) => {
           return (
-            <li>
+            <li key={item.sectionTitle}>
               <h4 className={styles.sectionTitle}>{item.sectionTitle}</h4>
-              {item.questions.map((question: IQuestion) => {
-                return (
-                  <li className={styles.listItem}>
-                    <div className={styles.itemQuestion}>
-                      {question.question}
-                    </div>
-                    <div className={styles.itemAnswer}>{question.answer}</div>
-                  </li>
-                );
-              })}
+              <ul>
+                {item.questions.map((question: IQuestion) => {
+                  return (
+                    <QuestionItem
+                      key={question.question}
+                      question={question}
+                      isOpen={openQuestion === question.question}
+                      onToggle={() => handleToggle(question.question)}
+                    />
+                  );
+                })}
+              </ul>
             </li>
           );
         })}
@@ -84,4 +94,5 @@ const Questions = () => {
     </section>
   );
 };
+
 export default Questions;

@@ -18,30 +18,3 @@
     margin-top: 32px;
     text-align: start;
 }
-
-.listItem {
-    border: 1px solid #e2e8f0;
-    padding-left: 32px;
-}
-
-.itemQuestion {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 147%;
-    text-align: center;
-    color: var(--primary-dark);
-
-    margin-top: 28px;
-    margin-bottom: 40px;
-    text-align: start;
-}
-
-.itemAnswer {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 147%;
-    color: var(--link-color);
-
-    margin-bottom: 40px;
-    text-align: start;
-}

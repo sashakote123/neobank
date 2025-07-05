@@ -1,0 +1,47 @@
+.listItem {
+    border: 1px solid #e2e8f0;
+    padding: 0 32px;
+
+    height: 84px;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+
+.itemQuestion {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 147%;
+    text-align: center;
+    color: var(--primary-dark);
+
+    text-align: start;
+}
+
+.openButton {
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+
+.itemAnswer {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 147%;
+    color: var(--link-color);
+
+    padding-top: 12px;
+    margin-bottom: 40px;
+    text-align: start;
+}
