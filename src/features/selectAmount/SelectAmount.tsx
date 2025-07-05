@@ -50,8 +50,6 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
       }
     };
 
-    console.log(sliderRef.current.clientWidth);
-
     const handleMouseUp = () => {
       document.removeEventListener(
         "pointermove",
