@@ -11,7 +11,7 @@ const CustomizeCard = () => {
             <h2 className={styles.sectionTitle}>Customize your card</h2>
             <div className={styles.steps}>Step 1 of 5</div>
           </div>
-          <SelectAmount minAmount={15000} maxAmount={60000} />
+          <SelectAmount minAmount={15000} maxAmount={600000} />
         </div>
         <div className={styles.shosenAmount}>
           <h3 className={styles.shosenAmountTitle}>
