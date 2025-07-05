@@ -1,0 +1,38 @@
+.cardItem {
+    border-radius: 28px;
+    width: 406px;
+    height: 163px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 2px 4px 0 rgba(0, 0, 0, 0.2),
+        0 0 8px 0 rgba(0, 0, 0, 0.08);
+    background: #eaecee;
+}
+
+.cardItem:nth-child(even) {
+    background: rgba(136, 179, 184, 0.6);
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 147%;
+    text-align: center;
+    color: rgba(67, 67, 67, 0.9);
+
+    margin-bottom: 22px;
+
+    text-align: start;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 147%;
+    text-align: center;
+    color: var(--text-color);
+
+    text-align: start;
+}

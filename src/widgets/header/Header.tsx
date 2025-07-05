@@ -4,7 +4,7 @@ import "./styles.css";
 import MainBtn from "../../shared/mainBtn/MainBtn";
 import logo from "@images/header/NeoBank.svg";
 import burger from "@images/header/burger.svg";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import SideMenu from "../sideMenu/SideMenu";
 import { ILink } from "@/src/shared/types/types";
 import clsx from "clsx";
@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   const linksArray: ILink[] = [
-    { to: "/", text: "Credit card" },
+    { to: "/card", text: "Credit card" },
     { to: "/product", text: "Product" },
     { to: "/account", text: "Account" },
     { to: "/resoures", text: "Resoures" },
@@ -32,7 +32,9 @@ const Header = () => {
   return (
     <div className="container">
       <header className="header">
-        <img className="header__logo" src={logo} alt="logo" />
+        <NavLink to="/">
+          <img className="header__logo" src={logo} alt="logo" />
+        </NavLink>
         <nav className="header__nav">
           <ul className="nav__list">
             {linksArray.map((item: ILink) => {

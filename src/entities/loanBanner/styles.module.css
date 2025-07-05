@@ -1,0 +1,82 @@
+.container {
+    padding: 10px;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.loanBanner {
+    border-radius: 29px;
+    padding: 48px 32px;
+    margin-bottom: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    box-shadow:
+        0 2px 4px 0 rgba(0, 0, 0, 0.2),
+        0 0 8px 0 rgba(0, 0, 0, 0.08);
+    background: linear-gradient(180deg, rgba(203, 213, 224, 0.8) 0%, rgba(254, 235, 200, 0.8) 100%);
+}
+
+.bannerText {
+    width: 650px;
+}
+
+.bannerTitle {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    color: var(--white);
+
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 650px) {
+    .bannerTitle {
+        font-size: 36px;
+        margin-bottom: 24px;
+    }
+
+    .loanBanner {
+        padding: 30px 24px;
+    }
+}
+
+.bannerSubtitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    color: var(--dark-blue);
+
+    margin-bottom: 32px;
+}
+
+.bannerInfo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.itemTitle {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    color: var(--secondary-text);
+
+    margin-bottom: 10px;
+}
+
+.itemSubtitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    color: var(--secondary-text);
+}

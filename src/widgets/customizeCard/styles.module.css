@@ -1,0 +1,69 @@
+.customize {
+    padding: 32px;
+
+    border-radius: 28px;
+    /* height: 584px; */
+
+    box-shadow:
+        0 2px 4px 0 rgba(0, 0, 0, 0.2),
+        0 0 8px 0 rgba(0, 0, 0, 0.08);
+    background: var(--white);
+
+    max-width: 1320px;
+    margin: 0 auto;
+
+    margin-bottom: 96px;
+}
+.top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 82px;
+    margin-bottom: 32px;
+}
+
+.selection {
+    width: 568px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 32px;
+}
+
+.sectionTitle {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    color: var(--text-color);
+}
+
+.steps {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--text-color);
+}
+
+.shosenAmountTitle {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    color: var(--text-color);
+
+    margin-bottom: 16px;
+}
+
+.amount {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--text-color);
+
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    width: 220px;
+}

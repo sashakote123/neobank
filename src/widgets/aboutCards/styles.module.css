@@ -1,0 +1,17 @@
+.container {
+    position: relative;
+    padding: 10px;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.cardsList {
+    list-style: none;
+
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 40px;
+
+    margin-top: 49px;
+    margin-bottom: 96px;
+}

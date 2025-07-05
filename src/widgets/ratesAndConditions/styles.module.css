@@ -1,0 +1,40 @@
+.container {
+    position: relative;
+    padding: 10px;
+    max-width: 1320px;
+    margin: 0 auto;
+
+    margin-bottom: 50px;
+}
+
+.listItem {
+    display: flex;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    max-width: 1020px;
+    border-bottom: 1px solid #7f92ac;
+}
+
+.left {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    color: var(--text-color);
+
+    width: 257px;
+    margin-right: 69px;
+}
+
+.right {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    color: #434343;
+
+    width: 617px;
+}
