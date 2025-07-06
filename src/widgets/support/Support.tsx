@@ -27,7 +27,7 @@ const Support = () => {
   };
 
   const isMail = (data: string) => {
-    return data.includes("@mail.com") ? true : false;
+    return data.includes("@mail.com");
   };
 
   const buttonClass = clsx("form__input", {

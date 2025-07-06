@@ -45,6 +45,7 @@ const AboutCards = () => {
       <ul className={styles.cardsList}>
         {cardsArray.map((item: IAboutCard) => (
           <AboutCardItem
+            key={item.title}
             image={item.image}
             title={item.title}
             subtitle={item.subtitle}

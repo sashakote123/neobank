@@ -46,7 +46,33 @@
     height: 40px;
     background: #f9f5e3;
 
-    padding: 16px 13px;
+    padding: 0px 13px;
+}
+
+.error {
+    border: 2px solid #ff5631;
+}
+
+.errorAlert {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #ff5631;
+}
+
+.inputArea {
+    position: relative;
+    width: 297px;
+}
+
+.select {
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 6px;
+    width: 297px;
+    height: 40px;
+    background: #f9f5e3;
+
+    padding: 0px 13px;
 }
 
 .submitButton {
@@ -62,6 +88,11 @@
     letter-spacing: 0.02em;
     text-align: center;
     color: var(--white);
+}
 
-    align-self: flex-end;
+.alert {
+    position: absolute;
+
+    right: 10px;
+    top: 11px;
 }
