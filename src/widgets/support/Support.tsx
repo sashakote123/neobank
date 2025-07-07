@@ -21,9 +21,21 @@ const Support = () => {
     defaultValues: {},
   });
 
-  const submit: SubmitHandler<IForm> = () => {
-    setIsShow(true);
-    setTimeout(() => setIsShow(false), 2000);
+  const submit: SubmitHandler<IForm> = (data) => {
+    fetch("http://localhost:8080/mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+      },
+
+      body: JSON.stringify(data.mail),
+    })
+      .then(() => {
+        setIsShow(true);
+        setTimeout(() => setIsShow(false), 2000);
+      })
+      .catch((err) => console.log(err));
   };
 
   const isMail = (data: string) => {

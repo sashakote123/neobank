@@ -4,7 +4,7 @@ import ContactInformationForms from "@/src/features/contactInformationForms/Cont
 
 const CustomizeCard = () => {
   return (
-    <section className={styles.customize}>
+    <section id="form" className={styles.customize}>
       <div className={styles.top}>
         <div className={styles.selection}>
           <div className={styles.heading}>

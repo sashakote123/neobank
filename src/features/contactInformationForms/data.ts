@@ -56,8 +56,11 @@ const inputsArray: IForms[] = [
     title: "Your date of birth",
     placeholder: "Select Date and Time",
     required: true,
+    validate: (data: string | number | undefined) => {
+      return !(+Date.now().toFixed() - Number(data?.valueOf()) <= 568025136000);
+    },
     type: "calendar",
-    errorAlert: "Incorrect date",
+    errorAlert: "You must be 18 and older",
     requiredAlert: "Enter your date of birth",
   },
   {

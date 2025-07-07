@@ -1,6 +1,8 @@
 import styles from "./styles.module.css";
 import { IInfo } from "./types";
 import card from "./assets/card.png";
+import MainBtn from "@/src/shared/mainBtn/MainBtn";
+import { Link } from "react-scroll";
 
 const bannerInfoArray: IInfo[] = [
   { title: "Up to 160 days", subtitle: "No percent" },
@@ -28,6 +30,9 @@ const LoanBanner = () => {
               );
             })}
           </ul>
+          <Link to="form" smooth={true} duration={500} offset={-100}>
+            <MainBtn title="Apply for a card" />
+          </Link>
         </div>
         <div className={styles.bannerImage}>
           <img src={card} alt="cardImage" />

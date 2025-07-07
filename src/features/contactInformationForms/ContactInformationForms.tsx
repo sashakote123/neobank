@@ -51,6 +51,9 @@ const ContactInformationForms = () => {
                 required: item.required
                   ? item.requiredAlert || "This field is required"
                   : false,
+                validate: item.validate
+                  ? (value) => item.validate!(value) || item.errorAlert
+                  : undefined,
               }}
               render={({ field, fieldState }) => (
                 <div>
@@ -59,11 +62,15 @@ const ContactInformationForms = () => {
                     onChange={field.onChange}
                     value={field.value}
                   />
-                  {fieldState.error && (
+                  {fieldState.error?.type === "validate" ? (
                     <div className={styles.errorAlert}>
                       {fieldState.error.message}
                     </div>
-                  )}
+                  ) : fieldState.error?.type === "required" ? (
+                    <div className={styles.errorAlert}>
+                      {fieldState.error.message}
+                    </div>
+                  ) : null}
                 </div>
               )}
             />
