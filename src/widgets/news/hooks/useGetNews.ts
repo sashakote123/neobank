@@ -7,7 +7,7 @@ interface HookResult {
   error?: Error;
 }
 
-const NEWS_API_URL = `https://newsdata.io/api/1/latest?apikey=${process.env.REACT_APP_NEWS_APIKEY}&q=banking`;
+const NEWS_API_URL = `https://newsdata.io/api/1/latest?apikey=312${process.env.REACT_APP_NEWS_APIKEY}&q=banking`;
 const MAX_NEWS_ITEMS = 10;
 
 const useGetNews = (): HookResult => {

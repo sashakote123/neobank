@@ -1,6 +1,8 @@
-import { ChangeEvent, PointerEvent, useRef, useState } from "react";
+import { ChangeEvent, PointerEvent, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { getCurrent, getPosition } from "./functions";
+import { useFormContext } from "react-hook-form";
+import { IFormFields } from "@/src/shared/types/types";
 
 interface Props {
   minAmount: number;
@@ -8,8 +10,9 @@ interface Props {
 }
 
 const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
-  const [current, setCurrent] = useState<number>(15000);
+  const { register, setValue } = useFormContext<IFormFields>();
 
+  const [current, setCurrent] = useState<number>(15000);
   const [currentPosition, setCurrentPosition] = useState<number>(0);
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -78,11 +81,16 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
     );
   };
 
+  useEffect(() => {
+    setValue("amount", current);
+  }, [current, setValue]);
+
   return (
     <div className={styles.amount}>
       <h3 className={styles.amountTitle}>Select amount</h3>
       <div className={styles.amountSlider}>
         <input
+          {...register("amount")}
           value={current}
           onChange={changeForm}
           type="number"

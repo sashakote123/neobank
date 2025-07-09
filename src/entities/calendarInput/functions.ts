@@ -1,4 +1,7 @@
-export const formatDate = (date: Date | null): string => {
+import { Value } from "react-calendar/dist/shared/types";
+
+export const formatDate = (date: Value): string => {
   if (!date) return "";
-  return date.toLocaleDateString("ru-RU"); // Формат DD.MM.YYYY
+  const dateToParse = new Date(+date.valueOf());
+  return dateToParse.toLocaleDateString("ru-RU");
 };

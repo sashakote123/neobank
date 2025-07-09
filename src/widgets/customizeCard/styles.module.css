@@ -67,3 +67,18 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.2);
     width: 220px;
 }
+
+.submitButton {
+    border-radius: 8px;
+    padding: 8px;
+    width: 148px;
+    height: 48px;
+    background: var(--primary-blue);
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
+}

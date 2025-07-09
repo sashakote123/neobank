@@ -74,6 +74,20 @@
 
     padding: 0px 13px;
 }
+.submitButton {
+    border-radius: 8px;
+    padding: 8px;
+    width: 148px;
+    height: 48px;
+    background: var(--primary-blue);
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
+}
 
 .alert {
     position: absolute;

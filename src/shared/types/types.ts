@@ -29,7 +29,7 @@ export interface IForms {
   placeholder: string;
   required: boolean;
 
-  type?: "selector" | "calendar";
+  type?: "selector" | "calendar" | "input";
   selectorArray?: number[];
   validate?: (data: string | number | undefined) => boolean;
   errorAlert: string;
@@ -37,6 +37,7 @@ export interface IForms {
 }
 
 export interface IFormFields {
+  amount: number;
   lastName: string;
   firstName: string;
   patronymic: string;

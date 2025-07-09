@@ -22,14 +22,14 @@ const Support = () => {
   });
 
   const submit: SubmitHandler<IForm> = (data) => {
-    fetch("http://localhost:8080/mail", {
+    fetch("http://localhost:8080/email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
-      body: JSON.stringify(data.mail),
+      body: JSON.stringify(data),
     })
       .then(() => {
         setIsShow(true);
