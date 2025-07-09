@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/neobank/static/css/main.5dea6ddf.css",
-    "main.js": "/neobank/static/js/main.86c560fa.js",
+    "main.css": "/neobank/static/css/main.0dcbfc5c.css",
+    "main.js": "/neobank/static/js/main.d4e6b8bf.js",
     "static/media/footerLogo.svg": "/neobank/static/media/footerLogo.6955e9c44c1e84f9b2da26ac18deb88a.svg",
     "static/media/Huge Global.svg": "/neobank/static/media/Huge Global.b9cce272c49c259dd54e6a5886222617.svg",
+    "static/media/card.png": "/neobank/static/media/card.288048e2ffe058a45568.png",
     "static/media/cardImage3.png": "/neobank/static/media/cardImage3.627dc632efff52a1a266.png",
     "static/media/cardImage4.png": "/neobank/static/media/cardImage4.76ae0baf28ef8d100c17.png",
     "static/media/cardImage1.png": "/neobank/static/media/cardImage1.559559f06384a98037a9.png",
@@ -11,11 +12,17 @@
     "static/media/demo1.jpg": "/neobank/static/media/demo1.8c4f03501eaa93be6a7f.jpg",
     "static/media/Illustration.svg": "/neobank/static/media/Illustration.5ca4173b591d2407b1a81f63176fed0e.svg",
     "static/media/NeoBank.svg": "/neobank/static/media/NeoBank.c2a96dd7fd7cdad7126d9b15a4ef8cba.svg",
+    "static/media/Calendar_duotone.svg": "/neobank/static/media/Calendar_duotone.fa9fe2e27c45675d421c475da29c15d2.svg",
+    "static/media/Bag_duotone.svg": "/neobank/static/media/Bag_duotone.c47c82736ea856f3de131fa627eaed82.svg",
     "static/media/send.svg": "/neobank/static/media/send.1f681e20d19c94d4c9e782359651bcb8.svg",
+    "static/media/error.svg": "/neobank/static/media/error.088e2d8d3b232849bca7c3f3a24626e1.svg",
     "static/media/email.svg": "/neobank/static/media/email.209c6a4fda852a82a06c85dea3d201a8.svg",
     "static/media/usd.svg": "/neobank/static/media/usd.5ab556ba79199c0b0209159af792d708.svg",
     "index.html": "/neobank/index.html",
-    "static/media/check.svg": "/neobank/static/media/check.61eb3697ab1b11e8ddddcecd0eba06d1.svg",
+    "static/media/Money_duotone.svg": "/neobank/static/media/Money_duotone.43e9d59d67f521a12c7f0cdd5571bdb6.svg",
+    "static/media/Credit card_duotone.svg": "/neobank/static/media/Credit card_duotone.57abeafd84cf752e5bf74af68afeec3e.svg",
+    "static/media/Clock_duotone.svg": "/neobank/static/media/Clock_duotone.38ffc2b00f52cad44429e8ed8f633084.svg",
+    "static/media/check.svg": "/neobank/static/media/check.33c0f5a527c1edcdd5cbf2cd05954dac.svg",
     "static/media/gbp.svg": "/neobank/static/media/gbp.36da5ee961b4fef5fc815212ba92a52e.svg",
     "static/media/eur.svg": "/neobank/static/media/eur.d8028191cb13393518a16c1eeeb71edc.svg",
     "static/media/bank.svg": "/neobank/static/media/bank.0ff264c53c53b7c7f857e30bf2f7007c.svg",
@@ -28,11 +35,12 @@
     "static/media/chf.svg": "/neobank/static/media/chf.38fb99edff7169926ffa8e087cbe174a.svg",
     "static/media/burger.svg": "/neobank/static/media/burger.a925d721da55fc5c5a7c2df0bf9132fb.svg",
     "static/media/burgerlight.svg": "/neobank/static/media/burgerlight.bc8b0010a6bb835b97a8d2f8e8c88e4c.svg",
-    "main.5dea6ddf.css.map": "/neobank/static/css/main.5dea6ddf.css.map",
-    "main.86c560fa.js.map": "/neobank/static/js/main.86c560fa.js.map"
+    "static/media/open.svg": "/neobank/static/media/open.ba1914de7e7b3fcac33ec0c5690a1f62.svg",
+    "main.0dcbfc5c.css.map": "/neobank/static/css/main.0dcbfc5c.css.map",
+    "main.d4e6b8bf.js.map": "/neobank/static/js/main.d4e6b8bf.js.map"
   },
   "entrypoints": [
-    "static/css/main.5dea6ddf.css",
-    "static/js/main.86c560fa.js"
+    "static/css/main.0dcbfc5c.css",
+    "static/js/main.d4e6b8bf.js"
   ]
 }
