@@ -1,6 +1,6 @@
-import { IFormFields, IForms } from "@/src/shared/types/types";
+import { IForms } from "@/src/shared/types/types";
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { formatDate } from "./functions";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -11,6 +11,8 @@ import { useFormContext } from "react-hook-form";
 import check from "./assets/check.svg";
 import error from "./assets/error.svg";
 import { Value } from "react-calendar/dist/shared/types";
+
+import { useIMask } from "react-imask";
 
 interface CalendarInputProps {
   item: IForms;
@@ -27,6 +29,16 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
     formState: { errors },
   } = useFormContext();
 
+  const { ref, value } = useIMask<HTMLInputElement>(
+    { mask: "00.00.0000" },
+    {
+      onAccept: (value) => {
+        setValue(item.name, value);
+        trigger(item.name);
+      },
+    }
+  );
+
   const fieldValue = watch(item.name);
   const isValid = !errors[item.name] && fieldValue;
 
@@ -35,6 +47,10 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
     setIsShow(false);
     trigger(item.name);
   };
+
+  useEffect(() => {
+    setValue(item.name, value);
+  }, [item.name, setValue, value]);
 
   const errorMessage = errors[item.name]?.message as string | undefined;
 
@@ -46,10 +62,8 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
       </div>
       <div className={styles.inputArea}>
         <input
-          {...register(item.name, {
-            required: item.required,
-            validate: item.validate,
-          })}
+          {...register(item.name)}
+          ref={ref}
           className={`${styles.area} ${errors[item.name] && styles.error}`}
           placeholder={item.placeholder}
           value={watch(item.name) ? watch(item.name) : ""}

@@ -18,7 +18,6 @@ export const getPosition = (
   max: number,
   min: number
 ): number => {
-  console.log(sliderWidth);
   const length = max - min;
   const result = Math.floor(
     (current - min) / (length / sliderWidth - thumbWidth)

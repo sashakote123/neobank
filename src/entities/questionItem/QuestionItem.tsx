@@ -1,4 +1,4 @@
-import React, { Dispatch, useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./styles.module.css";
 import { IQuestion } from "./types";
 

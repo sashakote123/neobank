@@ -2,7 +2,6 @@ import { ChangeEvent, PointerEvent, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { getCurrent, getPosition } from "./functions";
 import { useFormContext } from "react-hook-form";
-import { IFormFields } from "@/src/shared/types/types";
 
 interface Props {
   minAmount: number;
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
-  const { register, setValue } = useFormContext<IFormFields>();
+  const { register, setValue } = useFormContext();
 
   const [current, setCurrent] = useState<number>(minAmount);
   const [currentPosition, setCurrentPosition] = useState<number>(0);

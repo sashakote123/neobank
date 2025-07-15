@@ -3,6 +3,8 @@ import { IForms } from "@/src/shared/types/types";
 import styles from "./styles.module.css";
 import check from "./assets/check.svg";
 import error from "./assets/error.svg";
+import { useIMask } from "react-imask";
+import { useRef } from "react";
 
 interface Props {
   item: IForms;
@@ -11,12 +13,26 @@ interface Props {
 const SimpleInput: React.FC<Props> = ({ item }) => {
   const {
     register,
+    setValue,
+    trigger,
     formState: { errors, isSubmitted },
   } = useFormContext();
 
   const isValid = !errors[item.name] && isSubmitted;
 
   const errorMessage = errors[item.name]?.message as string | undefined;
+  const backupRef = useRef<HTMLInputElement>(null);
+
+  const { ref: imaskRef } = useIMask<HTMLInputElement>(
+    { mask: item.mask ? `${item.mask}` : undefined },
+    {
+      onAccept: (value) => {
+        setValue(item.name, value);
+        trigger(item.name);
+      },
+    }
+  );
+  const { ref: registerRef, ...registerProps } = register(item.name);
 
   return (
     <div key={item.title} className={styles.input}>
@@ -26,9 +42,15 @@ const SimpleInput: React.FC<Props> = ({ item }) => {
       </div>
       <div className={styles.inputArea}>
         <input
-          {...register(item.name)}
+          {...registerProps}
           className={`${styles.area} ${errors[item.name] && styles.error}`}
           placeholder={item.placeholder}
+          ref={(el) => {
+            registerRef(el);
+            item.mask && imaskRef
+              ? (imaskRef.current = el)
+              : (backupRef.current = el);
+          }}
         />
         {errors[item.name] ? (
           <div>

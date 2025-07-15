@@ -29,11 +29,10 @@ export interface IForms {
   placeholder: string;
   required: boolean;
 
-  mask?: string | RegExp;
+  mask?: string | RegExp | null;
 
   type?: "selector" | "calendar" | "input";
   selectorArray?: number[];
-  validate?: (data: string | number | undefined) => boolean;
   errorAlert: string;
   requiredAlert?: string;
 }

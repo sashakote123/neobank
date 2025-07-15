@@ -2,7 +2,6 @@ import SelectAmount from "@/src/features/selectAmount/SelectAmount";
 import styles from "./styles.module.css";
 import ContactInformationForms from "@/src/features/contactInformationForms/ContactInformationForms";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { formatDate } from "./functions";
 import { FormFields, formSchema } from "@/src/shared/formSchema/formSchema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,17 +13,25 @@ const CustomizeCard = () => {
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log(data);
+    const { patronymic, birth, ...restData } = data;
+    const transformedData = {
+      ...restData,
+      term: Number(data.term),
+      amount: Number(data.amount),
+      middleName: patronymic,
+      birthdate: birth,
+      // passportSeries: Number(data.passportSeries),
+      // passportNumber: Number(data.passportNumber),
+    };
+
+    console.log(transformedData);
     fetch("http://localhost:8080/application", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
 
-      body: JSON.stringify({
-        ...data,
-        birth: formatDate(data.birth),
-        amount: 1234,
-      }),
+      body: JSON.stringify(transformedData),
     }).catch((err) => console.log(err));
   };
 

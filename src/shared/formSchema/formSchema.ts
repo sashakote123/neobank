@@ -8,6 +8,7 @@ const isAdult = (dateString: string) => {
 };
 
 export const formSchema = z.object({
+  amount: z.string(),
   lastName: z
     .string()
     .min(1, "Enter your last name")
@@ -33,7 +34,11 @@ export const formSchema = z.object({
   birth: z
     .string()
     .min(10, "Enter your date of birth")
-    .refine(isAdult, "You must be 18 and older"),
+    .refine(isAdult, "You must be 18 and older")
+    .transform((str) => {
+      const [day, month, year] = str.split(".");
+      return `${year}-${month}-${day}`;
+    }),
 
   passportSeries: z
     .string()

@@ -4,7 +4,7 @@ import "./styles.css";
 import MainBtn from "../../shared/mainBtn/MainBtn";
 import logo from "@images/header/NeoBank.svg";
 import burger from "@images/header/burger.svg";
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import SideMenu from "../sideMenu/SideMenu";
 import { ILink } from "@/src/shared/types/types";
 import clsx from "clsx";

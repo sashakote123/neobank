@@ -1,4 +1,4 @@
-import { IFormFields, IForms } from "@/src/shared/types/types";
+import { IForms } from "@/src/shared/types/types";
 import styles from "./styles.module.css";
 import { useFormContext } from "react-hook-form";
 
