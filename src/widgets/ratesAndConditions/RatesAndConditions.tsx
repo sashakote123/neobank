@@ -25,7 +25,7 @@ const RatesAndConditions = () => {
       <ul className={styles.ratesList}>
         {ratesArray.map((item: IRates) => {
           return (
-            <li className={styles.listItem}>
+            <li key={item.left} className={styles.listItem}>
               <div className={styles.left}>{item.left}</div>
               <div className={styles.right}>{item.right}</div>
             </li>

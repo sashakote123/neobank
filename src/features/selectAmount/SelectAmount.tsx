@@ -37,15 +37,16 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
       if (newPos <= 0) {
         setCurrentPosition(0);
         setCurrent(minAmount);
-      } else if (newPos >= sliderRef.current.clientWidth - 24) {
+      } else if (newPos >= sliderRef.current.clientWidth - sliderRect.width) {
         setCurrent(maxAmount);
-        setCurrentPosition(sliderRef.current.clientWidth - 24);
+        setCurrentPosition(sliderRef.current.clientWidth - sliderRect.width);
       } else {
         setCurrentPosition(newPos);
         setCurrent(
           getCurrent(
             newPos,
             sliderRef.current.clientWidth,
+            sliderRect.width,
             maxAmount,
             minAmount
           )
@@ -69,12 +70,16 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
   };
 
   const changeForm = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!thumbRef.current || !sliderRef.current) return;
+
+    const sliderRect = thumbRef.current.getBoundingClientRect();
     if (!sliderRef.current) return;
     setCurrent(+e.target.value);
     setCurrentPosition(
       getPosition(
         +e.target.value,
         sliderRef.current.clientWidth,
+        sliderRect.width,
         maxAmount,
         minAmount
       )
