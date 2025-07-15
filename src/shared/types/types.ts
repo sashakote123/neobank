@@ -29,6 +29,8 @@ export interface IForms {
   placeholder: string;
   required: boolean;
 
+  mask?: string | RegExp;
+
   type?: "selector" | "calendar" | "input";
   selectorArray?: number[];
   validate?: (data: string | number | undefined) => boolean;
@@ -44,6 +46,6 @@ export interface IFormFields {
   email: string;
   birth: string;
   passportSeries: string;
-  passportNumber: string;
+  passportNumber: number;
   term?: number;
 }

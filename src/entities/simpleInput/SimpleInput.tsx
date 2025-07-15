@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { IForms, IFormFields } from "@/src/shared/types/types";
+import { IForms } from "@/src/shared/types/types";
 import styles from "./styles.module.css";
 import check from "./assets/check.svg";
 import error from "./assets/error.svg";
@@ -11,12 +11,12 @@ interface Props {
 const SimpleInput: React.FC<Props> = ({ item }) => {
   const {
     register,
-    watch,
-    formState: { errors },
-  } = useFormContext<IFormFields>();
+    formState: { errors, isSubmitted },
+  } = useFormContext();
 
-  const fieldValue = watch(item.name);
-  const isValid = !errors[item.name] && fieldValue;
+  const isValid = !errors[item.name] && isSubmitted;
+
+  const errorMessage = errors[item.name]?.message as string | undefined;
 
   return (
     <div key={item.title} className={styles.input}>
@@ -26,21 +26,17 @@ const SimpleInput: React.FC<Props> = ({ item }) => {
       </div>
       <div className={styles.inputArea}>
         <input
-          {...register(item.name, {
-            required: item.required,
-            validate: item.validate,
-          })}
+          {...register(item.name)}
           className={`${styles.area} ${errors[item.name] && styles.error}`}
           placeholder={item.placeholder}
         />
         {errors[item.name] ? (
           <div>
             <img src={error} alt="error" className={styles.alert} />
-            {errors[item.name]?.type === "validate" ? (
-              <div className={styles.errorAlert}>{item.errorAlert}</div>
-            ) : (
-              <div className={styles.errorAlert}>{item.requiredAlert}</div>
-            )}
+            <div className={styles.errorAlert}>
+              {errorMessage ||
+                (item.required ? item.requiredAlert : item.errorAlert)}
+            </div>
           </div>
         ) : (
           isValid && <img src={check} alt="check" className={styles.alert} />

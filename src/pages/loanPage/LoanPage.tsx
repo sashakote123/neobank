@@ -7,8 +7,6 @@ import RatesAndConditions from "@/src/widgets/ratesAndConditions/RatesAndConditi
 import CashbackCards from "@/src/widgets/cashbackCards/CashbackCards";
 import Questions from "@/src/widgets/questions/Questions";
 import GetCard from "@/src/entities/getCard/GetCard";
-import SelectAmount from "@/src/features/selectAmount/SelectAmount";
-import ContactInformationForms from "@/src/features/contactInformationForms/ContactInformationForms";
 import CustomizeCard from "@/src/widgets/customizeCard/CustomizeCard";
 
 const LoanPage = () => {
@@ -17,6 +15,7 @@ const LoanPage = () => {
       <LoanBanner />
       <LoanNavigation />
       <Routes>
+        <Route index element={<AboutCards />} />
         <Route index path="/about" element={<AboutCards />} />
         <Route path="/rates" element={<RatesAndConditions />} />
         <Route path="/cashback" element={<CashbackCards />} />

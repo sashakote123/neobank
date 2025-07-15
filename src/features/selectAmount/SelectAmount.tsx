@@ -12,7 +12,7 @@ interface Props {
 const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
   const { register, setValue } = useFormContext<IFormFields>();
 
-  const [current, setCurrent] = useState<number>(15000);
+  const [current, setCurrent] = useState<number>(minAmount);
   const [currentPosition, setCurrentPosition] = useState<number>(0);
 
   const sliderRef = useRef<HTMLDivElement>(null);

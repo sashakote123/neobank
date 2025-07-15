@@ -25,7 +25,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
     setValue,
     trigger,
     formState: { errors },
-  } = useFormContext<IFormFields>();
+  } = useFormContext();
 
   const fieldValue = watch(item.name);
   const isValid = !errors[item.name] && fieldValue;
@@ -35,6 +35,8 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
     setIsShow(false);
     trigger(item.name);
   };
+
+  const errorMessage = errors[item.name]?.message as string | undefined;
 
   return (
     <div className={styles.input}>
@@ -51,7 +53,6 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
           className={`${styles.area} ${errors[item.name] && styles.error}`}
           placeholder={item.placeholder}
           value={watch(item.name) ? watch(item.name) : ""}
-          readOnly
         />
         <button
           type="button"
@@ -63,11 +64,10 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
         {errors[item.name] ? (
           <div>
             <img src={error} alt="error" className={styles.alert} />
-            {errors[item.name]?.type === "validate" ? (
-              <div className={styles.errorAlert}>{item.errorAlert}</div>
-            ) : (
-              <div className={styles.errorAlert}>{item.requiredAlert}</div>
-            )}
+            <div className={styles.errorAlert}>
+              {errorMessage ||
+                (item.required ? item.requiredAlert : item.errorAlert)}
+            </div>
           </div>
         ) : (
           isValid && <img src={check} alt="check" className={styles.alert} />

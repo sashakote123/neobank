@@ -1,11 +1,11 @@
 import styles from "./styles.module.css";
-import { IForms } from "./types";
 
 import inputsArray from "./data";
 
 import SelectFromForm from "@/src/entities/selectFromForm/SelectFromForm";
 import CalendarInput from "@/src/entities/calendarInput/CalendarInput";
 import SimpleInput from "@/src/entities/simpleInput/SimpleInput";
+import { IForms } from "@/src/shared/types/types";
 
 const ContactInformationForms = () => {
   return (

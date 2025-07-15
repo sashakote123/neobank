@@ -1,18 +1,19 @@
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+    margin-bottom: 96px;
+    padding: 10px;
+}
+
 .customize {
     padding: 32px;
 
     border-radius: 28px;
-    /* height: 584px; */
 
     box-shadow:
         0 2px 4px 0 rgba(0, 0, 0, 0.2),
         0 0 8px 0 rgba(0, 0, 0, 0.08);
     background: var(--white);
-
-    max-width: 1320px;
-    margin: 0 auto;
-
-    margin-bottom: 96px;
 }
 .top {
     display: flex;
