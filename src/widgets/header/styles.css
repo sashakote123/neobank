@@ -4,7 +4,7 @@
     left: 0;
 
     width: 100%;
-    max-width: 1300px;
+    max-width: 1350px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -14,9 +14,11 @@
 
     background-color: var(--white);
 
-    padding: 24px 15px;
+    padding: 24px 40px;
 
     z-index: 100;
+
+    background: #f5f4ff;
 }
 
 .nav__list {
@@ -33,7 +35,7 @@
 }
 
 .active-link {
-    color:  var(--active-color) !important;
+    color: var(--active-color) !important;
 }
 
 .btn-burger {
