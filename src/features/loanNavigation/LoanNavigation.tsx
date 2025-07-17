@@ -1,32 +1,39 @@
-import { NavLink } from "react-router";
 import styles from "./styles.module.css";
-import { ILink } from "@/src/shared/types/types";
 import clsx from "clsx";
+import { Dispatch, useState } from "react";
 
-const linksArray: ILink[] = [
-  { to: "/card/about", text: "About card" },
-  { to: "/card/rates", text: "Rates and conditions" },
-  { to: "/card/cashback", text: "Cashback" },
-  { to: "/card/faq", text: "FAQ" },
+const linksArray: string[] = [
+  "About card",
+  "Rates and conditions",
+  "Cashback",
+  "FAQ",
 ];
 
-type active = {
-  isActive: boolean;
-};
+interface Props {
+  setPage: Dispatch<React.SetStateAction<number | undefined>>;
+}
 
-const LoanNavigation = () => {
-  const setActive = ({ isActive }: active) =>
-    clsx([styles.itemLink], { [styles.linkActive]: isActive });
+const LoanNavigation: React.FC<Props> = ({ setPage }) => {
+  const [activeLink, setActiveLink] = useState<number>(0);
+  const setActive = (item: string) =>
+    clsx([styles.itemLink], {
+      [styles.linkActive]: linksArray[activeLink] === item,
+    });
 
   return (
     <nav className={styles.container}>
       <ul className={styles.navigatinList}>
-        {linksArray.map((item: ILink) => {
+        {linksArray.map((item: string, index) => {
           return (
-            <li key={item.to}>
-              <NavLink to={item.to} className={setActive}>
-                {item.text}
-              </NavLink>
+            <li
+              className={setActive(item)}
+              onClick={() => {
+                setPage(index);
+                setActiveLink(index);
+              }}
+              key={item}
+            >
+              {item}
             </li>
           );
         })}

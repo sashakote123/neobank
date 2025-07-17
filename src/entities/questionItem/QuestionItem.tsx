@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { IQuestion } from "./types";
 
 import open from "./assets/open.svg";
+import clsx from "clsx";
 
 interface Props {
   question: IQuestion;
@@ -12,20 +13,33 @@ interface Props {
 
 const QuestionItem: React.FC<Props> = ({ question, isOpen, onToggle }) => {
   const itemRef = useRef<HTMLLIElement>(null);
-  const fullHeight = itemRef.current?.scrollHeight || 0;
+  const [height, setHeight] = useState(isOpen ? "auto" : "84px");
+
+  useEffect(() => {
+    if (isOpen) {
+      setHeight(`${itemRef.current?.scrollHeight}px`);
+    } else {
+      setHeight("84px");
+    }
+  }, [isOpen]);
+
+  const itemClass = (isOpen: boolean) =>
+    clsx(styles.itemQuestion, {
+      [styles.clampText]: !isOpen,
+    });
 
   return (
     <li
       ref={itemRef}
       className={styles.listItem}
       style={{
-        height: isOpen ? `${fullHeight}px` : "84px",
+        height,
         transition: "height 0.3s ease",
         overflow: "hidden",
       }}
     >
       <div className={styles.heading}>
-        <div className={styles.itemQuestion}>{question.question}</div>
+        <div className={itemClass(isOpen)}>{question.question}</div>
         <button className={styles.openButton} onClick={onToggle}>
           <img
             src={open}

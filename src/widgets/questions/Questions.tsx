@@ -62,7 +62,9 @@ const questionsArray: ISection[] = [
 ];
 
 const Questions = () => {
-  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+  const [openQuestion, setOpenQuestion] = useState<string | null>(
+    questionsArray[0]?.questions[0]?.question || null
+  );
 
   const handleToggle = (question: string) => {
     setOpenQuestion((prev) => (prev === question ? null : question));
