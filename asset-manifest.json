@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/neobank/static/css/main.ca508ea2.css",
-    "main.js": "/neobank/static/js/main.1654f44a.js",
+    "main.css": "/neobank/static/css/main.d6a0ee76.css",
+    "main.js": "/neobank/static/js/main.b7810ef6.js",
     "static/media/footerLogo.svg": "/neobank/static/media/footerLogo.6955e9c44c1e84f9b2da26ac18deb88a.svg",
     "static/media/Huge Global.svg": "/neobank/static/media/Huge Global.b9cce272c49c259dd54e6a5886222617.svg",
     "static/media/card.png": "/neobank/static/media/card.288048e2ffe058a45568.png",
@@ -36,11 +36,11 @@
     "static/media/burger.svg": "/neobank/static/media/burger.a925d721da55fc5c5a7c2df0bf9132fb.svg",
     "static/media/burgerlight.svg": "/neobank/static/media/burgerlight.bc8b0010a6bb835b97a8d2f8e8c88e4c.svg",
     "static/media/open.svg": "/neobank/static/media/open.ba1914de7e7b3fcac33ec0c5690a1f62.svg",
-    "main.ca508ea2.css.map": "/neobank/static/css/main.ca508ea2.css.map",
-    "main.1654f44a.js.map": "/neobank/static/js/main.1654f44a.js.map"
+    "main.d6a0ee76.css.map": "/neobank/static/css/main.d6a0ee76.css.map",
+    "main.b7810ef6.js.map": "/neobank/static/js/main.b7810ef6.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca508ea2.css",
-    "static/js/main.1654f44a.js"
+    "static/css/main.d6a0ee76.css",
+    "static/js/main.b7810ef6.js"
   ]
 }
