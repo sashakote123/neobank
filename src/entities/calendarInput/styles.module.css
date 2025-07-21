@@ -1,0 +1,73 @@
+.title {
+    display: flex;
+    gap: 5px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #1a202c;
+
+    margin-bottom: 8px;
+}
+
+.required {
+    color: red;
+}
+
+.area {
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 6px;
+    width: 297px;
+    height: 40px;
+    background: #f9f5e3;
+
+    padding: 0px 13px;
+}
+
+.inputArea {
+    position: relative;
+    width: 297px;
+}
+
+.alert {
+    position: absolute;
+
+    right: 43px;
+    top: 11px;
+}
+
+.error {
+    border: 2px solid #ff5631;
+}
+
+.errorAlert {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #ff5631;
+}
+
+.calendarBtn img {
+    width: 30px;
+}
+
+.calendarBtn {
+    position: absolute;
+
+    right: 10px;
+    top: 6px;
+}
+
+.calendar {
+    position: absolute;
+
+    z-index: 2;
+    margin-top: 15px;
+
+    width: 290px;
+
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

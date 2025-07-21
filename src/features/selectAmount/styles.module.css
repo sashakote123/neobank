@@ -1,0 +1,84 @@
+.amount {
+    border: 1px solid var(--slider-color);
+    border-radius: 10px;
+    max-width: 568px;
+    height: 164px;
+    background: rgba(255, 255, 255, 0);
+
+    padding: 24px;
+}
+
+.amountTitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--text-color);
+
+    margin-bottom: 20px;
+}
+
+.sliderCurrent {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--text-color);
+
+    margin-bottom: 20px;
+}
+
+.sliderCurrent::-webkit-inner-spin-button,
+.sliderCurrent::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.sliderLine {
+    position: relative;
+    max-width: 520px;
+}
+
+.btn {
+    border-radius: 50px;
+    width: 24px;
+    height: 24px;
+    background: var(--slider-color);
+
+    cursor: pointer;
+
+    margin-bottom: 10px;
+}
+
+.coloredLine {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+
+    border: 2px solid var(--slider-color);
+    width: 50%;
+    height: 0px;
+}
+
+.line {
+    content: "";
+    position: absolute;
+    top: 10px;
+
+    border: 2px solid #e2e8f0;
+    width: 100%;
+    height: 0px;
+}
+
+.texts {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #786d6d;
+
+    margin-top: -5px;
+}

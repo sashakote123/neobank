@@ -1,0 +1,85 @@
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+    margin-bottom: 96px;
+    padding: 10px;
+}
+
+.customize {
+    padding: 32px;
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 2px 4px 0 rgba(0, 0, 0, 0.2),
+        0 0 8px 0 rgba(0, 0, 0, 0.08);
+    background: var(--white);
+}
+.top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 82px;
+    margin-bottom: 32px;
+}
+
+.selection {
+    width: 568px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 32px;
+}
+
+.sectionTitle {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    color: var(--text-color);
+}
+
+.steps {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--text-color);
+}
+
+.shosenAmountTitle {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    color: var(--text-color);
+
+    margin-bottom: 16px;
+}
+
+.amount {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--text-color);
+
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    width: 220px;
+}
+
+.submitButton {
+    border-radius: 8px;
+    padding: 8px;
+    width: 148px;
+    height: 48px;
+    background: var(--primary-blue);
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
+}

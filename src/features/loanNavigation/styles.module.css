@@ -1,0 +1,45 @@
+.container {
+    position: relative;
+    padding: 10px;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    display: block;
+    width: 98%;
+    border: 1.5px solid rgba(128, 128, 128, 0.2);
+}
+
+.navigatinList {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+
+    padding-left: 16px;
+}
+
+.itemLink {
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0.02em;
+    color: var(--link-color);
+}
+
+.linkActive::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -13px;
+
+    border: 1px solid var(--link-color);
+    width: calc(100% + 30px);
+    height: 0px;
+}

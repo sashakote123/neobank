@@ -1,0 +1,25 @@
+.title {
+    display: flex;
+    gap: 5px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: #1a202c;
+
+    margin-bottom: 8px;
+}
+
+.required {
+    color: red;
+}
+
+.select {
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 6px;
+    width: 297px;
+    height: 40px;
+    background: #f9f5e3;
+
+    padding: 0px 13px;
+}
