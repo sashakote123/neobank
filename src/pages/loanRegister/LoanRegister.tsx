@@ -1,10 +1,18 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import styles from "./styles.module.css";
+import { useEffect } from "react";
 
 const LoanRegister = () => {
-  const params = useParams();
+  const { applicationId } = useParams();
+  const navigate = useNavigate();
 
-  console.log(params);
+  useEffect(() => {
+    fetch(`http://localhost:8080/admin/application/${applicationId}`).then(
+      (resp) => {
+        if (!resp.ok) navigate("/*");
+      }
+    );
+  }, [applicationId, navigate]);
 
   return <div>hello</div>;
 };
