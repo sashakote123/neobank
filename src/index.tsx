@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom/client";
 import App from "@/src/app/App";
-import { HashRouter } from "react-router";
+import { HashRouter, BrowserRouter } from "react-router";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <HashRouter>
+  <BrowserRouter>
     <App />
-  </HashRouter>
+  </BrowserRouter>
 );
