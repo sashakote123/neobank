@@ -1,0 +1,14 @@
+.container {
+    padding: 10px;
+    max-width: 1320px;
+    margin: 0 auto;
+
+    margin-bottom: 50px;
+    margin-top: 32px;
+}
+
+.offersList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

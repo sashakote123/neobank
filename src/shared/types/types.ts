@@ -48,3 +48,19 @@ export interface IFormFields {
   passportNumber: number;
   term?: number;
 }
+
+export interface IOfferItem {
+  applicationId: number;
+  requestedAmount: number;
+  totalAmount: number;
+  term: number;
+  monthlyPayment: number;
+  rate: number;
+  isInsuranceEnabled: boolean;
+  isSalaryClient: boolean;
+}
+
+export interface IOffersState {
+  offersArray: IOfferItem[] | null;
+  currentOffer?: IOfferItem | null;
+}

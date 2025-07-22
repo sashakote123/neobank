@@ -36,8 +36,6 @@ const CustomizeCard = () => {
       amount: Number(data.amount),
       middleName: patronymic,
       birthdate: birth,
-      // passportSeries: Number(data.passportSeries),
-      // passportNumber: Number(data.passportNumber),
     };
 
     console.log(transformedData);
