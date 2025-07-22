@@ -35,7 +35,7 @@ const SimpleInput: React.FC<Props> = ({ item }) => {
   const { ref: registerRef, ...registerProps } = register(item.name);
 
   return (
-    <div key={item.title} className={styles.input}>
+    <div className={styles.input}>
       <div className={styles.title}>
         <div className={styles.titleText}>{item.title}</div>
         {item.required && <div className={styles.required}>*</div>}

@@ -32,7 +32,7 @@ export interface IForms {
   mask?: string | RegExp | null;
 
   type?: "selector" | "calendar" | "input";
-  selectorArray?: number[];
+  selectorArray?: number[] | string[];
   errorAlert: string;
   requiredAlert?: string;
 }
@@ -47,6 +47,18 @@ export interface IFormFields {
   passportSeries: string;
   passportNumber: number;
   term?: number;
+
+  gender: string;
+  maritalStatus: string;
+  dependentAmount: number;
+  passportIssueDate: string;
+  passportIssueBranch: string;
+  employmentStatus: string;
+  employerINN: number;
+  salary: number;
+  position: string;
+  workExperienceTotal: number;
+  workExperienceCurrent: number;
 }
 
 export interface IOfferItem {

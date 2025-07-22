@@ -1,26 +1,6 @@
-.forms {
-    display: flex;
-    flex-direction: column;
-
-    max-width: 1236px;
-}
-
-.sectionTitle {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 100%;
-    color: var(--text-color);
-
-    margin-bottom: 26px;
-}
-
-.infoForm {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(297px, 1fr));
-
-    gap: 16px;
-
-    margin-bottom: 24px;
+.input {
+    flex-grow: 1;
+    width: 297px;
 }
 
 .title {
@@ -42,7 +22,7 @@
 .area {
     border: 1px solid rgba(128, 128, 128, 0.2);
     border-radius: 6px;
-    width: 297px;
+    width: 100%;
     height: 40px;
     background: #f9f5e3;
 
@@ -62,31 +42,7 @@
 
 .inputArea {
     position: relative;
-    width: 297px;
-}
-
-.select {
-    border: 1px solid rgba(128, 128, 128, 0.2);
-    border-radius: 6px;
-    width: 297px;
-    height: 40px;
-    background: #f9f5e3;
-
-    padding: 0px 13px;
-}
-.submitButton {
-    border-radius: 8px;
-    padding: 8px;
-    width: 148px;
-    height: 48px;
-    background: var(--primary-blue);
-
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    letter-spacing: 0.02em;
-    text-align: center;
-    color: var(--white);
+    /* width: 297px; */
 }
 
 .alert {
