@@ -5,11 +5,27 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { FormFields, formSchema } from "@/src/shared/formSchema/formSchema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch } from "react-redux";
+import { updateArray } from "@/src/app/store/offersSlice";
 
 const CustomizeCard = () => {
   const methods = useForm<FormFields>({
     resolver: zodResolver(formSchema),
   });
+
+  const dispatch = useDispatch();
+
+  const fillForm = () => {
+    methods.setValue("amount", "200000");
+    methods.setValue("firstName", "Alex");
+    methods.setValue("lastName", "Kotikhin");
+    methods.setValue("patronymic", "Andreevich");
+    methods.setValue("email", "sapool@bk.ru");
+    methods.setValue("term", "6");
+    methods.setValue("passportNumber", "123456");
+    methods.setValue("passportSeries", "6666");
+    methods.setValue("birth", "27.07.2002");
+  };
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log(data);
@@ -32,7 +48,13 @@ const CustomizeCard = () => {
       },
 
       body: JSON.stringify(transformedData),
-    }).catch((err) => console.log(err));
+    })
+      .then((resp) => resp.json())
+      .then((json) => {
+        console.log(json);
+        dispatch(updateArray(json));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -62,6 +84,9 @@ const CustomizeCard = () => {
 
           <button type="submit" className={styles.submitButton}>
             Continue
+          </button>
+          <button className={styles.fillBtn} type="button" onClick={fillForm}>
+            Fill fields
           </button>
         </form>
       </FormProvider>
