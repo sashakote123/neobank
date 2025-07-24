@@ -1,0 +1,29 @@
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+
+    margin-bottom: 200px;
+    margin-top: 150px;
+
+    /* height: 100vh; */
+}
+
+.title {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #1c1c1e;
+
+    margin-bottom: 24px;
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #4f5665;
+}

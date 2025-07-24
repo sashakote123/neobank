@@ -28,7 +28,7 @@ export const secondFormSchema = z.object({
   passportIssueBranch: z
     .string()
     .min(1, "Enter your division code")
-    .regex(/^\d{6}$/, "The series must be 6 digits"),
+    .regex(/^\d{3}-\d{3}$/, "The series must be 6 digits"),
 
   employmentStatus: z
     .string()

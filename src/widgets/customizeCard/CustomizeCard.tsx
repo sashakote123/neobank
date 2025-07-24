@@ -28,7 +28,6 @@ const CustomizeCard = () => {
   };
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
     const { patronymic, birth, ...restData } = data;
     const transformedData = {
       ...restData,
@@ -38,7 +37,6 @@ const CustomizeCard = () => {
       birthdate: birth,
     };
 
-    console.log(transformedData);
     fetch("http://localhost:8080/application", {
       method: "POST",
       headers: {
@@ -49,8 +47,8 @@ const CustomizeCard = () => {
     })
       .then((resp) => resp.json())
       .then((json) => {
-        console.log(json);
         dispatch(updateArray(json));
+        localStorage.setItem("currentAppArray", JSON.stringify(json));
       })
       .catch((err) => console.log(err));
   };

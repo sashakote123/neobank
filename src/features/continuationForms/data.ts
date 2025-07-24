@@ -42,7 +42,8 @@ export const inputsArray: IForms[] = [
   {
     name: "passportIssueBranch",
     title: "Division code",
-    placeholder: "000000",
+    placeholder: "000-000",
+    mask: "000-000",
     required: true,
     type: "input",
     errorAlert: "Incorrect date of passport issue date",
@@ -62,7 +63,7 @@ export const employerInputsArray: IForms[] = [
       "Unemployed",
       "Self employed",
       "Employed",
-      "Buisness owner",
+      "Business owner",
     ],
     errorAlert: "Incorrect employment status",
     requiredAlert: "Select one of the options",

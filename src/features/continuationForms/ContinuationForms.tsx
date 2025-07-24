@@ -10,14 +10,45 @@ import {
   secondFormSchema,
 } from "@/src/shared/formSchema/secondFormSchema";
 import CalendarInput from "@/src/entities/calendarInput/CalendarInput";
+import { useParams } from "react-router";
 
-const ContinuationForms = () => {
+interface Props {
+  setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
   const methods = useForm<FormFields>({
     resolver: zodResolver(secondFormSchema),
   });
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
+  const { applicationId } = useParams();
+
+  const onSubmit: SubmitHandler<FormFields> = (data: FormFields) => {
+    const transformedData = {
+      gender: data.gender.toUpperCase(),
+      maritalStatus: data.maritalStatus.toUpperCase().replace("/", "_"),
+      dependentAmount: Number(data.dependentAmount),
+      passportIssueDate: data.passportIssueDate,
+      passportIssueBranch: data.passportIssueBranch,
+      employment: {
+        employmentStatus: data.employmentStatus.toUpperCase().replace(" ", "_"),
+        employerINN: data.employerINN,
+        salary: Number(data.salary),
+        position: data.position.toUpperCase().replace(" ", "_"),
+        workExperienceTotal: Number(data.workExperienceTotal),
+        workExperienceCurrent: Number(data.workExperienceCurrent),
+      },
+    };
+
+    fetch(`http://localhost:8080/application/registration/${applicationId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(transformedData),
+    })
+      .then(() => setIsShowForm(true))
+      .catch(console.log);
   };
 
   return (
