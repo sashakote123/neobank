@@ -9,6 +9,8 @@ import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ContinuationOfApplication from "../pages/continuationOfApplication/ContinuationOfApplication";
+import Table from "../features/table/Table";
+import PaymentSchedule from "../pages/paymentSchedule/PaymentSchedule";
 
 function App() {
   return (
@@ -24,7 +26,7 @@ function App() {
           />
           <Route path="/product" element={<NotFoundPage />} />
           <Route path="/account" element={<NotFoundPage />} />
-          <Route path="/resoures" element={<NotFoundPage />} />
+          <Route path="/resoures" element={<PaymentSchedule />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

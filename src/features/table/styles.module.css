@@ -1,0 +1,35 @@
+.table {
+    margin-bottom: 54px;
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.tableHeader {
+    text-align: start;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 0%;
+    letter-spacing: 0.02em;
+    color: #4a5568;
+}
+
+.tableHeader button {
+    display: flex;
+    align-items: center;
+}
+
+.tableRow {
+    height: 40px;
+
+    border-bottom: 1px #e2e8f0 solid;
+}
+
+.bodyItem {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 147%;
+    letter-spacing: 0.02em;
+    color: #1a202c;
+}
