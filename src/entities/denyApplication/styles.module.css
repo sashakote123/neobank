@@ -1,0 +1,89 @@
+.container {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    background-color: #0000007e;
+
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.windowAlert {
+    max-width: 448px;
+    height: 174px;
+    padding: 16px;
+
+    background: var(--white);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 147%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #1c1c1e;
+}
+
+.alert {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 147%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #1a202c;
+
+    margin-bottom: 35px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: flex-end;
+}
+
+.denyBtn {
+    border-radius: 8px;
+    width: 96px;
+    height: 40px;
+
+    background: rgba(217, 55, 55, 0.8);
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #fff;
+}
+
+.cancelBtn {
+    border-radius: 8px;
+    width: 96px;
+    height: 40px;
+
+    background: #003cff;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #fff;
+}

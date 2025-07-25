@@ -1,4 +1,3 @@
-import React from "react";
 import "./nullstyle.css";
 import Header from "../widgets/header/Header";
 import { Route, Routes } from "react-router";
@@ -9,8 +8,8 @@ import NotFoundPage from "../pages/notFoundPage/NotFoundPage";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import ContinuationOfApplication from "../pages/continuationOfApplication/ContinuationOfApplication";
-import Table from "../features/table/Table";
 import PaymentSchedule from "../pages/paymentSchedule/PaymentSchedule";
+import SigningOfDocuments from "../pages/signingOfDocuments/SigningOfDocuments";
 
 function App() {
   return (
@@ -24,9 +23,17 @@ function App() {
             path="/loan/:applicationId"
             element={<ContinuationOfApplication />}
           />
+          <Route
+            path="/loan/:applicationId/document"
+            element={<PaymentSchedule />}
+          />
+          <Route
+            path="/loan/:applicationId/document/sign"
+            element={<SigningOfDocuments />}
+          />
           <Route path="/product" element={<NotFoundPage />} />
           <Route path="/account" element={<NotFoundPage />} />
-          <Route path="/resoures" element={<PaymentSchedule />} />
+          <Route path="/resoures" element={<NotFoundPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

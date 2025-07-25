@@ -1,84 +1,16 @@
 import styles from "./styles.module.css";
 import triangle from "./assets/triangle.svg";
 import { useState } from "react";
+import { ISortConfig, ITableRow } from "./types";
 
-interface ITableRow {
-  number: number;
-  date: string;
-  totalPayment: number;
-  interestPayment: number;
-  debtPayment: number;
-  remainingDebt: number;
+interface Props {
+  tableArray: ITableRow[];
 }
 
-const data: ITableRow[] = [
-  {
-    number: 0,
-    date: "2025-07-24",
-    totalPayment: 0,
-    interestPayment: 0,
-    debtPayment: 0,
-    remainingDebt: 230500.0,
-  },
-  {
-    number: 1,
-    date: "2025-08-24",
-    totalPayment: 40339.68,
-    interestPayment: 3265.42,
-    debtPayment: 37074.26,
-    remainingDebt: 193425.74,
-  },
-  {
-    number: 2,
-    date: "2025-09-24",
-    totalPayment: 40339.68,
-    interestPayment: 2740.2,
-    debtPayment: 37599.48,
-    remainingDebt: 155826.26,
-  },
-  {
-    number: 3,
-    date: "2025-10-24",
-    totalPayment: 40339.68,
-    interestPayment: 2207.54,
-    debtPayment: 38132.14,
-    remainingDebt: 117694.12,
-  },
-  {
-    number: 4,
-    date: "2025-11-24",
-    totalPayment: 40339.68,
-    interestPayment: 1667.34,
-    debtPayment: 38672.34,
-    remainingDebt: 79021.78,
-  },
-  {
-    number: 5,
-    date: "2025-12-24",
-    totalPayment: 40339.68,
-    interestPayment: 1119.48,
-    debtPayment: 39220.2,
-    remainingDebt: 39801.58,
-  },
-  {
-    number: 6,
-    date: "2026-01-24",
-    totalPayment: 40339.68,
-    interestPayment: 563.86,
-    debtPayment: 39775.82,
-    remainingDebt: 25.76,
-  },
-];
+const Table: React.FC<Props> = ({ tableArray }) => {
+  const [array, setArray] = useState<ITableRow[]>(tableArray);
 
-interface ISortComfig {
-  direction: boolean;
-  column: keyof ITableRow | null;
-}
-
-const Table = () => {
-  const [array, setArray] = useState<ITableRow[]>(data);
-
-  const [sortConfig, setSortConfig] = useState<ISortComfig>({
+  const [sortConfig, setSortConfig] = useState<ISortConfig>({
     column: null,
     direction: false,
   });

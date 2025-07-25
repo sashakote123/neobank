@@ -7,6 +7,7 @@ import { FormFields, formSchema } from "@/src/shared/formSchema/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { updateArray } from "@/src/app/store/offersSlice";
+import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
 
 const CustomizeCard = () => {
   const methods = useForm<FormFields>({
@@ -63,10 +64,7 @@ const CustomizeCard = () => {
         >
           <div className={styles.top}>
             <div className={styles.selection}>
-              <div className={styles.heading}>
-                <h2 className={styles.sectionTitle}>Customize your card</h2>
-                <div className={styles.steps}>Step 1 of 5</div>
-              </div>
+              <StepsHeader title="Customize your card" step={1} />
               <SelectAmount minAmount={150000} maxAmount={600000} />
             </div>
             <div className={styles.shosenAmount}>

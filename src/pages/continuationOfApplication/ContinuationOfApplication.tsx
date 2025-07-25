@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
+import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
 
 const ContinuationOfApplication = () => {
   const [isShowForm, setIsShowForm] = useState<boolean>(false);
@@ -26,13 +27,13 @@ const ContinuationOfApplication = () => {
   return (
     <section className={styles.container}>
       {isShowForm ? (
-        <WaitForDecidion />
+        <WaitForDecidion
+          title="Wait for a decision on the application"
+          subtitle="The answer will come to your mail within 10 minutes"
+        />
       ) : (
         <div className={styles.continuation}>
-          <div className={styles.heading}>
-            <h1 className={styles.title}>Continuation of the application</h1>
-            <div className={styles.step}>Step 2 of 5</div>
-          </div>
+          <StepsHeader title="Continuation of the application" step={2} />
           <ContinuationForms setIsShowForm={setIsShowForm} />
         </div>
       )}

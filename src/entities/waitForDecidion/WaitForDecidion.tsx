@@ -1,12 +1,15 @@
 import styles from "./styles.module.css";
 
-const WaitForDecidion = () => {
+interface Props {
+  title: string;
+  subtitle: string;
+}
+
+const WaitForDecidion: React.FC<Props> = ({ title, subtitle }) => {
   return (
     <section className={styles.container}>
-      <h1 className={styles.title}>Wait for a decision on the application</h1>
-      <h2 className={styles.subtitle}>
-        The answer will come to your mail within 10 minutes
-      </h2>
+      <h1 className={styles.title}>{title}</h1>
+      <h2 className={styles.subtitle}>{subtitle}</h2>
     </section>
   );
 };
