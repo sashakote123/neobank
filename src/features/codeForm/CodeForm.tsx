@@ -3,6 +3,8 @@ import circle from "./assets/circle.svg";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 
+import loader from "./assets/loader.svg";
+
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -12,13 +14,17 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
   const [values, setValues] = useState<string[]>(["", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+
   const handleInputChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+    // setIsError(false);
     const newValue = event.target.value;
     const digit = newValue.slice(-1);
-
+    isError && setIsError(false);
     const newValues = [...values];
     newValues[index] = digit;
     setValues(newValues);
@@ -29,8 +35,8 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
   };
 
   useEffect(() => {
-    console.log(values.join(""));
     if (values.join("").length === 4) {
+      setIsLoading(true);
       fetch(`http://localhost:8080/document/${applicationId}/sign/code`, {
         method: "POST",
         headers: {
@@ -38,8 +44,15 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
         },
         body: JSON.stringify(values.join("")),
       })
-        .then(() => setIsShowForm(true))
-        .catch(console.log);
+        .then((resp) => {
+          if (!resp.ok) throw new Error();
+          setIsLoading(false);
+          setIsShowForm(true);
+        })
+        .catch(() => {
+          setIsLoading(false);
+          setIsError(true);
+        });
     }
   }, [applicationId, setIsShowForm, values]);
 
@@ -81,6 +94,8 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
           )}
         </div>
       ))}
+      {isLoading && <img className={styles.loader} src={loader} alt="loader" />}
+      {isError && <div className={styles.error}>Invalid confirmation code</div>}
     </form>
   );
 };

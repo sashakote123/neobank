@@ -1,6 +1,8 @@
 .formNumber {
     display: flex;
 
+    position: relative;
+
     gap: 16px;
     justify-content: center;
 }
@@ -42,4 +44,24 @@
     top: 50%;
     transform: translate(-50%, -50%);
     /* transform: translateY(-50%); */
+}
+
+.error {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--alert-color);
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65px;
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 70px;
+    width: 10%;
 }
