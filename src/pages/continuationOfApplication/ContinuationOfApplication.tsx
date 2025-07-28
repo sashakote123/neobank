@@ -1,28 +1,11 @@
 import ContinuationForms from "@/src/features/continuationForms/ContinuationForms";
 import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
+import useRedirect from "@/src/shared/hooks/useRedirect";
 
 const ContinuationOfApplication = () => {
-  const [isShowForm, setIsShowForm] = useState<boolean>(false);
-
-  const { applicationId } = useParams();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/admin/application/${applicationId}`)
-      .then((resp) => {
-        if (!resp.ok) navigate("/*");
-        return resp.json();
-      })
-      .then((json) =>
-        json.status === "CC_APPROVED"
-          ? setIsShowForm(true)
-          : setIsShowForm(false)
-      );
-  }, [applicationId, navigate]);
+  const { isShowForm, setIsShowForm } = useRedirect("continuation");
 
   return (
     <section className={styles.container}>

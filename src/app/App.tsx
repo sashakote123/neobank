@@ -10,6 +10,7 @@ import { store } from "./store/store";
 import ContinuationOfApplication from "../pages/continuationOfApplication/ContinuationOfApplication";
 import PaymentSchedule from "../pages/paymentSchedule/PaymentSchedule";
 import SigningOfDocuments from "../pages/signingOfDocuments/SigningOfDocuments";
+import EnterCode from "../pages/enterCode/EnterCode";
 
 function App() {
   return (
@@ -31,9 +32,10 @@ function App() {
             path="/loan/:applicationId/document/sign"
             element={<SigningOfDocuments />}
           />
+          <Route path="/loan/:applicationId/code" element={<EnterCode />} />
           <Route path="/product" element={<NotFoundPage />} />
           <Route path="/account" element={<NotFoundPage />} />
-          <Route path="/resoures" element={<NotFoundPage />} />
+          <Route path="/resoures" element={<EnterCode />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

@@ -1,26 +1,12 @@
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
 import styles from "./styles.module.css";
 import file from "./assets/file.svg";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import SigningButtons from "@/src/entities/signingButtons/SigningButtons";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
+import useRedirect from "@/src/shared/hooks/useRedirect";
 
 const SigningOfDocuments = () => {
-  const { applicationId } = useParams();
-  const [isShowForm, setIsShowForm] = useState<boolean>(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/admin/application/${applicationId}`)
-      .then((resp) => {
-        if (!resp.ok) navigate("/*");
-        return resp.json();
-      })
-      .then((json) => {
-        json.sesCode ? setIsShowForm(true) : setIsShowForm(false);
-      });
-  }, [applicationId, navigate]);
+  const { isShowForm, setIsShowForm } = useRedirect("signing");
 
   return (
     <section className={styles.container}>

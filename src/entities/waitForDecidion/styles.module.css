@@ -5,7 +5,9 @@
     margin-bottom: 200px;
     margin-top: 150px;
 
-    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
@@ -13,7 +15,6 @@
     font-size: 30px;
     line-height: 112%;
     letter-spacing: 0.02em;
-    text-align: center;
     color: #1c1c1e;
 
     margin-bottom: 24px;
@@ -24,6 +25,22 @@
     font-size: 16px;
     line-height: 112%;
     letter-spacing: 0.02em;
-    text-align: center;
     color: #4f5665;
+
+    margin-bottom: 32px;
+}
+
+.linkBtn {
+    border-radius: 16px;
+    padding: 16px;
+    width: 268px;
+    height: 50px;
+    background: #003cff;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
 }

@@ -1,33 +1,12 @@
 import Table from "@/src/features/table/Table";
 import styles from "./styles.module.css";
 import ScheduleButtons from "@/src/features/scheduleButtons/ScheduleButtons";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
+import useRedirect from "@/src/shared/hooks/useRedirect";
 
 const PaymentSchedule = () => {
-  const { applicationId } = useParams();
-  const navigate = useNavigate();
-
-  const [isShowForm, setIsShowForm] = useState<boolean>(false);
-  const [tableArray, setTableArray] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/admin/application/${applicationId}`)
-      .then((resp) => {
-        if (!resp.ok) navigate("/*");
-        return resp.json();
-      })
-      .then((json) => {
-        if (json.credit) setTableArray(json.credit.paymentSchedule);
-        else navigate("/*");
-
-        json.status === "DOCUMENT_CREATED"
-          ? setIsShowForm(true)
-          : setIsShowForm(false);
-      });
-  }, [applicationId, navigate]);
+  const { isShowForm, setIsShowForm, tableArray } = useRedirect("schedule");
 
   return (
     <section className={styles.container}>
