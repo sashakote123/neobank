@@ -64,7 +64,7 @@
 }
 
 .form__input--error input {
-    background-color: #c9646031;
+    background-color: var(--alert-color);
     border-radius: 5px;
 }
 
@@ -74,7 +74,7 @@
     left: 70px;
     top: 58px;
 
-    color: #c96460;
+    color: var(--alert-color);
     font-weight: 400;
     font-size: 12px;
     line-height: 147%;

@@ -20,7 +20,7 @@
     font-size: 16px;
     line-height: 147%;
     text-align: center;
-    color: rgba(67, 67, 67, 0.9);
+    color: var(--secondary-text);
 
     margin-bottom: 22px;
 

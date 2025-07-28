@@ -37,7 +37,7 @@
     line-height: 147%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 }
 
 .alert {
@@ -46,7 +46,7 @@
     line-height: 147%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #1a202c;
+    color: var(--primary-dark);
 
     margin-bottom: 35px;
 }
@@ -63,14 +63,14 @@
     width: 96px;
     height: 40px;
 
-    background: rgba(217, 55, 55, 0.8);
+    background: var(--alert-color);
 
     font-weight: 700;
     font-size: 16px;
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }
 
 .cancelBtn {
@@ -78,12 +78,12 @@
     width: 96px;
     height: 40px;
 
-    background: #003cff;
+    background: var(--primary-blue);
 
     font-weight: 700;
     font-size: 16px;
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }

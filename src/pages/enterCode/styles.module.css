@@ -14,7 +14,7 @@
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 
     margin-bottom: 32px;
 }

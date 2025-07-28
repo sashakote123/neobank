@@ -10,13 +10,13 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
-    color: #1a202c;
+    color: var(--primary-dark);
 
     margin-bottom: 8px;
 }
 
 .required {
-    color: red;
+    color: var(--alert-color);
 }
 
 .area {
@@ -42,14 +42,14 @@
 }
 
 .error {
-    border: 2px solid #ff5631;
+    border: 2px solid var(--alert-color);
 }
 
 .errorAlert {
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
-    color: #ff5631;
+    color: var(--alert-color);
 }
 
 .calendarBtn img {

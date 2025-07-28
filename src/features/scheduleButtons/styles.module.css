@@ -16,7 +16,7 @@
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }
 
 .sendBtn {
@@ -24,14 +24,14 @@
     padding: 8px;
     width: 96px;
     height: 40px;
-    background: #003cff;
+    background: var(--primary-blue);
 
     font-weight: 700;
     font-size: 16px;
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }
 
 .rBtn {

@@ -29,5 +29,5 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 112%;
-    color: #000;
+    color: var(--text-color);
 }

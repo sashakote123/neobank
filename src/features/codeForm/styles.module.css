@@ -27,7 +27,7 @@
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #000;
+    color: var(--text-color);
 }
 
 .inputNumber::-webkit-inner-spin-button,

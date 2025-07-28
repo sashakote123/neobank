@@ -24,7 +24,7 @@
     font-size: 30px;
     line-height: 112%;
     text-align: center;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 
     margin-bottom: 32px;
 }
@@ -34,7 +34,7 @@
     font-size: 30px;
     line-height: 112%;
     text-align: center;
-    color: #000;
+    color: var(--text-color);
 
     margin-bottom: 32px;
 }
@@ -44,7 +44,7 @@
     font-size: 16px;
     line-height: 112%;
     text-align: center;
-    color: #4b4b4b;
+    color: var(--secondary-text);
 
     margin-bottom: 32px;
 }
@@ -54,7 +54,7 @@
     padding: 8px;
     width: 192px;
     height: 40px;
-    background: #003cff;
+    background: var(--primary-blue);
 }
 
 .backButton a {
@@ -63,5 +63,5 @@
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }

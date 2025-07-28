@@ -21,7 +21,7 @@
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #1c1c1e;
+    color: var(--primary-dark);
 
     margin-bottom: 34px;
 }
@@ -32,7 +32,7 @@
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #4f5665;
+    color: var(--secondary-text);
 
     margin-bottom: 20px;
 }
@@ -42,12 +42,12 @@
     padding: 8px;
     width: 148px;
     height: 48px;
-    background: #003cff;
+    background: var(--primary-blue);
 
     font-weight: 700;
     font-size: 16px;
     line-height: 112%;
     letter-spacing: 0.02em;
     text-align: center;
-    color: #fff;
+    color: var(--white);
 }

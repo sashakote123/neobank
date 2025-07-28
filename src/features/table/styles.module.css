@@ -23,7 +23,7 @@
 .tableRow {
     height: 40px;
 
-    border-bottom: 1px #e2e8f0 solid;
+    border-bottom: 1px var(--white) solid;
 }
 
 .bodyItem {
@@ -31,5 +31,5 @@
     font-size: 12px;
     line-height: 147%;
     letter-spacing: 0.02em;
-    color: #1a202c;
+    color: var(--primary-dark);
 }
