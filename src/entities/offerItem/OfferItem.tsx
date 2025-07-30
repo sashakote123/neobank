@@ -30,7 +30,7 @@ const OfferItem: React.FC<Props> = (props) => {
       body: JSON.stringify(props.offer),
     })
       .then(() => {
-        localStorage.setItem("messageSend", "1");
+        localStorage.setItem("currentOffer", JSON.stringify(props.offer));
         dispatch(updateCurrentOffer(props.offer));
       })
       .catch(console.log);

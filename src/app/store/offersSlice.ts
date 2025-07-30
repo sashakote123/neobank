@@ -3,6 +3,9 @@ import { IOfferItem, IOffersState } from "@/src/shared/types/types";
 
 const initialState: IOffersState = {
   offersArray: null,
+  currentOffer: localStorage.getItem("currentOffer")
+    ? JSON.parse(localStorage.getItem("currentOffer")!)
+    : null,
 };
 
 const offersSlice = createSlice({

@@ -6,7 +6,7 @@ const MessageSendAlert = () => {
   const dispatch = useDispatch();
 
   const clearStorageHandler = () => {
-    localStorage.setItem("messageSend", "0");
+    localStorage.removeItem("currentOffer");
     localStorage.removeItem("currentAppArray");
     dispatch(updateCurrentOffer(null));
     dispatch(updateArray(null));

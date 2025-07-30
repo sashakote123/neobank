@@ -21,7 +21,6 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    // setIsError(false);
     const newValue = event.target.value;
     const digit = newValue.slice(-1);
     isError && setIsError(false);
