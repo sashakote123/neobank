@@ -6,12 +6,14 @@ import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
 import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
 
 const PaymentSchedule = () => {
-  const { isShowForm, setIsShowForm, tableArray } =
+  const { isShowForm, setIsShowForm, tableArray, isLoading } =
     useApplicationStep("schedule");
 
   return (
     <section className={styles.container}>
-      {isShowForm ? (
+      {isLoading ? (
+        <WaitForDecidion title="Loading..." subtitle="Please, wait" />
+      ) : isShowForm ? (
         <WaitForDecidion
           title="Documents are formed"
           subtitle="Documents for signing will be sent to your email"

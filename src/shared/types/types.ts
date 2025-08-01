@@ -72,6 +72,18 @@ export interface IOfferItem {
   isSalaryClient: boolean;
 }
 
+export interface ITransformedData {
+  term: number;
+  amount: number;
+  middleName: string | undefined;
+  birthdate: string;
+  lastName: string;
+  firstName: string;
+  email: string;
+  passportSeries: string;
+  passportNumber: string;
+}
+
 export interface IOffersState {
   offersArray: IOfferItem[] | null;
   currentOffer?: IOfferItem | null;

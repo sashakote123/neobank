@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import styles from "./styles.module.css";
 import { useState } from "react";
-import { signDocument } from "@/src/shared/api/instance";
+import { loanApi } from "@/src/shared/api/service";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,14 +11,17 @@ const SigningButtons: React.FC<Props> = ({ setIsShowForm }) => {
   const { applicationId } = useParams();
   const [isChecked, setIsShecked] = useState<boolean>(false);
 
+  const [signDocument, { isLoading }] = loanApi.useSignDocumentMutation();
+
   const handleChangeCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsShecked(e.target.checked);
   };
 
-  const signDocumentHandler = () => {
+  const signDocumentHandler = async () => {
     if (!isChecked) return;
 
-    signDocument(applicationId).then(() => setIsShowForm(true));
+    await signDocument({ applicationId });
+    setIsShowForm(true);
   };
 
   return (
@@ -39,7 +42,7 @@ const SigningButtons: React.FC<Props> = ({ setIsShowForm }) => {
           cursor: isChecked ? "pointer" : "default",
         }}
       >
-        Send
+        {isLoading ? "Loading..." : "Send"}
       </button>
     </div>
   );

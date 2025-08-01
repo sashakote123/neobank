@@ -2,10 +2,8 @@ import styles from "./styles.module.css";
 import gift from "./assets/gift.png";
 import check from "./assets/check.svg";
 import close from "./assets/close.svg";
-import { useDispatch } from "react-redux";
-import { updateCurrentOffer } from "@/src/app/store/offersSlice";
 import { IOfferItem } from "@/src/shared/types/types";
-import { chooseOffer } from "@/src/shared/api/instance";
+import { loanApi } from "@/src/shared/api/service";
 
 interface Props {
   offer: IOfferItem;
@@ -19,17 +17,16 @@ interface Props {
 }
 
 const OfferItem: React.FC<Props> = (props) => {
-  const dispatch = useDispatch();
+  const [chooseOffer, { isLoading }] = loanApi.useChooseOfferMutation();
 
   const handleClick = () => {
-    chooseOffer(props.offer).then(() =>
-      dispatch(updateCurrentOffer(props.offer))
-    );
+    chooseOffer(props.offer);
   };
 
   return (
     <li className={styles.item}>
       <img className={styles.image} src={gift} alt="gift" />
+
       <div className={styles.description}>
         <div className={styles.descriptionItem}>
           Requested amount: {props.requestedAmount}
@@ -57,7 +54,7 @@ const OfferItem: React.FC<Props> = (props) => {
         </div>
       </div>
       <button onClick={handleClick} className={styles.selectBtn}>
-        Select
+        {isLoading ? "Loading..." : "Select"}
       </button>
     </li>
   );

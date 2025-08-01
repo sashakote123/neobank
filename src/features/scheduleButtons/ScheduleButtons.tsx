@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import DenyApplication from "@/src/entities/denyApplication/DenyApplication";
 import { useParams } from "react-router";
-import { applySchedule } from "@/src/shared/api/instance";
+import { loanApi } from "@/src/shared/api/service";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,14 +15,17 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
 
   const [isChecked, setIsShecked] = useState<boolean>(false);
 
+  const [applySchedule, { isLoading }] = loanApi.useApplyScheduleMutation();
+
   const handleChangeCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsShecked(e.target.checked);
   };
 
-  const acceptDocument = () => {
+  const acceptDocument = async () => {
     if (!isChecked) return;
 
-    applySchedule(applicationId).then(() => setIsShowForm(true));
+    await applySchedule({ applicationId });
+    setIsShowForm(true);
   };
 
   return (
@@ -51,7 +54,7 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
               cursor: isChecked ? "pointer" : "default",
             }}
           >
-            Send
+            {isLoading ? "Loading..." : "Send"}
           </button>
         </div>
       </div>

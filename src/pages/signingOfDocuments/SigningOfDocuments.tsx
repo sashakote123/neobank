@@ -6,11 +6,14 @@ import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
 import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
 
 const SigningOfDocuments = () => {
-  const { isShowForm, setIsShowForm } = useApplicationStep("signing");
+  const { isShowForm, setIsShowForm, isLoading } =
+    useApplicationStep("signing");
 
   return (
     <section className={styles.container}>
-      {isShowForm ? (
+      {isLoading ? (
+        <WaitForDecidion title="Loading..." subtitle="Please, wait" />
+      ) : isShowForm ? (
         <WaitForDecidion
           title="Documents have been successfully signed and sent for approval"
           subtitle="Within 10 minutes you will be sent a PIN code to your email for confirmation"

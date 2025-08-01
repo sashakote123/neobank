@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { ITableRow } from "../types/types";
+import { loanApi } from "../api/service";
 
 type step = "continuation" | "schedule" | "signing" | "enterCode";
 enum status {
@@ -16,61 +17,63 @@ const useApplicationStep = (step: step) => {
   const [isShowForm, setIsShowForm] = useState<boolean>(false);
   const [tableArray, setTableArray] = useState<ITableRow[]>([]);
 
+  const { data, isLoading, isError } =
+    loanApi.useFetchLoanStatusQuery(applicationId);
   useEffect(() => {
-    fetch(`http://localhost:8080/admin/application/${applicationId}`)
-      .then((resp) => {
-        if (!resp.ok) navigate("/*");
-        return resp.json();
-      })
-      .then((json) => {
-        switch (step) {
-          case "continuation":
-            json.status === status.CC_APPROVED
-              ? setIsShowForm(true)
-              : setIsShowForm(false);
-            if (
-              json.status === status.DOCUMENT_CREATED ||
-              json.status === status.CREDIT_ISSUED ||
-              json.sesCode
-            )
-              navigate("/*");
-            break;
-          case "schedule":
-            if (json.credit) setTableArray(json.credit.paymentSchedule);
-            json.status === status.DOCUMENT_CREATED
-              ? setIsShowForm(true)
-              : setIsShowForm(false);
-            if (
-              json.status === status.APPROVED ||
-              json.status === status.CREDIT_ISSUED ||
-              json.sesCode
-            )
-              navigate("/*");
-            break;
-          case "signing":
-            json.sesCode ? setIsShowForm(true) : setIsShowForm(false);
-            if (
-              json.status === status.APPROVED ||
-              json.status === status.CC_APPROVED ||
-              json.status === status.CREDIT_ISSUED
-            )
-              navigate("/*");
-            break;
-          case "enterCode":
-            json.status === status.CREDIT_ISSUED
-              ? setIsShowForm(true)
-              : setIsShowForm(false);
-            if (
-              json.status === status.APPROVED ||
-              json.status === status.CC_APPROVED
-            )
-              navigate("/*");
-            break;
-        }
-      });
-  }, [applicationId, navigate, step]);
+    if (isLoading) return;
+    if (isError) {
+      navigate("/*");
+      return;
+    }
+    if (!data) return;
 
-  return { isShowForm, setIsShowForm, tableArray };
+    switch (step) {
+      case "continuation":
+        data.status === status.CC_APPROVED
+          ? setIsShowForm(true)
+          : setIsShowForm(false);
+        if (
+          data.status === status.DOCUMENT_CREATED ||
+          data.status === status.CREDIT_ISSUED ||
+          data.sesCode
+        )
+          navigate("/*");
+        break;
+      case "schedule":
+        if (data.credit) setTableArray(data.credit.paymentSchedule);
+        data.status === status.DOCUMENT_CREATED
+          ? setIsShowForm(true)
+          : setIsShowForm(false);
+        if (
+          data.status === status.APPROVED ||
+          data.status === status.CREDIT_ISSUED ||
+          data.sesCode
+        )
+          navigate("/*");
+        break;
+      case "signing":
+        data.sesCode ? setIsShowForm(true) : setIsShowForm(false);
+        if (
+          data.status === status.APPROVED ||
+          data.status === status.CC_APPROVED ||
+          data.status === status.CREDIT_ISSUED
+        )
+          navigate("/*");
+        break;
+      case "enterCode":
+        data.status === status.CREDIT_ISSUED
+          ? setIsShowForm(true)
+          : setIsShowForm(false);
+        if (
+          data.status === status.APPROVED ||
+          data.status === status.CC_APPROVED
+        )
+          navigate("/*");
+        break;
+    }
+  }, [data, isError, isLoading, navigate, step]);
+
+  return { isShowForm, setIsShowForm, tableArray, isLoading, isError };
 };
 
 export default useApplicationStep;

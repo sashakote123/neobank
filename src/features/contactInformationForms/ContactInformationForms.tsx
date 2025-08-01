@@ -12,7 +12,7 @@ const ContactInformationForms = () => {
 
       <div className={styles.infoForm}>
         {inputsArray.map((item: IForms) => (
-          <UniInput item={item} />
+          <UniInput key={item.name} item={item} />
         ))}
       </div>
     </section>

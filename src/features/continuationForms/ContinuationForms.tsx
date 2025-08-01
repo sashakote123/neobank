@@ -10,7 +10,7 @@ import {
 import { useParams } from "react-router";
 import { transformData } from "./utils";
 import UniInput from "@/src/entities/uniInput/UniInput";
-import { sendEmployerInfo } from "@/src/shared/api/instance";
+import { loanApi } from "@/src/shared/api/service";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,10 +23,12 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
 
   const { applicationId } = useParams();
 
-  const onSubmit: SubmitHandler<FormFields> = (data: FormFields) => {
-    sendEmployerInfo(transformData(data), applicationId)
-      .then(() => setIsShowForm(true))
-      .catch(console.log);
+  const [sendEmployerInfo, { isLoading }] =
+    loanApi.useSendEmployerInfoMutation();
+
+  const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
+    await sendEmployerInfo({ data: transformData(data), applicationId });
+    setIsShowForm(true);
   };
 
   return (
@@ -38,17 +40,19 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
       >
         <div className={styles.topInputs}>
           {inputsArray.map((item: IForms) => (
-            <UniInput item={item} />
+            <UniInput key={item.name} item={item} />
           ))}
         </div>
         <div className={styles.title}>Employment</div>
         <div className={styles.bottomInputs}>
           {employerInputsArray.map((item: IForms) => (
-            <UniInput item={item} />
+            <UniInput key={item.name} item={item} />
           ))}
         </div>
 
-        <button className={styles.submitButton}>Continue</button>
+        <button className={styles.submitButton}>
+          {isLoading ? "Loading..." : "Continue"}
+        </button>
       </form>
     </FormProvider>
   );

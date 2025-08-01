@@ -5,18 +5,17 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { FormFields, formSchema } from "@/src/shared/formSchema/formSchema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch } from "react-redux";
-import { updateArray } from "@/src/app/store/offersSlice";
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
 import { transformData } from "./functions";
-import { createLoanApplication } from "@/src/shared/api/instance";
+import { loanApi } from "@/src/shared/api/service";
 
 const CustomizeCard = () => {
   const methods = useForm<FormFields>({
     resolver: zodResolver(formSchema),
   });
 
-  const dispatch = useDispatch();
+  const [createLoan, { isLoading }] =
+    loanApi.useCreateLoanApplicationMutation();
 
   const fillForm = () => {
     methods.setValue("amount", "200000");
@@ -30,12 +29,8 @@ const CustomizeCard = () => {
     methods.setValue("birth", "27.07.2002");
   };
 
-  const onSubmit: SubmitHandler<FormFields> = (data: FormFields) => {
-    createLoanApplication(transformData(data))
-      .then((resp) => {
-        dispatch(updateArray(resp.data));
-      })
-      .catch((err) => console.log(err));
+  const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
+    await createLoan(transformData(data));
   };
 
   return (
@@ -61,7 +56,7 @@ const CustomizeCard = () => {
           <ContactInformationForms />
 
           <button type="submit" className={styles.submitButton}>
-            Continue
+            {isLoading ? "Loading..." : "Continue"}
           </button>
           <button className={styles.fillBtn} type="button" onClick={fillForm}>
             Fill fields

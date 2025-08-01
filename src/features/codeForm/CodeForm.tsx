@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 
 import loader from "./assets/loader.svg";
-import { enterCode } from "@/src/shared/api/instance";
+import { loanApi } from "@/src/shared/api/service";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,8 +15,8 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
   const [values, setValues] = useState<string[]>(["", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [enterCode, { isError, isLoading, reset }] =
+    loanApi.useEnterCodeMutation();
 
   const handleInputChange = (
     index: number,
@@ -24,7 +24,6 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
   ) => {
     const newValue = event.target.value;
     const digit = newValue.slice(-1);
-    isError && setIsError(false);
     const newValues = [...values];
     newValues[index] = digit;
     setValues(newValues);
@@ -36,30 +35,27 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
 
   useEffect(() => {
     if (values.join("").length === 4) {
-      setIsLoading(true);
-      enterCode(values, applicationId)
-        // fetch(`http://localhost:8080/document/${applicationId}/sign/code`, {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(values.join("")),
-        // })
-        .then(() => {
-          setIsLoading(false);
-          setIsShowForm(true);
-        })
-        .catch(() => {
-          setIsLoading(false);
-          setIsError(true);
-        });
+      const submitCode = async () => {
+        if (values.join("").length === 4) {
+          try {
+            await enterCode({ data: values, applicationId }).unwrap();
+            setIsShowForm(true);
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      };
+
+      submitCode();
     }
-  }, [applicationId, setIsShowForm, values]);
+  }, [applicationId, enterCode, setIsShowForm, values]);
 
   const handleKeyDown = (
     index: number,
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
+    if (isError) reset();
+
     if (event.key === "Backspace" && !values[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }

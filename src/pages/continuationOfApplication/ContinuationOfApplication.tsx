@@ -5,11 +5,14 @@ import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
 import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
 
 const ContinuationOfApplication = () => {
-  const { isShowForm, setIsShowForm } = useApplicationStep("continuation");
+  const { isShowForm, setIsShowForm, isLoading } =
+    useApplicationStep("continuation");
 
   return (
     <section className={styles.container}>
-      {isShowForm ? (
+      {isLoading ? (
+        <WaitForDecidion title="Loading..." subtitle="Please, wait" />
+      ) : isShowForm ? (
         <WaitForDecidion
           title="Wait for a decision on the application"
           subtitle="The answer will come to your mail within 10 minutes"
