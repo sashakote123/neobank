@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 
 import loader from "./assets/loader.svg";
+import { enterCode } from "@/src/shared/api/instance";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,15 +37,15 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
   useEffect(() => {
     if (values.join("").length === 4) {
       setIsLoading(true);
-      fetch(`http://localhost:8080/document/${applicationId}/sign/code`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values.join("")),
-      })
-        .then((resp) => {
-          if (!resp.ok) throw new Error();
+      enterCode(values, applicationId)
+        // fetch(`http://localhost:8080/document/${applicationId}/sign/code`, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(values.join("")),
+        // })
+        .then(() => {
           setIsLoading(false);
           setIsShowForm(true);
         })

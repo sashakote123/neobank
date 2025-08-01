@@ -31,6 +31,13 @@ const LoanPage = () => {
   const currentOffer = useSelector<RootState>(
     (store) => store.offers.currentOffer
   );
+  const array: IOfferItem[] | null = useSelector<
+    RootState,
+    IOfferItem[] | null
+  >((store) => store.offers.offersArray);
+
+  const hasNoActiveApplication = !showForm && !currentOffer;
+  const hasOffers = array && array.length > 0;
 
   useEffect(() => {
     const savedValue = localStorage.getItem("messageSend");
@@ -41,11 +48,6 @@ const LoanPage = () => {
     dispatch(updateArray(savedData));
   }, [dispatch]);
 
-  const array: IOfferItem[] | null = useSelector<
-    RootState,
-    IOfferItem[] | null
-  >((store) => store.offers.offersArray);
-
   return (
     <section className={styles.loanPage}>
       <LoanBanner />
@@ -53,8 +55,8 @@ const LoanPage = () => {
       {currentPage ? pages[currentPage] : pages[0]}
       <GetCard />
 
-      {!showForm && !currentOffer ? (
-        !array ? (
+      {hasNoActiveApplication ? (
+        !hasOffers ? (
           <CustomizeCard />
         ) : (
           <Offers array={array} />

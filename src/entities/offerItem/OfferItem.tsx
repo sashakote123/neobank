@@ -5,6 +5,7 @@ import close from "./assets/close.svg";
 import { useDispatch } from "react-redux";
 import { updateCurrentOffer } from "@/src/app/store/offersSlice";
 import { IOfferItem } from "@/src/shared/types/types";
+import { chooseOffer } from "@/src/shared/api/instance";
 
 interface Props {
   offer: IOfferItem;
@@ -21,19 +22,9 @@ const OfferItem: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    fetch("http://localhost:8080/application/apply", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(props.offer),
-    })
-      .then(() => {
-        localStorage.setItem("currentOffer", JSON.stringify(props.offer));
-        dispatch(updateCurrentOffer(props.offer));
-      })
-      .catch(console.log);
+    chooseOffer(props.offer).then(() =>
+      dispatch(updateCurrentOffer(props.offer))
+    );
   };
 
   return (

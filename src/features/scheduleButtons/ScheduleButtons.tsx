@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import DenyApplication from "@/src/entities/denyApplication/DenyApplication";
 import { useParams } from "react-router";
+import { applySchedule } from "@/src/shared/api/instance";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,9 +22,7 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
   const acceptDocument = () => {
     if (!isChecked) return;
 
-    fetch(`http://localhost:8080/document/${applicationId}`, {
-      method: "POST",
-    }).then(() => setIsShowForm(true));
+    applySchedule(applicationId).then(() => setIsShowForm(true));
   };
 
   return (

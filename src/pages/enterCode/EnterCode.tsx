@@ -1,10 +1,10 @@
 import CodeForm from "@/src/features/codeForm/CodeForm";
 import styles from "./styles.module.css";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
-import useRedirect from "@/src/shared/hooks/useRedirect";
+import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
 
 const EnterCode = () => {
-  const { isShowForm, setIsShowForm } = useRedirect("enterCode");
+  const { isShowForm, setIsShowForm } = useApplicationStep("enterCode");
 
   return (
     <section className={styles.container}>

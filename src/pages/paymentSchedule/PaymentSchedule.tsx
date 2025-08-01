@@ -3,10 +3,11 @@ import styles from "./styles.module.css";
 import ScheduleButtons from "@/src/features/scheduleButtons/ScheduleButtons";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
-import useRedirect from "@/src/shared/hooks/useRedirect";
+import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
 
 const PaymentSchedule = () => {
-  const { isShowForm, setIsShowForm, tableArray } = useRedirect("schedule");
+  const { isShowForm, setIsShowForm, tableArray } =
+    useApplicationStep("schedule");
 
   return (
     <section className={styles.container}>

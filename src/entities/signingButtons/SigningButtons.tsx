@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import styles from "./styles.module.css";
 import { useState } from "react";
+import { signDocument } from "@/src/shared/api/instance";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,12 +15,10 @@ const SigningButtons: React.FC<Props> = ({ setIsShowForm }) => {
     setIsShecked(e.target.checked);
   };
 
-  const signDocument = () => {
+  const signDocumentHandler = () => {
     if (!isChecked) return;
 
-    fetch(`http://localhost:8080/document/${applicationId}/sign`, {
-      method: "POST",
-    }).then(() => setIsShowForm(true));
+    signDocument(applicationId).then(() => setIsShowForm(true));
   };
 
   return (
@@ -34,7 +33,7 @@ const SigningButtons: React.FC<Props> = ({ setIsShowForm }) => {
       </div>
       <button
         className={styles.btn}
-        onClick={signDocument}
+        onClick={signDocumentHandler}
         style={{
           opacity: isChecked ? "1" : "0.5",
           cursor: isChecked ? "pointer" : "default",

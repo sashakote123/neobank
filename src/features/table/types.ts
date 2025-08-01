@@ -1,11 +1,4 @@
-export interface ITableRow {
-  number: number;
-  date: string;
-  totalPayment: number;
-  interestPayment: number;
-  debtPayment: number;
-  remainingDebt: number;
-}
+import { ITableRow } from "@/src/shared/types/types";
 
 export interface ISortConfig {
   direction: boolean;

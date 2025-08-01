@@ -2,10 +2,10 @@ import ContinuationForms from "@/src/features/continuationForms/ContinuationForm
 import styles from "./styles.module.css";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
-import useRedirect from "@/src/shared/hooks/useRedirect";
+import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
 
 const ContinuationOfApplication = () => {
-  const { isShowForm, setIsShowForm } = useRedirect("continuation");
+  const { isShowForm, setIsShowForm } = useApplicationStep("continuation");
 
   return (
     <section className={styles.container}>

@@ -3,10 +3,10 @@ import styles from "./styles.module.css";
 import file from "./assets/file.svg";
 import SigningButtons from "@/src/entities/signingButtons/SigningButtons";
 import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
-import useRedirect from "@/src/shared/hooks/useRedirect";
+import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
 
 const SigningOfDocuments = () => {
-  const { isShowForm, setIsShowForm } = useRedirect("signing");
+  const { isShowForm, setIsShowForm } = useApplicationStep("signing");
 
   return (
     <section className={styles.container}>

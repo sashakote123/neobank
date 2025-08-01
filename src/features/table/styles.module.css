@@ -33,3 +33,19 @@
     letter-spacing: 0.02em;
     color: var(--primary-dark);
 }
+
+.rotateUp {
+    transform: rotate(0deg);
+}
+
+.rotateDown {
+    transform: rotate(180deg);
+}
+
+.active {
+    opacity: 1;
+}
+
+.inactive {
+    opacity: 0.3;
+}

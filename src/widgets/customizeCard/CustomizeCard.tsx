@@ -8,6 +8,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { updateArray } from "@/src/app/store/offersSlice";
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
+import { transformData } from "./functions";
+import { createLoanApplication } from "@/src/shared/api/instance";
 
 const CustomizeCard = () => {
   const methods = useForm<FormFields>({
@@ -28,28 +30,10 @@ const CustomizeCard = () => {
     methods.setValue("birth", "27.07.2002");
   };
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    const { patronymic, birth, ...restData } = data;
-    const transformedData = {
-      ...restData,
-      term: Number(data.term),
-      amount: Number(data.amount),
-      middleName: patronymic,
-      birthdate: birth,
-    };
-
-    fetch("http://localhost:8080/application", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(transformedData),
-    })
-      .then((resp) => resp.json())
-      .then((json) => {
-        dispatch(updateArray(json));
-        localStorage.setItem("currentAppArray", JSON.stringify(json));
+  const onSubmit: SubmitHandler<FormFields> = (data: FormFields) => {
+    createLoanApplication(transformData(data))
+      .then((resp) => {
+        dispatch(updateArray(resp.data));
       })
       .catch((err) => console.log(err));
   };

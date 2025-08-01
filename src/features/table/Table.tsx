@@ -1,11 +1,15 @@
 import styles from "./styles.module.css";
 import triangle from "./assets/triangle.svg";
 import { useState } from "react";
-import { ISortConfig, ITableRow } from "./types";
+import { ISortConfig } from "./types";
+import clsx from "clsx";
+import { ITableRow } from "@/src/shared/types/types";
 
 interface Props {
   tableArray: ITableRow[];
 }
+
+const FIRSTSYMBOLREG = /([A-Z])/g;
 
 const Table: React.FC<Props> = ({ tableArray }) => {
   const [array, setArray] = useState<ITableRow[]>(tableArray);
@@ -16,11 +20,8 @@ const Table: React.FC<Props> = ({ tableArray }) => {
   });
 
   const sortArray = (column: keyof ITableRow) => {
-    let direction: false | true = false;
-    if (sortConfig.column === column)
-      direction = sortConfig.direction
-        ? (sortConfig.direction = false)
-        : (sortConfig.direction = true);
+    const direction =
+      sortConfig.column === column ? !sortConfig.direction : true;
 
     setSortConfig({ column, direction });
 
@@ -51,26 +52,30 @@ const Table: React.FC<Props> = ({ tableArray }) => {
     <table className={styles.table}>
       <thead>
         <tr className={styles.tableRow}>
-          {Object.keys(array[0]).map((key) => {
-            return (
-              <th key={key} className={styles.tableHeader}>
-                <button onClick={() => sortArray(key as keyof ITableRow)}>
-                  {key.replace(/([A-Z])/g, " $1").toUpperCase()}
-                  <img
-                    src={triangle}
-                    style={{
-                      transform:
-                        sortConfig.column === key
-                          ? `rotate(${sortConfig.direction ? "0deg" : "180deg"})`
-                          : "rotate(0deg)",
-                      opacity: sortConfig.column === key ? 1 : 0.3,
-                    }}
-                    alt="triangle"
-                  />
-                </button>
-              </th>
-            );
-          })}
+          {array.length > 0
+            ? Object.keys(array[0]).map((key) => {
+                return (
+                  <th key={key} className={styles.tableHeader}>
+                    <button onClick={() => sortArray(key as keyof ITableRow)}>
+                      {key.replace(FIRSTSYMBOLREG, " $1").toUpperCase()}
+                      <img
+                        src={triangle}
+                        className={clsx(
+                          sortConfig.column === key
+                            ? styles.active
+                            : styles.inactive,
+                          sortConfig.column === key &&
+                            (sortConfig.direction
+                              ? styles.rotateDown
+                              : styles.rotateUp)
+                        )}
+                        alt="triangle"
+                      />
+                    </button>
+                  </th>
+                );
+              })
+            : null}
         </tr>
       </thead>
       <tbody>

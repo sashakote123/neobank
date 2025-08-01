@@ -76,3 +76,12 @@ export interface IOffersState {
   offersArray: IOfferItem[] | null;
   currentOffer?: IOfferItem | null;
 }
+
+export interface ITableRow {
+  number: number;
+  date: string;
+  totalPayment: number;
+  interestPayment: number;
+  debtPayment: number;
+  remainingDebt: number;
+}
