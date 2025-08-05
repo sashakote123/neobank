@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 80px;
+    gap: 50px;
 }
 
 .checkbox {
@@ -15,19 +15,4 @@
     line-height: 112%;
     text-align: center;
     color: #1a202c;
-}
-
-.btn {
-    border-radius: 8px;
-    padding: 8px;
-    width: 160px;
-    height: 40px;
-    background: #003cff;
-
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    letter-spacing: 0.02em;
-    text-align: center;
-    color: #fff;
 }

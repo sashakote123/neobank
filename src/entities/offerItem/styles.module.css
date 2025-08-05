@@ -39,18 +39,3 @@
     align-items: center;
     gap: 8px;
 }
-
-.selectBtn {
-    border-radius: 8px;
-    padding: 8px;
-    width: 148px;
-    height: 48px;
-    background: #003cff;
-
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    letter-spacing: 0.02em;
-    text-align: center;
-    color: #fff;
-}

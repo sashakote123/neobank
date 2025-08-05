@@ -1,6 +1,5 @@
 import "./styles.css";
 
-import MainBtn from "@/src/shared/mainBtn/MainBtn";
 import OptionsListItem from "@/src/entities/optionsListItem/OptionsListItem";
 
 import bankCardImage1 from "@images/mainPage/cardImage1.png";
@@ -8,6 +7,7 @@ import bankCardImage2 from "@images/mainPage/cardImage2.png";
 import bankCardImage3 from "@images/mainPage/cardImage3.png";
 import bankCardImage4 from "@images/mainPage/cardImage4.png";
 import illustration from "@images/mainPage/Illustration.svg";
+import LinkBtn from "@/src/shared/linkBtn/LinkBtn";
 
 const optionsArray: string[] = [
   "Powerfull online protection.",
@@ -30,7 +30,7 @@ const CardBanner = () => {
           Choose the design you like and apply for card right now
         </h1>
         <div className="main-btn">
-          <MainBtn title="Choose the card" />
+          <LinkBtn title="Choose the card" link="/card" />
         </div>
 
         <div className="banner__grid">

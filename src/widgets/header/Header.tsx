@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./styles.css";
 
-import MainBtn from "../../shared/mainBtn/MainBtn";
 import logo from "@images/header/NeoBank.svg";
 import burger from "@images/header/burger.svg";
 import { NavLink } from "react-router";
 import SideMenu from "../sideMenu/SideMenu";
 import { ILink } from "@/src/shared/types/types";
 import clsx from "clsx";
+import LinkBtn from "@/src/shared/linkBtn/LinkBtn";
 
 type active = {
   isActive: boolean;
@@ -49,7 +49,8 @@ const Header = () => {
           </ul>
         </nav>
         <div className="header__buttons">
-          <MainBtn title="Online Bank" />
+          <LinkBtn title="Online Bank" />
+
           {!isOpen ? (
             <img
               onClick={menuHandler}

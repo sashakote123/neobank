@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import DenyApplication from "@/src/entities/denyApplication/DenyApplication";
 import { useParams } from "react-router";
 import { loanApi } from "@/src/shared/api/service";
+import MainBtn from "@/src/shared/mainBtn/MainBtn";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,16 +28,15 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
     await applySchedule({ applicationId });
     setIsShowForm(true);
   };
-
   return (
     <>
       <div className={styles.buttons}>
-        <button
+        <MainBtn
+          title="Deny"
+          small
           onClick={() => setIsShowAlert((prev) => !prev)}
-          className={styles.denyBtn}
-        >
-          Deny
-        </button>
+          style={{ background: "rgba(217, 55, 55, 0.8)" }}
+        />
         <div className={styles.rBtn}>
           <div className={styles.check}>
             <input
@@ -46,16 +46,15 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
             />
             <div>I agree with the payment schedule</div>
           </div>
-          <button
-            className={styles.sendBtn}
+          <MainBtn
+            title={isLoading ? "Loading..." : "Send"}
+            small
             onClick={acceptDocument}
             style={{
               opacity: isChecked ? "1" : "0.5",
               cursor: isChecked ? "pointer" : "default",
             }}
-          >
-            {isLoading ? "Loading..." : "Send"}
-          </button>
+          />
         </div>
       </div>
       {isShowAlert ? <DenyApplication setIsShow={setIsShowAlert} /> : null}

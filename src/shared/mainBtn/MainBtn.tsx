@@ -1,12 +1,18 @@
-import "./styles.css";
-interface Props {
-  title: string;
-  onClick?: () => void;
-}
+import clsx from "clsx";
+import styles from "./styles.module.css";
 
-const MainBtn: React.FC<Props> = ({ title, onClick }) => {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  title: string;
+  small?: boolean;
+}
+const MainBtn: React.FC<Props> = ({ title, small = false, ...rest }) => {
   return (
-    <button onClick={onClick} className="button">
+    <button
+      {...rest}
+      className={clsx(styles.button, {
+        [styles.small]: small,
+      })}
+    >
       {title}
     </button>
   );

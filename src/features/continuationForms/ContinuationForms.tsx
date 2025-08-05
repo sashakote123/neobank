@@ -11,6 +11,7 @@ import { useParams } from "react-router";
 import { transformData } from "./utils";
 import UniInput from "@/src/entities/uniInput/UniInput";
 import { loanApi } from "@/src/shared/api/service";
+import MainBtn from "@/src/shared/mainBtn/MainBtn";
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,10 +50,7 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
             <UniInput key={item.name} item={item} />
           ))}
         </div>
-
-        <button className={styles.submitButton}>
-          {isLoading ? "Loading..." : "Continue"}
-        </button>
+        <MainBtn title={isLoading ? "Loading..." : "Continue"} />
       </form>
     </FormProvider>
   );

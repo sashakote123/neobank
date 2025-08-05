@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import styles from "./styles.module.css";
 import { updateArray, updateCurrentOffer } from "@/src/app/store/offersSlice";
+import MainBtn from "@/src/shared/mainBtn/MainBtn";
 
 const MessageSendAlert = () => {
   const dispatch = useDispatch();
@@ -22,9 +23,7 @@ const MessageSendAlert = () => {
           In the letter you can get acquainted with the preliminary decision on
           the credit card.
         </h2>
-        <button onClick={clearStorageHandler} className={styles.btn}>
-          Fill new form
-        </button>
+        <MainBtn small title="Fill new form" onClick={clearStorageHandler} />
       </div>
     </section>
   );

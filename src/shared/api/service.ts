@@ -12,7 +12,6 @@ export const loanApi = createApi({
       "Content-Type": "application/json",
     },
   }),
-  //   tagTypes: ['loan'],
   endpoints: (build) => ({
     fetchLoanStatus: build.query({
       query: (applicationId: string | undefined) => ({
@@ -20,7 +19,7 @@ export const loanApi = createApi({
       }),
     }),
     createLoanApplication: build.mutation<IOfferItem[], ITransformedData>({
-      query: (data: any) => ({
+      query: (data) => ({
         url: "/application",
         method: "POST",
         body: data,

@@ -1,5 +1,6 @@
 import styles from "./styles.module.css";
 import close from "./assets/close.svg";
+import MainBtn from "@/src/shared/mainBtn/MainBtn";
 
 interface Props {
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,13 +21,17 @@ const DenyApplication: React.FC<Props> = ({ setIsShow }) => {
           You exactly sure, you want to cancel this application?
         </div>
         <div className={styles.buttons}>
-          <button className={styles.denyBtn}>Deny</button>
-          <button
+          <MainBtn
+            title="Deny"
+            small
+            style={{ background: "rgba(217, 55, 55, 0.8)" }}
+          />
+
+          <MainBtn
+            title="Cancel"
+            small
             onClick={() => setIsShow((prev) => !prev)}
-            className={styles.cancelBtn}
-          >
-            Cancel
-          </button>
+          />
         </div>
       </div>
     </section>

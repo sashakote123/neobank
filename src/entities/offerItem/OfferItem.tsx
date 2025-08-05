@@ -4,6 +4,7 @@ import check from "./assets/check.svg";
 import close from "./assets/close.svg";
 import { IOfferItem } from "@/src/shared/types/types";
 import { loanApi } from "@/src/shared/api/service";
+import MainBtn from "@/src/shared/mainBtn/MainBtn";
 
 interface Props {
   offer: IOfferItem;
@@ -53,9 +54,10 @@ const OfferItem: React.FC<Props> = (props) => {
           )}
         </div>
       </div>
-      <button onClick={handleClick} className={styles.selectBtn}>
-        {isLoading ? "Loading..." : "Select"}
-      </button>
+      <MainBtn
+        onClick={handleClick}
+        title={isLoading ? "Loading..." : "Select"}
+      />
     </li>
   );
 };

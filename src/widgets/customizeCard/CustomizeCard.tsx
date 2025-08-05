@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
 import { transformData } from "./functions";
 import { loanApi } from "@/src/shared/api/service";
+import MainBtn from "@/src/shared/mainBtn/MainBtn";
 
 const CustomizeCard = () => {
   const methods = useForm<FormFields>({
@@ -55,9 +56,10 @@ const CustomizeCard = () => {
           </div>
           <ContactInformationForms />
 
-          <button type="submit" className={styles.submitButton}>
-            {isLoading ? "Loading..." : "Continue"}
-          </button>
+          <MainBtn
+            type="submit"
+            title={isLoading ? "Loading..." : "Continue"}
+          />
           <button className={styles.fillBtn} type="button" onClick={fillForm}>
             Fill fields
           </button>
