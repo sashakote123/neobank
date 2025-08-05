@@ -1,0 +1,51 @@
+.table {
+    margin-bottom: 54px;
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.tableHeader {
+    text-align: start;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 0%;
+    letter-spacing: 0.02em;
+    color: #4a5568;
+}
+
+.tableHeader button {
+    display: flex;
+    align-items: center;
+}
+
+.tableRow {
+    height: 40px;
+
+    border-bottom: 1px var(--white) solid;
+}
+
+.bodyItem {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 147%;
+    letter-spacing: 0.02em;
+    color: var(--primary-dark);
+}
+
+.rotateUp {
+    transform: rotate(0deg);
+}
+
+.rotateDown {
+    transform: rotate(180deg);
+}
+
+.active {
+    opacity: 1;
+}
+
+.inactive {
+    opacity: 0.3;
+}

@@ -35,7 +35,7 @@
     }
 
     .banner__grid {
-        grid-column: 1; 
+        grid-column: 1;
         grid-row: auto;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
@@ -44,8 +44,6 @@
         top: 0;
     }
 }
-
-/*  */
 
 .options {
     display: grid;
@@ -75,7 +73,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 187%;
-    color: #4f5665;
+    color: var(--secondary-text);
 }
 .options__list {
     grid-column: 2;

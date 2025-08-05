@@ -1,0 +1,52 @@
+.topInputs {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    margin-bottom: 32px;
+}
+
+.topInputs > div {
+    flex-grow: 1;
+    width: 401px;
+}
+
+.bottomInputs {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    margin-bottom: 32px;
+}
+
+.bottomInputs > div {
+    flex-grow: 1;
+    width: 401px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    color: var(--text-color);
+
+    margin-bottom: 32px;
+}
+
+.submitButton {
+    position: relative;
+    left: calc(100% - 148px);
+
+    border-radius: 8px;
+    padding: 8px;
+    width: 148px;
+    height: 48px;
+    background: var(--primary-blue);
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
+}

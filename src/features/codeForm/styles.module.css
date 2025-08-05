@@ -1,0 +1,66 @@
+.formNumber {
+    display: flex;
+
+    position: relative;
+
+    gap: 16px;
+    justify-content: center;
+}
+.inputArea {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #3182ce;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0);
+}
+
+.inputNumber {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.inputNumber::-webkit-inner-spin-button,
+.inputNumber::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.inputPlaceholder {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    color: var(--alert-color);
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65px;
+}
+
+.loader {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 70px;
+    width: 10%;
+}

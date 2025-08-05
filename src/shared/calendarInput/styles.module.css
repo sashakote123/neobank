@@ -1,3 +1,8 @@
+.input {
+    flex-grow: 1;
+    width: 297px;
+}
+
 .title {
     display: flex;
     gap: 5px;
@@ -5,19 +10,19 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
-    color: #1a202c;
+    color: var(--primary-dark);
 
     margin-bottom: 8px;
 }
 
 .required {
-    color: red;
+    color: var(--alert-color);
 }
 
 .area {
     border: 1px solid rgba(128, 128, 128, 0.2);
     border-radius: 6px;
-    width: 297px;
+    width: 100%;
     height: 40px;
     background: #f9f5e3;
 
@@ -26,7 +31,7 @@
 
 .inputArea {
     position: relative;
-    width: 297px;
+    width: 100%;
 }
 
 .alert {
@@ -37,14 +42,14 @@
 }
 
 .error {
-    border: 2px solid #ff5631;
+    border: 2px solid var(--alert-color);
 }
 
 .errorAlert {
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
-    color: #ff5631;
+    color: var(--alert-color);
 }
 
 .calendarBtn img {

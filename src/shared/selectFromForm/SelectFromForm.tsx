@@ -13,7 +13,7 @@ const SelectFromForm: React.FC<ISelectProps> = ({ item }) => {
   } = useFormContext();
 
   return (
-    <div key={item.title} className={styles.input}>
+    <div className={styles.input}>
       <div className={styles.title}>
         <div className={styles.titleText}>{item.title}</div>
         {item.required && <div className={styles.required}>*</div>}
@@ -23,9 +23,12 @@ const SelectFromForm: React.FC<ISelectProps> = ({ item }) => {
         className={`${styles.select} ${errors[item.name] && styles.error}`}
         defaultValue={item.selectorArray?.[5]}
       >
-        {item.selectorArray?.map((option: number) => (
+        {item.selectorArray?.map((option: number | string) => (
           <option key={option} value={String(option)} className={styles.option}>
-            {option} month{option !== 1 ? "s" : ""}
+            {option}{" "}
+            {typeof option === "number" ? (
+              <>month{option !== 1 ? "s" : ""}</>
+            ) : null}
           </option>
         ))}
       </select>

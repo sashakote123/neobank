@@ -15,8 +15,8 @@
 }
 
 .infoForm {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(297px, 1fr));
+    display: inline-flex;
+    flex-wrap: wrap;
 
     gap: 16px;
 
@@ -36,7 +36,7 @@
 }
 
 .required {
-    color: red;
+    color: var(--alert-color);
 }
 
 .area {
@@ -50,14 +50,14 @@
 }
 
 .error {
-    border: 2px solid #ff5631;
+    border: 2px solid var(--alert-color);
 }
 
 .errorAlert {
     font-weight: 500;
     font-size: 16px;
     line-height: 100%;
-    color: #ff5631;
+    color: var(--alert-color);
 }
 
 .inputArea {
@@ -70,7 +70,7 @@
     border-radius: 6px;
     width: 297px;
     height: 40px;
-    background: #f9f5e3;
+    background: var(--white);
 
     padding: 0px 13px;
 }

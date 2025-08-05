@@ -5,34 +5,32 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { FormFields, formSchema } from "@/src/shared/formSchema/formSchema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
+import { transformData } from "./functions";
+import { loanApi } from "@/src/shared/api/service";
 
 const CustomizeCard = () => {
   const methods = useForm<FormFields>({
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log(data);
-    const { patronymic, birth, ...restData } = data;
-    const transformedData = {
-      ...restData,
-      term: Number(data.term),
-      amount: Number(data.amount),
-      middleName: patronymic,
-      birthdate: birth,
-      // passportSeries: Number(data.passportSeries),
-      // passportNumber: Number(data.passportNumber),
-    };
+  const [createLoan, { isLoading }] =
+    loanApi.useCreateLoanApplicationMutation();
 
-    console.log(transformedData);
-    fetch("http://localhost:8080/application", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const fillForm = () => {
+    methods.setValue("amount", "200000");
+    methods.setValue("firstName", "Alex");
+    methods.setValue("lastName", "Kotikhin");
+    methods.setValue("patronymic", "Andreevich");
+    methods.setValue("email", "sapool@bk.ru");
+    methods.setValue("term", "6");
+    methods.setValue("passportNumber", "123456");
+    methods.setValue("passportSeries", "6666");
+    methods.setValue("birth", "27.07.2002");
+  };
 
-      body: JSON.stringify(transformedData),
-    }).catch((err) => console.log(err));
+  const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
+    await createLoan(transformData(data));
   };
 
   return (
@@ -45,10 +43,7 @@ const CustomizeCard = () => {
         >
           <div className={styles.top}>
             <div className={styles.selection}>
-              <div className={styles.heading}>
-                <h2 className={styles.sectionTitle}>Customize your card</h2>
-                <div className={styles.steps}>Step 1 of 5</div>
-              </div>
+              <StepsHeader title="Customize your card" step={1} />
               <SelectAmount minAmount={150000} maxAmount={600000} />
             </div>
             <div className={styles.shosenAmount}>
@@ -61,7 +56,10 @@ const CustomizeCard = () => {
           <ContactInformationForms />
 
           <button type="submit" className={styles.submitButton}>
-            Continue
+            {isLoading ? "Loading..." : "Continue"}
+          </button>
+          <button className={styles.fillBtn} type="button" onClick={fillForm}>
+            Fill fields
           </button>
         </form>
       </FormProvider>

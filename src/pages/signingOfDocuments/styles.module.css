@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+    padding: 10px;
+    max-width: 1320px;
+    margin: 0 auto;
+
+    margin-top: 100px;
+    margin-bottom: 97px;
+}
+
+.textInfo {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 112%;
+    color: #4f5665;
+
+    margin-bottom: 32px;
+}
+
+.file {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 16px;
+}
+
+.fileText {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 112%;
+    color: var(--text-color);
+}

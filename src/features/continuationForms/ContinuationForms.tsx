@@ -1,0 +1,60 @@
+import { IForms } from "@/src/shared/types/types";
+import { employerInputsArray, inputsArray } from "./data";
+import styles from "./styles.module.css";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  FormFields,
+  secondFormSchema,
+} from "@/src/shared/formSchema/secondFormSchema";
+import { useParams } from "react-router";
+import { transformData } from "./utils";
+import UniInput from "@/src/entities/uniInput/UniInput";
+import { loanApi } from "@/src/shared/api/service";
+
+interface Props {
+  setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
+  const methods = useForm<FormFields>({
+    resolver: zodResolver(secondFormSchema),
+  });
+
+  const { applicationId } = useParams();
+
+  const [sendEmployerInfo, { isLoading }] =
+    loanApi.useSendEmployerInfoMutation();
+
+  const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
+    await sendEmployerInfo({ data: transformData(data), applicationId });
+    setIsShowForm(true);
+  };
+
+  return (
+    <FormProvider {...methods}>
+      <form
+        className={styles.form}
+        onSubmit={methods.handleSubmit(onSubmit)}
+        id="form"
+      >
+        <div className={styles.topInputs}>
+          {inputsArray.map((item: IForms) => (
+            <UniInput key={item.name} item={item} />
+          ))}
+        </div>
+        <div className={styles.title}>Employment</div>
+        <div className={styles.bottomInputs}>
+          {employerInputsArray.map((item: IForms) => (
+            <UniInput key={item.name} item={item} />
+          ))}
+        </div>
+
+        <button className={styles.submitButton}>
+          {isLoading ? "Loading..." : "Continue"}
+        </button>
+      </form>
+    </FormProvider>
+  );
+};
+export default ContinuationForms;

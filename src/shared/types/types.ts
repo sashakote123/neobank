@@ -32,7 +32,7 @@ export interface IForms {
   mask?: string | RegExp | null;
 
   type?: "selector" | "calendar" | "input";
-  selectorArray?: number[];
+  selectorArray?: number[] | string[];
   errorAlert: string;
   requiredAlert?: string;
 }
@@ -47,4 +47,53 @@ export interface IFormFields {
   passportSeries: string;
   passportNumber: number;
   term?: number;
+
+  gender: string;
+  maritalStatus: string;
+  dependentAmount: number;
+  passportIssueDate: string;
+  passportIssueBranch: string;
+  employmentStatus: string;
+  employerINN: number;
+  salary: number;
+  position: string;
+  workExperienceTotal: number;
+  workExperienceCurrent: number;
+}
+
+export interface IOfferItem {
+  applicationId: number;
+  requestedAmount: number;
+  totalAmount: number;
+  term: number;
+  monthlyPayment: number;
+  rate: number;
+  isInsuranceEnabled: boolean;
+  isSalaryClient: boolean;
+}
+
+export interface ITransformedData {
+  term: number;
+  amount: number;
+  middleName: string | undefined;
+  birthdate: string;
+  lastName: string;
+  firstName: string;
+  email: string;
+  passportSeries: string;
+  passportNumber: string;
+}
+
+export interface IOffersState {
+  offersArray: IOfferItem[] | null;
+  currentOffer?: IOfferItem | null;
+}
+
+export interface ITableRow {
+  number: number;
+  date: string;
+  totalPayment: number;
+  interestPayment: number;
+  debtPayment: number;
+  remainingDebt: number;
 }

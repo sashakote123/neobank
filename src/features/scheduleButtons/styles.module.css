@@ -1,0 +1,47 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.denyBtn {
+    border-radius: 8px;
+    padding: 8px;
+    width: 96px;
+    height: 40px;
+    background: rgba(217, 55, 55, 0.8);
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
+}
+
+.sendBtn {
+    border-radius: 8px;
+    padding: 8px;
+    width: 96px;
+    height: 40px;
+    background: var(--primary-blue);
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
+}
+
+.rBtn {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.check {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
