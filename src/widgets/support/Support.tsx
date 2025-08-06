@@ -1,7 +1,7 @@
 import "./styles.css";
 
-import emailImage from "@images/support/email.svg";
-import sendBtnImage from "@images/support/send.svg";
+import inputImg from "./assets/inputImg.svg";
+import sendBtnImage from "./assets/sendBtnImage.svg";
 import clsx from "clsx";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -47,31 +47,49 @@ const Support = () => {
 
   return (
     <section className="support">
-      <h3 className="suppor__title">Support</h3>
-      <h4 className="support__subtitle">Subscribe Newsletter & get</h4>
-      <h4 className="support__subsubtitle">Bank News</h4>
-      <form className="support__form" onSubmit={handleSubmit(submit)}>
+      <h3 data-testid="title" className="suppor__title">
+        Support
+      </h3>
+      <h4 data-testid="subtitle" className="support__subtitle">
+        Subscribe Newsletter & get
+      </h4>
+      <h4 data-testid="subsubtitle" className="support__subsubtitle">
+        Bank News
+      </h4>
+      <form
+        data-testid="form"
+        className="support__form"
+        onSubmit={handleSubmit(submit)}
+      >
         <div className={buttonClass}>
-          <img src={emailImage} alt="inputImg" />
+          <img data-testid="inputimg" src={inputImg} alt="inputImg" />
           <input
+            data-testid="input"
             placeholder="Your email"
             type="mail"
             {...register("mail", { required: true, validate: isMail })}
           />
-          <div className="form__error">
+          <div data-testid="error" className="form__error">
             {errors.mail?.type === "required" ? (
-              <div>Это поле обязательно</div>
+              <div data-testid="requireError">Это поле обязательно</div>
             ) : errors.mail?.type === "validate" ? (
-              <div>Введите корректный адрес почты</div>
+              <div data-testid="validateError">
+                Введите корректный адрес почты
+              </div>
             ) : null}
           </div>
         </div>
-        <button className="form__button">
-          <img src={sendBtnImage} alt="inputImg" />
+        <button data-testid="button" className="form__button">
+          <img
+            data-testid="sendBtnImage"
+            src={sendBtnImage}
+            alt="sendBtnImage"
+          />
           <div className="button__text">Subscribe</div>
         </button>
 
         <div
+          data-testid="alert"
           className="form__alert"
           style={{
             transform: isShow ? "translateX(270px)" : "",

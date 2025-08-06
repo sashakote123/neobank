@@ -3,23 +3,32 @@ import "./styles.css";
 import bankIcon from "@images/currency/bank.svg";
 import useGetCurrency from "@/src/entities/currency/hooks/useGetCurrency";
 import { ICurrency } from "./types";
+import { currencyApi } from "./api/service";
+import { CURRENCY_IMAGES } from "./data";
 
 const Currency = () => {
-  const { convertedData, error } = useGetCurrency();
+  // const { convertedData, error } = useGetCurrency();
+
+  const { data, isError, isLoading } =
+    currencyApi.useGetCurrencyQuery(CURRENCY_IMAGES);
 
   return (
     <div className="converter">
       <div className="left">
-        <div className="converter__title">Exchange rate in Internet bank</div>
-        <div className="converter__subtitle">Currency</div>
-        {error ? (
+        <div data-testid="title" className="converter__title">
+          Exchange rate in Internet bank
+        </div>
+        <div data-testid="subtitle" className="converter__subtitle">
+          Currency
+        </div>
+        {isError ? (
           <div className="converter__alert">
             Failed to fetch actual currency
           </div>
         ) : (
           <ul className="currency__list">
-            {convertedData
-              ? convertedData.map((item: ICurrency) => {
+            {data
+              ? data.map((item: ICurrency) => {
                   return (
                     <li key={item.name} className="currency__item">
                       <img
@@ -41,7 +50,7 @@ const Currency = () => {
         )}
       </div>
 
-      <div className="right">
+      <div data-testid="right" className="right">
         <div className="right__meta">
           Update every 15 minutes
           <div id="metaDate"></div>

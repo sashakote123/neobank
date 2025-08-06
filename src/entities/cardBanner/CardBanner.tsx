@@ -2,11 +2,11 @@ import "./styles.css";
 
 import OptionsListItem from "@/src/entities/optionsListItem/OptionsListItem";
 
-import bankCardImage1 from "@images/mainPage/cardImage1.png";
-import bankCardImage2 from "@images/mainPage/cardImage2.png";
-import bankCardImage3 from "@images/mainPage/cardImage3.png";
-import bankCardImage4 from "@images/mainPage/cardImage4.png";
-import illustration from "@images/mainPage/Illustration.svg";
+import bankCardImage1 from "./assets/cardImage1.png";
+import bankCardImage2 from "./assets/cardImage2.png";
+import bankCardImage3 from "./assets/cardImage3.png";
+import bankCardImage4 from "./assets/cardImage4.png";
+import illustration from "./assets/Illustration.svg";
 import LinkBtn from "@/src/shared/linkBtn/LinkBtn";
 
 const optionsArray: string[] = [
@@ -26,17 +26,17 @@ const CardBanner = () => {
   return (
     <section>
       <div className="banner">
-        <h1 className="banner__title">
+        <h1 data-testid="header" className="banner__title">
           Choose the design you like and apply for card right now
         </h1>
-        <div className="main-btn">
+        <div data-testid="link" className="main-btn">
           <LinkBtn title="Choose the card" link="/card" />
         </div>
 
         <div className="banner__grid">
-          {imagesArray.map((item: string) => {
+          {imagesArray.map((item: string, index: number) => {
             return (
-              <img key={item} className="grid__image" src={item} alt="img" />
+              <img key={index} className="grid__image" src={item} alt="img" />
             );
           })}
         </div>
@@ -44,10 +44,10 @@ const CardBanner = () => {
 
       <div className="options">
         <img className="options__image" src={illustration} alt="illustration" />
-        <h2 className="options__subtitle">
+        <h2 data-testid="header2" className="options__subtitle">
           We Provide Many Features You Can Use
         </h2>
-        <h3 className="options__desc">
+        <h3 data-testid="header3" className="options__desc">
           You can explore the features that we provide with fun and have their
           own functions each feature
         </h3>
