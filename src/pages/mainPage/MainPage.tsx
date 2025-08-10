@@ -7,7 +7,7 @@ import Support from "@/src/widgets/support/Support";
 
 const MainPage = () => {
   return (
-    <section className="container">
+    <section data-testid="mainPage" className="container">
       <CardBanner />
       <Currency />
       <Map />

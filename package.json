@@ -9,7 +9,6 @@
     "@reduxjs/toolkit": "^2.8.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^13.5.0",
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
@@ -63,9 +62,12 @@
     "@babel/preset-typescript": "^7.27.1",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/user-event": "^14.6.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/jest": "^30.0.0",
     "@types/react-scroll": "^1.8.10",
+    "axios-mock-adapter": "^2.1.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^30.0.5",
     "gh-pages": "^6.3.0",
     "identity-obj-proxy": "^3.0.0",
@@ -73,5 +75,10 @@
     "jest-transform-stub": "^2.0.0",
     "ts-jest": "^29.4.1",
     "whatwg-fetch": "^3.6.20"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-calendar)/"
+    ]
   }
 }

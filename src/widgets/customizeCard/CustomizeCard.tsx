@@ -17,7 +17,6 @@ const CustomizeCard = () => {
 
   const [createLoan, { isLoading }] =
     loanApi.useCreateLoanApplicationMutation();
-
   const fillForm = () => {
     methods.setValue("amount", "200000");
     methods.setValue("firstName", "Alex");
@@ -35,14 +34,15 @@ const CustomizeCard = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div data-testid="customizeCard" className={styles.container}>
       <FormProvider {...methods}>
         <form
+          data-testid="form"
           onSubmit={methods.handleSubmit(onSubmit)}
           id="form"
           className={styles.customize}
         >
-          <div className={styles.top}>
+          <div data-testid="top" className={styles.top}>
             <div className={styles.selection}>
               <StepsHeader title="Customize your card" step={1} />
               <SelectAmount minAmount={150000} maxAmount={600000} />
@@ -60,7 +60,12 @@ const CustomizeCard = () => {
             type="submit"
             title={isLoading ? "Loading..." : "Continue"}
           />
-          <button className={styles.fillBtn} type="button" onClick={fillForm}>
+          <button
+            data-testid="fillBtn"
+            className={styles.fillBtn}
+            type="button"
+            onClick={fillForm}
+          >
             Fill fields
           </button>
         </form>

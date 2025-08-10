@@ -5,7 +5,7 @@ import notFound from "./assets/notfound.png";
 
 const NotFoundPage = () => {
   return (
-    <div className={styles.container}>
+    <div data-testid="notFound" className={styles.container}>
       <div className={styles.left}>
         <h1 className={styles.title}>Oops...</h1>
         <h2 className={styles.subtitle}>Page not found</h2>

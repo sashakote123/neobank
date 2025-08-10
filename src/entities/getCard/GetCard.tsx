@@ -8,12 +8,14 @@ const stepsArray: string[] = [
 
 const GetCard = () => {
   return (
-    <section className={styles.container}>
-      <h2 className={styles.sectionTitle}>How to get a card</h2>
-      <ul className={styles.steps}>
+    <section data-testid="getCard" className={styles.container}>
+      <h2 data-testid="title" className={styles.sectionTitle}>
+        How to get a card
+      </h2>
+      <ul data-testid="list" className={styles.steps}>
         {stepsArray.map((item: string, index: number) => {
           return (
-            <li className={styles.step} key={item}>
+            <li data-testid="listitem" className={styles.step} key={item}>
               <div className={styles.stepIndex}>{index + 1}</div>
               <div className={styles.stepText}>{item}</div>
             </li>

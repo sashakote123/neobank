@@ -31,12 +31,18 @@ const ArrowButton = ({
 
   return (
     <button
+      data-testid={`${direction}Btn`}
       onClick={() => onNavigate(direction)}
       disabled={isDisabled}
       className={buttonClass}
       aria-label={`Scroll ${direction}`}
     >
-      <img className="button__image" src={icon} alt={direction} />
+      <img
+        data-testid={`${direction}Img`}
+        className="button__image"
+        src={icon}
+        alt={direction}
+      />
     </button>
   );
 };
@@ -53,7 +59,7 @@ export const NewsNavigation: React.FC<NewsNavigationProps> = ({
     ? currentIndex <= -(itemsCount - visibleItems) * itemWidth
     : false;
   return (
-    <div className="news-navigation">
+    <div data-testid="navContainer" className="news-navigation">
       <ArrowButton
         direction="prev"
         isDisabled={isAtStart}

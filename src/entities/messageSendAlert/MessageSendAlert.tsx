@@ -14,7 +14,7 @@ const MessageSendAlert = () => {
   };
 
   return (
-    <section className={styles.container}>
+    <section data-testid="messageSendAlert" className={styles.container}>
       <div className={styles.section}>
         <h1 className={styles.title}>
           The preliminary decision has been sent to your email.

@@ -8,7 +8,7 @@ interface Props {
 
 const LinkBtn: React.FC<Props> = ({ title, link = "/" }) => {
   return (
-    <Link className={styles.linkBtn} to={link}>
+    <Link data-testid="linkBtn" className={styles.linkBtn} to={link}>
       {title}
     </Link>
   );

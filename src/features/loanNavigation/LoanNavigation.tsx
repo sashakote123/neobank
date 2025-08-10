@@ -21,11 +21,12 @@ const LoanNavigation: React.FC<Props> = ({ setPage }) => {
     });
 
   return (
-    <nav className={styles.container}>
+    <nav data-testid="loanNavigation" className={styles.container}>
       <ul className={styles.navigatinList}>
         {linksArray.map((item: string, index) => {
           return (
             <li
+              data-testid="listitem"
               className={setActive(item)}
               onClick={() => {
                 setPage(index);

@@ -1,10 +1,8 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { waitFor, renderHook } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import News from "./News";
-import useGetNews from "./hooks/useGetNews";
-
-jest.mock("axios");
-jest.mock("@/src/widgets/news/hooks/useGetNews");
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import useGetNews from "./useGetNews";
 
 const mockNewsData = [
   {
@@ -126,60 +124,84 @@ const mockNewsData = [
   },
 ];
 
-describe("News", () => {
-  const mockUseGetNews = useGetNews;
+describe("useGetNews", () => {
+  let mockAxios;
+
+  beforeAll(() => {
+    mockAxios = new MockAdapter(axios);
+  });
+
   beforeEach(() => {
-    mockUseGetNews.mockReset();
+    mockAxios.reset();
+    jest.clearAllMocks();
   });
 
-  test("Отображает новости при успешном запросе", async () => {
-    mockUseGetNews.mockReturnValue({
-      data: mockNewsData,
-      isLoading: false,
-      error: undefined,
+  afterAll(() => {
+    mockAxios.restore();
+  });
+
+  test("Хук корректно получает данные", async () => {
+    mockAxios.onGet(/newsdata\.io/).reply(200, {
+      results: mockNewsData,
     });
 
-    render(<News />);
+    const { result } = renderHook(() => useGetNews());
 
-    expect(await screen.findByTestId("header")).toHaveTextContent(
-      "Current news from the world of finance"
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.data).toBeNull();
+    expect(result.current.error).toBeUndefined();
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    expect(result.current.data).toEqual(mockNewsData);
+    expect(result.current.error).toBeUndefined();
+  });
+
+  test("Хук корректно обрабатывает ошибку API", async () => {
+    mockAxios.onGet(/newsdata\.io/).reply(500, {
+      message: "Internal Server Error",
+    });
+
+    const { result } = renderHook(() => useGetNews());
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    expect(result.current.data).toBeNull();
+    expect(result.current.error).toBeInstanceOf(Error);
+    expect(result.current.error?.message).toContain("HTTP error! status: 500");
+  });
+
+  test("Хук возвращает не более MAX_NEWS_ITEMS элементов", async () => {
+    const manyNews = Array(15)
+      .fill(0)
+      .map((_, i) => ({
+        article_id: `${i}`,
+        title: `News ${i}`,
+        description: `Description ${i}`,
+      }));
+
+    mockAxios.onGet(/newsdata\.io/).reply(200, {
+      results: manyNews,
+    });
+
+    const { result } = renderHook(() => useGetNews());
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    expect(result.current.data).toHaveLength(10);
+  });
+
+  test("Хук корректно обрабатывает отсутствие results в ответе", async () => {
+    mockAxios.onGet(/newsdata\.io/).reply(200, {});
+
+    const { result } = renderHook(() => useGetNews());
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    expect(result.current.data).toBeNull();
+    expect(result.current.error).toBeInstanceOf(Error);
+    expect(result.current.error?.message).toContain(
+      "No articles data received from API"
     );
-    expect(await screen.findByTestId("subtitle")).toBeInTheDocument();
-    expect(await screen.findByTestId("carousel")).toBeInTheDocument();
-
-    await waitFor(() => {
-      mockNewsData.forEach((news) => {
-        expect(screen.getByText(news.title)).toBeInTheDocument();
-      });
-    });
-  });
-
-  test("Отображает ошибку при неудачном запросе", async () => {
-    mockUseGetNews.mockReturnValue({
-      data: mockNewsData,
-      isLoading: false,
-      error: new Error("Network Error"),
-    });
-
-    render(<News />);
-
-    expect(await screen.findByTestId("errorHeader")).toHaveTextContent(
-      "Current news from the world of finance"
-    );
-    expect(await screen.findByTestId("error")).toBeInTheDocument();
-    expect(await screen.findByTestId("button")).toBeInTheDocument();
-  });
-
-  test("Отображает старые новости при клике на кнопку", async () => {
-    mockUseGetNews.mockReturnValue({
-      data: mockNewsData,
-      isLoading: false,
-      error: new Error("Network Error"),
-    });
-    render(<News />);
-
-    fireEvent.click(await screen.findByTestId("button"));
-
-    expect(await screen.findByTestId("carousel")).toBeInTheDocument();
   });
 });

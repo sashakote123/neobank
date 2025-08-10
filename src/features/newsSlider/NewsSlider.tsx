@@ -10,6 +10,7 @@ interface Props {
 const NewsSlider: React.FC<Props> = ({ offset, newsArray }) => {
   return (
     <ul
+      data-testid="list"
       style={{ transform: `translateX(${offset}px)` }}
       className="news__slider"
     >

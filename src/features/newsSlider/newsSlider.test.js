@@ -1,10 +1,5 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import News from "./News";
-import useGetNews from "./hooks/useGetNews";
-
-jest.mock("axios");
-jest.mock("@/src/widgets/news/hooks/useGetNews");
+import { render, screen } from "@testing-library/react";
+import NewsSlider from "./NewsSlider";
 
 const mockNewsData = [
   {
@@ -127,59 +122,41 @@ const mockNewsData = [
 ];
 
 describe("News", () => {
-  const mockUseGetNews = useGetNews;
-  beforeEach(() => {
-    mockUseGetNews.mockReset();
+  test("Компонент отрисован с корректными элементами", () => {
+    render(<NewsSlider offset={0} newsArray={mockNewsData} />);
+    const list = screen.getByTestId("list");
+
+    expect(list).toBeInTheDocument();
   });
+  test("Отображает все переданные новости", () => {
+    render(<NewsSlider offset={0} newsArray={mockNewsData} />);
 
-  test("Отображает новости при успешном запросе", async () => {
-    mockUseGetNews.mockReturnValue({
-      data: mockNewsData,
-      isLoading: false,
-      error: undefined,
+    mockNewsData.forEach((news) => {
+      expect(screen.getByText(news.title)).toBeInTheDocument();
     });
+  });
+  test("Имеет корректный класс стилей", () => {
+    render(<NewsSlider offset={0} newsArray={mockNewsData} />);
+    const list = screen.getByTestId("list");
 
-    render(<News />);
-
-    expect(await screen.findByTestId("header")).toHaveTextContent(
-      "Current news from the world of finance"
+    expect(list).toHaveClass("news__slider");
+  });
+  test("У компонента есть свойство transform", () => {
+    const { rerender } = render(
+      <NewsSlider offset={0} newsArray={mockNewsData} />
     );
-    expect(await screen.findByTestId("subtitle")).toBeInTheDocument();
-    expect(await screen.findByTestId("carousel")).toBeInTheDocument();
-
-    await waitFor(() => {
-      mockNewsData.forEach((news) => {
-        expect(screen.getByText(news.title)).toBeInTheDocument();
-      });
-    });
-  });
-
-  test("Отображает ошибку при неудачном запросе", async () => {
-    mockUseGetNews.mockReturnValue({
-      data: mockNewsData,
-      isLoading: false,
-      error: new Error("Network Error"),
-    });
-
-    render(<News />);
-
-    expect(await screen.findByTestId("errorHeader")).toHaveTextContent(
-      "Current news from the world of finance"
+    expect(screen.getByTestId("list")).toHaveStyle(
+      "transform: translateX(0px)"
     );
-    expect(await screen.findByTestId("error")).toBeInTheDocument();
-    expect(await screen.findByTestId("button")).toBeInTheDocument();
-  });
 
-  test("Отображает старые новости при клике на кнопку", async () => {
-    mockUseGetNews.mockReturnValue({
-      data: mockNewsData,
-      isLoading: false,
-      error: new Error("Network Error"),
-    });
-    render(<News />);
+    rerender(<NewsSlider offset={400} newsArray={mockNewsData} />);
+    expect(screen.getByTestId("list")).toHaveStyle(
+      "transform: translateX(400px)"
+    );
 
-    fireEvent.click(await screen.findByTestId("button"));
-
-    expect(await screen.findByTestId("carousel")).toBeInTheDocument();
+    rerender(<NewsSlider offset={-400} newsArray={mockNewsData} />);
+    expect(screen.getByTestId("list")).toHaveStyle(
+      "transform: translateX(-400px)"
+    );
   });
 });

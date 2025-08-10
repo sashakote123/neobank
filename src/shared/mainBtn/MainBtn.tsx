@@ -8,6 +8,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const MainBtn: React.FC<Props> = ({ title, small = false, ...rest }) => {
   return (
     <button
+      data-testid="mainBtn"
       {...rest}
       className={clsx(styles.button, {
         [styles.small]: small,

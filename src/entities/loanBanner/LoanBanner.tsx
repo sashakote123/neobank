@@ -12,25 +12,37 @@ const bannerInfoArray: IInfo[] = [
 
 const LoanBanner = () => {
   return (
-    <div className={styles.container}>
+    <div data-testid="loanBanner" className={styles.container}>
       <section className={styles.loanBanner}>
         <div className={styles.bannerText}>
-          <h3 className={styles.bannerTitle}>Platinum digital credit card</h3>
-          <div className={styles.bannerSubtitle}>
+          <h3 data-testid="title" className={styles.bannerTitle}>
+            Platinum digital credit card
+          </h3>
+          <div data-testid="subtitle" className={styles.bannerSubtitle}>
             Our best credit card. Suitable for everyday spending and shopping.
             Cash withdrawals and transfers without commission and interest.
           </div>
-          <ul className={styles.bannerInfo}>
+          <ul data-testid="list" className={styles.bannerInfo}>
             {bannerInfoArray.map((item: IInfo) => {
               return (
-                <li key={item.title} className={styles.infoItem}>
+                <li
+                  data-testid="listitem"
+                  key={item.title}
+                  className={styles.infoItem}
+                >
                   <div className={styles.itemTitle}>{item.title}</div>
                   <div className={styles.itemSubtitle}>{item.subtitle}</div>
                 </li>
               );
             })}
           </ul>
-          <Link to="form" smooth={true} duration={500} offset={-100}>
+          <Link
+            data-testid="link"
+            to="form"
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
             <MainBtn title="Apply for a card" />
           </Link>
         </div>

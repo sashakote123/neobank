@@ -25,7 +25,6 @@ const useGetNews = (): HookResult => {
           throw new Error("No articles data received from API");
         }
 
-        console.log(response.data);
         setData(response.data.results.slice(0, MAX_NEWS_ITEMS));
       } catch (err) {
         const error = axios.isAxiosError(err)

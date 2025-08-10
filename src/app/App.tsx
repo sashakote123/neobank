@@ -14,7 +14,7 @@ import EnterCode from "../pages/enterCode/EnterCode";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" data-testid="app">
       <Header />
       <Provider store={store}>
         <Routes>

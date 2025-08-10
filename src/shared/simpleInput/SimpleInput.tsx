@@ -33,15 +33,15 @@ const SimpleInput: React.FC<Props> = ({ item }) => {
     }
   );
   const { ref: registerRef, ...registerProps } = register(item.name);
-
   return (
-    <div className={styles.input}>
+    <div data-testid="inputContainer" className={styles.input}>
       <div className={styles.title}>
         <div className={styles.titleText}>{item.title}</div>
         {item.required && <div className={styles.required}>*</div>}
       </div>
       <div className={styles.inputArea}>
         <input
+          data-testid="input"
           {...registerProps}
           className={`${styles.area} ${errors[item.name] && styles.error}`}
           placeholder={item.placeholder}

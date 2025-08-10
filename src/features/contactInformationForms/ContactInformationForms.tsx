@@ -7,10 +7,10 @@ import UniInput from "@/src/entities/uniInput/UniInput";
 
 const ContactInformationForms = () => {
   return (
-    <section className={styles.forms}>
+    <section data-testid="contactForms" className={styles.forms}>
       <h3 className={styles.sectionTitle}>Contact Information</h3>
 
-      <div className={styles.infoForm}>
+      <div data-testid="infoForm" className={styles.infoForm}>
         {inputsArray.map((item: IForms) => (
           <UniInput key={item.name} item={item} />
         ))}

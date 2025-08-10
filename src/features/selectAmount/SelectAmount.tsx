@@ -89,24 +89,32 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
     setValue("amount", current);
   }, [current, setValue]);
 
+  console.log(currentPosition);
   return (
-    <div className={styles.amount}>
+    <div data-testid="selectAmount" className={styles.amount}>
       <h3 className={styles.amountTitle}>Select amount</h3>
       <div className={styles.amountSlider}>
         <input
+          data-testid="input"
           {...register("amount")}
           value={current}
           onChange={changeForm}
           type="number"
           className={styles.sliderCurrent}
         />
-        <div ref={sliderRef} className={styles.sliderLine}>
+        <div
+          ref={sliderRef}
+          className={styles.sliderLine}
+          data-testid="sliderTrack"
+        >
           <div
+            data-testid="coloredLine"
             style={{ width: `${currentPosition}px` }}
             className={styles.coloredLine}
           ></div>
           <div className={styles.line}></div>
           <div
+            data-testid="sliderThumb"
             ref={thumbRef}
             onPointerDown={(e) => dragndropHandler(e)}
             className={styles.btn}

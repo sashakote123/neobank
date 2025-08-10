@@ -49,7 +49,7 @@ const LoanPage = () => {
   }, [dispatch]);
 
   return (
-    <section className={styles.loanPage}>
+    <section data-testid="loanPage" className={styles.loanPage}>
       <LoanBanner />
       <LoanNavigation setPage={setCurrentPage} />
       {currentPage ? pages[currentPage] : pages[0]}

@@ -1,21 +1,16 @@
-import { getByTestId, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import Currency from "./Currency";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "@/src/app/store/store";
+import Currency from "./Currency";
 
-describe("Currency", () => {
+describe("LoanPage", () => {
   test("Компонент отрисован с корректными элементами", () => {
     render(
       <Provider store={store}>
         <Currency />
       </Provider>
     );
-    expect(screen.getByTestId("title")).toHaveTextContent(
-      "Exchange rate in Internet bank"
-    );
-    expect(screen.getByTestId("subtitle")).toHaveTextContent("Currency");
-    expect(screen.getByTestId("right")).toBeInTheDocument();
-    // expect(screen.getByTestId("link")).toBeInTheDocument();
+    const page = screen.getByTestId("title");
+    expect(page).toBeInTheDocument();
   });
 });

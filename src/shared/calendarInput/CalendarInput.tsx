@@ -62,6 +62,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
       </div>
       <div className={styles.inputArea}>
         <input
+          data-testid="inputContainer"
           {...register(item.name)}
           ref={ref}
           className={`${styles.area} ${errors[item.name] && styles.error}`}
@@ -88,7 +89,9 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
         )}
 
         {isShow && (
-          <Calendar className={styles.calendar} onChange={handleDateChange} />
+          <div data-testid="calendar">
+            <Calendar className={styles.calendar} onChange={handleDateChange} />
+          </div>
         )}
       </div>
     </div>
