@@ -26,9 +26,10 @@ const SigningButtons: React.FC<Props> = ({ setIsShowForm }) => {
   };
 
   return (
-    <div className={styles.btnbox}>
+    <div data-testid="btnbox" className={styles.btnbox}>
       <div className={styles.checkbox}>
         <input
+          data-testid="checkbox"
           checked={isChecked}
           onChange={handleChangeCheck}
           type="checkbox"

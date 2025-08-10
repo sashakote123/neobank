@@ -8,7 +8,7 @@ interface Props {
 
 const DenyApplication: React.FC<Props> = ({ setIsShow }) => {
   return (
-    <section className={styles.container}>
+    <section data-testid="denyModal" className={styles.container}>
       <div className={styles.windowAlert}>
         <div className={styles.header}>
           <div className={styles.title}>Deny application</div>

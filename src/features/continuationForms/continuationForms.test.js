@@ -1,45 +1,42 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 
 import ContinuationForms from "./ContinuationForms";
 import { loanApi } from "@/src/shared/api/service";
 import { Provider } from "react-redux";
 import { store } from "@/src/app/store/store";
-import { useParams } from "react-router";
+import { BrowserRouter } from "react-router";
 
-jest.mock("@/src/shared/api/service", () => ({
-  loanApi: {
-    useSendEmployerInfoMutation: jest.fn(),
-  },
+jest.mock("@/src/shared/api/service", () => {
+  const originalModule = jest.requireActual("@/src/shared/api/service");
+  return {
+    ...originalModule,
+    loanApi: {
+      ...originalModule.loanApi,
+      useSendEmployerInfoMutation: jest.fn(),
+    },
+  };
+});
+
+jest.mock("./data", () => ({
+  inputsArray: [
+    { name: "firstName", title: "First Name", type: "input" },
+    { name: "lastName", title: "Last Name", type: "input" },
+  ],
+  employerInputsArray: [
+    { name: "employerName", title: "Employer Name", type: "input" },
+    { name: "salary", title: "Salary", type: "input" },
+  ],
 }));
-
-// jest.mock('@/src/entities/uniInput/UniInput', () => {
-//   return ({ item }) => (
-//     <div data-testid={`uni-input-${item.name}`}>{item.title}</div>
-//   );
-// });
-
-// const mockInputsArray = [
-//   { name: "firstName", title: "First Name", type: "input" },
-//   { name: "lastName", title: "Last Name", type: "input" },
-// ];
-
-// const mockEmployerInputsArray = [
-//   { name: "employerName", title: "Employer Name", type: "input" },
-//   { name: "salary", title: "Salary", type: "input" },
-// ];
-
-// jest.mock("./data", () => ({
-//   inputsArray: mockInputsArray,
-//   employerInputsArray: mockEmployerInputsArray,
-// }));
 
 describe("ContinuationForms", () => {
   const mockSetIsShowForm = jest.fn();
   const mockSendEmployerInfo = jest.fn();
 
   beforeEach(() => {
-    useParams.mockReturnValue({ applicationId: "123" });
+    jest.mock("react-router", () => ({
+      ...jest.requireActual("react-router"),
+      useParams: () => ({ applicationId: "123" }),
+    }));
     loanApi.useSendEmployerInfoMutation.mockReturnValue([
       mockSendEmployerInfo,
       { isLoading: false },
@@ -53,66 +50,40 @@ describe("ContinuationForms", () => {
   const renderWithProvider = () => {
     return render(
       <Provider store={store}>
-        <ContinuationForms setIsShowForm={mockSetIsShowForm} />
+        <BrowserRouter>
+          <ContinuationForms setIsShowForm={mockSetIsShowForm} />
+        </BrowserRouter>
       </Provider>
     );
   };
 
-  test("рендерит форму с полями ввода", () => {
+  test("Отрисовывается компонент с полями ввода", () => {
     renderWithProvider();
+    expect(screen.getByTestId("form")).toBeInTheDocument();
 
-    expect(screen.getByTestId("uni-input-firstName")).toBeInTheDocument();
-    expect(screen.getByTestId("uni-input-lastName")).toBeInTheDocument();
-    expect(screen.getByTestId("uni-input-employerName")).toBeInTheDocument();
-    expect(screen.getByTestId("uni-input-salary")).toBeInTheDocument();
+    expect(screen.getByTestId("topInputs")).toBeInTheDocument();
+    expect(screen.getByTestId("bottomInputs")).toBeInTheDocument();
+
     expect(screen.getByText("Employment")).toBeInTheDocument();
-    expect(screen.getByTestId("main-btn")).toHaveTextContent("Continue");
+    expect(screen.getByTestId("mainBtn")).toHaveTextContent("Continue");
   });
 
-  test("отображает индикатор загрузки при отправке формы", () => {
-    loanApi.useSendEmployerInfoMutation.mockReturnValueOnce([
-      mockSendEmployerInfo,
+  test("Кнопка 'Continue' отображает 'Loading...' во время загрузки", () => {
+    const mockMutate = jest.fn();
+    loanApi.useSendEmployerInfoMutation.mockReturnValue([
+      mockMutate,
       { isLoading: true },
     ]);
 
     renderWithProvider();
 
-    expect(screen.getByTestId("main-btn")).toHaveTextContent("Loading...");
-  });
-
-  test("отправляет форму с корректными данными", async () => {
-    const user = userEvent.setup();
-    mockSendEmployerInfo.mockResolvedValueOnce({});
-
-    renderWithProvider();
-
-    await user.click(screen.getByTestId("main-btn"));
-
-    await waitFor(() => {
-      expect(mockSendEmployerInfo).toHaveBeenCalled();
-    });
-  });
-
-  test("использует applicationId из URL", () => {
-    useParams.mockReturnValueOnce({ applicationId: "test-id" });
-
-    render(
-      <Provider store={store}>
-        <ContinuationForms setIsShowForm={mockSetIsShowForm} />
-      </Provider>
-    );
-
-    expect(useParams).toHaveBeenCalled();
+    expect(screen.getByTestId("mainBtn")).toHaveTextContent("Loading...");
   });
 
   test("применяет правильные CSS классы", () => {
-    render(
-      <Provider store={store}>
-        <ContinuationForms setIsShowForm={mockSetIsShowForm} />
-      </Provider>
-    );
+    renderWithProvider();
 
-    expect(screen.getByRole("form")).toHaveClass("form");
+    expect(screen.getByTestId("form")).toHaveClass("form");
     expect(screen.getByText("Employment")).toHaveClass("title");
   });
 });

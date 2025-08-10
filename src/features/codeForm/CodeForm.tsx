@@ -66,10 +66,11 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
   }
 
   return (
-    <form className={styles.formNumber}>
+    <form data-testid="codeForm" className={styles.formNumber}>
       {values.map((value, index) => (
         <div className={styles.inputArea} key={index}>
           <input
+            data-testid="input"
             type="number"
             className={styles.inputNumber}
             value={value}

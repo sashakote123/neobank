@@ -36,6 +36,7 @@ const SigningOfDocuments = () => {
           <div className={styles.file}>
             <img src={file} alt="file" />
             <a
+              data-testid="fileRef"
               href="https://neostudy.neoflex.ru/pluginfile.php/155185/mod_assign/intro/credit-card-offer.pdf"
               className={styles.fileText}
             >

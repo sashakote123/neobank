@@ -30,7 +30,7 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
   };
   return (
     <>
-      <div className={styles.buttons}>
+      <div data-testid="buttons" className={styles.buttons}>
         <MainBtn
           title="Deny"
           small
@@ -40,6 +40,7 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
         <div className={styles.rBtn}>
           <div className={styles.check}>
             <input
+              data-testid="checkbox"
               checked={isChecked}
               onChange={handleChangeCheck}
               type="checkbox"

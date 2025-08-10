@@ -49,7 +49,7 @@ const Table: React.FC<Props> = ({ tableArray }) => {
   };
 
   return (
-    <table className={styles.table}>
+    <table data-testid="table" className={styles.table}>
       <thead>
         <tr className={styles.tableRow}>
           {array.length > 0
@@ -59,6 +59,7 @@ const Table: React.FC<Props> = ({ tableArray }) => {
                     <button onClick={() => sortArray(key as keyof ITableRow)}>
                       {key.replace(FIRSTSYMBOLREG, " $1").toUpperCase()}
                       <img
+                        data-testid="headerImg"
                         src={triangle}
                         className={clsx(
                           sortConfig.column === key
@@ -84,7 +85,7 @@ const Table: React.FC<Props> = ({ tableArray }) => {
             <tr key={item.number} className={styles.tableRow}>
               {Object.keys(item).map((key) => {
                 return (
-                  <td key={key} className={styles.bodyItem}>
+                  <td data-testid="item" key={key} className={styles.bodyItem}>
                     {item[key as keyof ITableRow]}
                   </td>
                 );

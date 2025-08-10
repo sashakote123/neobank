@@ -35,17 +35,18 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
   return (
     <FormProvider {...methods}>
       <form
+        data-testid="form"
         className={styles.form}
         onSubmit={methods.handleSubmit(onSubmit)}
         id="form"
       >
-        <div className={styles.topInputs}>
+        <div data-testid="topInputs" className={styles.topInputs}>
           {inputsArray.map((item: IForms) => (
             <UniInput key={item.name} item={item} />
           ))}
         </div>
         <div className={styles.title}>Employment</div>
-        <div className={styles.bottomInputs}>
+        <div data-testid="bottomInputs" className={styles.bottomInputs}>
           {employerInputsArray.map((item: IForms) => (
             <UniInput key={item.name} item={item} />
           ))}
