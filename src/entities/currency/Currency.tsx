@@ -1,16 +1,12 @@
 import "./styles.css";
 
 import bankIcon from "@images/currency/bank.svg";
-import useGetCurrency from "@/src/entities/currency/hooks/useGetCurrency";
 import { ICurrency } from "./types";
 import { currencyApi } from "./api/service";
 import { CURRENCY_IMAGES } from "./data";
 
 const Currency = () => {
-  // const { convertedData, error } = useGetCurrency();
-
-  const { data, isError, isLoading } =
-    currencyApi.useGetCurrencyQuery(CURRENCY_IMAGES);
+  const { data, isError } = currencyApi.useGetCurrencyQuery(CURRENCY_IMAGES);
 
   return (
     <div className="converter">

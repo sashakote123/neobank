@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import LoanPage from "./LoanPage";
 import { Provider } from "react-redux";
 import { store } from "@/src/app/store/store";

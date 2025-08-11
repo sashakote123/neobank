@@ -32,18 +32,4 @@ describe("SelectAmount", () => {
 
     expect(input).toHaveValue(500);
   });
-
-  //   test('обновляет значение формы при изменении', async () => {
-  //     const { getByRole } = render(<Wrapper />);
-  //     const formMethods = useForm();
-  //     const setValueMock = jest.fn();
-
-  //     jest.spyOn(formMethods, 'setValue').mockImplementation(setValueMock);
-
-  //     const input = getByRole('spinbutton');
-  //     await userEvent.clear(input);
-  //     await userEvent.type(input, '300');
-
-  //     expect(setValueMock).toHaveBeenCalledWith('amount', 300);
-  //   });
 });

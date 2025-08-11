@@ -51,7 +51,9 @@ const QuestionItem: React.FC<Props> = ({ question, isOpen, onToggle }) => {
           />
         </button>
       </div>
-      <div className={styles.itemAnswer}>{question.answer}</div>
+      <div data-testid="answer" className={styles.itemAnswer}>
+        {question.answer}
+      </div>
     </li>
   );
 };
