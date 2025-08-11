@@ -1,5 +1,6 @@
-import clsx from "clsx";
-import styles from "./styles.module.css";
+import clsx from 'clsx';
+
+import styles from './styles.module.css';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;

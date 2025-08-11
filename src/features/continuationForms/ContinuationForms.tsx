@@ -1,17 +1,17 @@
-import { IForms } from "@/src/shared/types/types";
-import { employerInputsArray, inputsArray } from "./data";
-import styles from "./styles.module.css";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  FormFields,
-  secondFormSchema,
-} from "@/src/shared/formSchema/secondFormSchema";
-import { useParams } from "react-router";
-import { transformData } from "./utils";
-import UniInput from "@/src/entities/uniInput/UniInput";
-import { loanApi } from "@/src/shared/api/service";
-import MainBtn from "@/src/shared/mainBtn/MainBtn";
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { useParams } from 'react-router';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import UniInput from '@/src/entities/uniInput/UniInput';
+import { loanApi } from '@/src/shared/api/service';
+import { FormFields, secondFormSchema } from '@/src/shared/formSchema/secondFormSchema';
+import MainBtn from '@/src/shared/mainBtn/MainBtn';
+import { IForms } from '@/src/shared/types/types';
+
+import { employerInputsArray, inputsArray } from './data';
+import styles from './styles.module.css';
+import { transformData } from './utils';
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,8 +24,7 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
 
   const { applicationId } = useParams();
 
-  const [sendEmployerInfo, { isLoading }] =
-    loanApi.useSendEmployerInfoMutation();
+  const [sendEmployerInfo, { isLoading }] = loanApi.useSendEmployerInfoMutation();
 
   const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
     await sendEmployerInfo({ data: transformData(data), applicationId });
@@ -51,7 +50,7 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
             <UniInput key={item.name} item={item} />
           ))}
         </div>
-        <MainBtn title={isLoading ? "Loading..." : "Continue"} />
+        <MainBtn title={isLoading ? 'Loading...' : 'Continue'} />
       </form>
     </FormProvider>
   );

@@ -1,12 +1,12 @@
-import ContinuationForms from "@/src/features/continuationForms/ContinuationForms";
-import styles from "./styles.module.css";
-import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
-import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
-import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
+import StepsHeader from '@/src/entities/stepsHeader/StepsHeader';
+import WaitForDecidion from '@/src/entities/waitForDecidion/WaitForDecidion';
+import ContinuationForms from '@/src/features/continuationForms/ContinuationForms';
+import useApplicationStep from '@/src/shared/hooks/useApplicationStep';
+
+import styles from './styles.module.css';
 
 const ContinuationOfApplication = () => {
-  const { isShowForm, setIsShowForm, isLoading } =
-    useApplicationStep("continuation");
+  const { isShowForm, setIsShowForm, isLoading } = useApplicationStep('continuation');
 
   return (
     <section data-testid="continuationPage" className={styles.container}>

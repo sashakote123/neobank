@@ -1,6 +1,8 @@
-import "./styles.css";
-import { INews } from "@/src/shared/types/types";
-import sliderImage from "@images/news/demo1.jpg";
+import sliderImage from '@images/news/demo1.jpg';
+
+import { INews } from '@/src/shared/types/types';
+
+import './styles.css';
 
 interface Props {
   item: INews;
@@ -22,12 +24,7 @@ const NewsItem: React.FC<Props> = ({ item }) => {
       ) : (
         <img src={sliderImage} className="slider__image" alt="img" />
       )}
-      <a
-        href={item.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="item__title"
-      >
+      <a href={item.link} target="_blank" rel="noopener noreferrer" className="item__title">
         {item.title}
       </a>
       <div className="item__subtitle">{item.description}</div>

@@ -1,13 +1,15 @@
-import styles from "./styles.module.css";
-import { IInfo } from "./types";
-import card from "./assets/card.png";
-import MainBtn from "@/src/shared/mainBtn/MainBtn";
-import { Link } from "react-scroll";
+import { Link } from 'react-scroll';
+
+import MainBtn from '@/src/shared/mainBtn/MainBtn';
+
+import card from './assets/card.png';
+import styles from './styles.module.css';
+import { IInfo } from './types';
 
 const bannerInfoArray: IInfo[] = [
-  { title: "Up to 160 days", subtitle: "No percent" },
-  { title: "Up to 600 000 ₽", subtitle: "Credit limit" },
-  { title: "0 ₽", subtitle: "Card service is free" },
+  { title: 'Up to 160 days', subtitle: 'No percent' },
+  { title: 'Up to 600 000 ₽', subtitle: 'Credit limit' },
+  { title: '0 ₽', subtitle: 'Card service is free' },
 ];
 
 const LoanBanner = () => {
@@ -19,30 +21,20 @@ const LoanBanner = () => {
             Platinum digital credit card
           </h3>
           <div data-testid="subtitle" className={styles.bannerSubtitle}>
-            Our best credit card. Suitable for everyday spending and shopping.
-            Cash withdrawals and transfers without commission and interest.
+            Our best credit card. Suitable for everyday spending and shopping. Cash withdrawals and
+            transfers without commission and interest.
           </div>
           <ul data-testid="list" className={styles.bannerInfo}>
             {bannerInfoArray.map((item: IInfo) => {
               return (
-                <li
-                  data-testid="listitem"
-                  key={item.title}
-                  className={styles.infoItem}
-                >
+                <li data-testid="listitem" key={item.title} className={styles.infoItem}>
                   <div className={styles.itemTitle}>{item.title}</div>
                   <div className={styles.itemSubtitle}>{item.subtitle}</div>
                 </li>
               );
             })}
           </ul>
-          <Link
-            data-testid="link"
-            to="form"
-            smooth={true}
-            duration={500}
-            offset={-100}
-          >
+          <Link data-testid="link" to="form" smooth={true} duration={500} offset={-100}>
             <MainBtn title="Apply for a card" />
           </Link>
         </div>

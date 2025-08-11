@@ -1,8 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import Footer from "./Footer";
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from 'react-router';
 
-describe("Footer Component", () => {
+import { render, screen } from '@testing-library/react';
+
+import Footer from './Footer';
+
+describe('Footer Component', () => {
   const renderWithProvider = () => {
     return render(
       <BrowserRouter>
@@ -10,52 +12,50 @@ describe("Footer Component", () => {
       </BrowserRouter>
     );
   };
-  test("Рендерится с основными элементами", () => {
+  test('Рендерится с основными элементами', () => {
     renderWithProvider();
 
-    expect(screen.getByTestId("footer")).toBeInTheDocument();
-    expect(screen.getByAltText("logo")).toBeInTheDocument();
-    expect(screen.getByText("+7 (495) 984 25 13")).toBeInTheDocument();
-    expect(screen.getByText("info@neoflex.ru")).toBeInTheDocument();
-    expect(screen.getByText("About bank")).toBeInTheDocument();
-    expect(
-      screen.getByText("Compliance and business ethics")
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('footer')).toBeInTheDocument();
+    expect(screen.getByAltText('logo')).toBeInTheDocument();
+    expect(screen.getByText('+7 (495) 984 25 13')).toBeInTheDocument();
+    expect(screen.getByText('info@neoflex.ru')).toBeInTheDocument();
+    expect(screen.getByText('About bank')).toBeInTheDocument();
+    expect(screen.getByText('Compliance and business ethics')).toBeInTheDocument();
     expect(screen.getByText(/We use cookies/)).toBeInTheDocument();
   });
 
-  test("Отображает все ссылки из массива linksArray", () => {
+  test('Отображает все ссылки из массива linksArray', () => {
     renderWithProvider();
 
-    const links = screen.getAllByRole("link");
+    const links = screen.getAllByRole('link');
     expect(links.length).toBeGreaterThanOrEqual(12);
   });
 
-  test("Контактные данные имеют правильные атрибуты", () => {
+  test('Контактные данные имеют правильные атрибуты', () => {
     renderWithProvider();
 
-    const phoneLink = screen.getByText("+7 (495) 984 25 13");
-    expect(phoneLink).toHaveAttribute("href", "tel:+74959842513");
+    const phoneLink = screen.getByText('+7 (495) 984 25 13');
+    expect(phoneLink).toHaveAttribute('href', 'tel:+74959842513');
 
-    const emailLink = screen.getByText("info@neoflex.ru");
-    expect(emailLink).toHaveAttribute("href", "mailto:info@neoflex.ru");
+    const emailLink = screen.getByText('info@neoflex.ru');
+    expect(emailLink).toHaveAttribute('href', 'mailto:info@neoflex.ru');
   });
 
-  test("Ссылки в футере ведут на правильные адреса", () => {
+  test('Ссылки в футере ведут на правильные адреса', () => {
     renderWithProvider();
 
-    const aboutBankLink = screen.getByText("About bank");
-    expect(aboutBankLink).toHaveAttribute("href", "!#");
+    const aboutBankLink = screen.getByText('About bank');
+    expect(aboutBankLink).toHaveAttribute('href', '!#');
 
-    const complianceLink = screen.getByText("Compliance and business ethics");
-    expect(complianceLink).toHaveAttribute("href", "!#");
+    const complianceLink = screen.getByText('Compliance and business ethics');
+    expect(complianceLink).toHaveAttribute('href', '!#');
   });
 
-  test("Отображает уведомление о cookies", () => {
+  test('Отображает уведомление о cookies', () => {
     renderWithProvider();
 
     const cookiesAlert = screen.getByText(/We use cookies/);
     expect(cookiesAlert).toBeInTheDocument();
-    expect(cookiesAlert).toHaveClass("footer__alert");
+    expect(cookiesAlert).toHaveClass('footer__alert');
   });
 });

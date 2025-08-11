@@ -1,8 +1,11 @@
-import { useParams } from "react-router";
-import styles from "./styles.module.css";
-import { useState } from "react";
-import { loanApi } from "@/src/shared/api/service";
-import MainBtn from "@/src/shared/mainBtn/MainBtn";
+import { useParams } from 'react-router';
+
+import { useState } from 'react';
+
+import { loanApi } from '@/src/shared/api/service';
+import MainBtn from '@/src/shared/mainBtn/MainBtn';
+
+import styles from './styles.module.css';
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,11 +41,11 @@ const SigningButtons: React.FC<Props> = ({ setIsShowForm }) => {
       </div>
       <MainBtn
         small
-        title={isLoading ? "Loading..." : "Send"}
+        title={isLoading ? 'Loading...' : 'Send'}
         onClick={signDocumentHandler}
         style={{
-          opacity: isChecked ? "1" : "0.5",
-          cursor: isChecked ? "pointer" : "default",
+          opacity: isChecked ? '1' : '0.5',
+          cursor: isChecked ? 'pointer' : 'default',
         }}
       />
     </div>

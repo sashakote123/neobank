@@ -1,5 +1,5 @@
-import "./styles.css";
-import map from "./assets/HugeGlobal.svg";
+import map from './assets/HugeGlobal.svg';
+import './styles.css';
 
 const Map = () => {
   return (

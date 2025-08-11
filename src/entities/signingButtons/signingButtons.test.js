@@ -1,12 +1,15 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import SigningButtons from "./SigningButtons";
-import { loanApi } from "@/src/shared/api/service";
-import { BrowserRouter } from "react-router";
-import { Provider } from "react-redux";
-import { store } from "@/src/app/store/store";
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router';
 
-jest.mock("@/src/shared/api/service", () => {
-  const originalModule = jest.requireActual("@/src/shared/api/service");
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import { store } from '@/src/app/store/store';
+import { loanApi } from '@/src/shared/api/service';
+
+import SigningButtons from './SigningButtons';
+
+jest.mock('@/src/shared/api/service', () => {
+  const originalModule = jest.requireActual('@/src/shared/api/service');
   return {
     ...originalModule,
     loanApi: {
@@ -16,20 +19,17 @@ jest.mock("@/src/shared/api/service", () => {
   };
 });
 
-describe("SigningButtons", () => {
+describe('SigningButtons', () => {
   const mockSetIsShowForm = jest.fn();
   const mockSignDocument = jest.fn();
 
   beforeEach(() => {
-    jest.mock("react-router", () => ({
-      ...jest.requireActual("react-router"),
-      useParams: () => ({ applicationId: "123" }),
+    jest.mock('react-router', () => ({
+      ...jest.requireActual('react-router'),
+      useParams: () => ({ applicationId: '123' }),
     }));
 
-    loanApi.useSignDocumentMutation.mockReturnValue([
-      mockSignDocument,
-      { isLoading: false },
-    ]);
+    loanApi.useSignDocumentMutation.mockReturnValue([mockSignDocument, { isLoading: false }]);
   });
 
   afterEach(() => {
@@ -46,51 +46,48 @@ describe("SigningButtons", () => {
     );
   };
 
-  test("Компонент отрисовывается с корректными элементами", () => {
+  test('Компонент отрисовывается с корректными элементами', () => {
     renderWithProvider();
 
-    expect(screen.getByTestId("btnbox")).toBeInTheDocument();
-    expect(screen.getByTestId("checkbox")).toBeInTheDocument();
-    expect(screen.getByText("I agree")).toBeInTheDocument();
-    expect(screen.getByText("Send")).toBeInTheDocument();
+    expect(screen.getByTestId('btnbox')).toBeInTheDocument();
+    expect(screen.getByTestId('checkbox')).toBeInTheDocument();
+    expect(screen.getByText('I agree')).toBeInTheDocument();
+    expect(screen.getByText('Send')).toBeInTheDocument();
   });
 
-  test("Чекбокс меняет состояние при клике", () => {
+  test('Чекбокс меняет состояние при клике', () => {
     renderWithProvider();
 
-    const checkbox = screen.getByTestId("checkbox");
+    const checkbox = screen.getByTestId('checkbox');
     expect(checkbox.checked).toBe(false);
 
     fireEvent.click(checkbox);
     expect(checkbox.checked).toBe(true);
   });
 
-  test("Кнопка Send неактивна при неотмеченном чекбоксе", () => {
+  test('Кнопка Send неактивна при неотмеченном чекбоксе', () => {
     renderWithProvider();
 
-    const sendButton = screen.getByText("Send");
-    expect(sendButton).toHaveStyle("opacity: 0.5");
-    expect(sendButton).toHaveStyle("cursor: default");
+    const sendButton = screen.getByText('Send');
+    expect(sendButton).toHaveStyle('opacity: 0.5');
+    expect(sendButton).toHaveStyle('cursor: default');
   });
 
-  test("Кнопка Send активна при отмеченном чекбоксе", () => {
+  test('Кнопка Send активна при отмеченном чекбоксе', () => {
     renderWithProvider();
 
-    fireEvent.click(screen.getByTestId("checkbox"));
-    const sendButton = screen.getByText("Send");
-    expect(sendButton).toHaveStyle("opacity: 1");
-    expect(sendButton).toHaveStyle("cursor: pointer");
+    fireEvent.click(screen.getByTestId('checkbox'));
+    const sendButton = screen.getByText('Send');
+    expect(sendButton).toHaveStyle('opacity: 1');
+    expect(sendButton).toHaveStyle('cursor: pointer');
   });
 
-  test("При загрузке отображается Loading...", () => {
-    loanApi.useSignDocumentMutation.mockReturnValue([
-      mockSignDocument,
-      { isLoading: true },
-    ]);
+  test('При загрузке отображается Loading...', () => {
+    loanApi.useSignDocumentMutation.mockReturnValue([mockSignDocument, { isLoading: true }]);
 
     renderWithProvider();
-    fireEvent.click(screen.getByTestId("checkbox"));
+    fireEvent.click(screen.getByTestId('checkbox'));
 
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 });

@@ -1,9 +1,12 @@
-import styles from "./styles.module.css";
-import triangle from "./assets/triangle.svg";
-import { useState } from "react";
-import { ISortConfig } from "./types";
-import clsx from "clsx";
-import { ITableRow } from "@/src/shared/types/types";
+import clsx from 'clsx';
+
+import { useState } from 'react';
+
+import { ITableRow } from '@/src/shared/types/types';
+
+import triangle from './assets/triangle.svg';
+import styles from './styles.module.css';
+import { ISortConfig } from './types';
 
 interface Props {
   tableArray: ITableRow[];
@@ -20,8 +23,7 @@ const Table: React.FC<Props> = ({ tableArray }) => {
   });
 
   const sortArray = (column: keyof ITableRow) => {
-    const direction =
-      sortConfig.column === column ? !sortConfig.direction : true;
+    const direction = sortConfig.column === column ? !sortConfig.direction : true;
 
     setSortConfig({ column, direction });
 
@@ -29,16 +31,16 @@ const Table: React.FC<Props> = ({ tableArray }) => {
       const valueA = a[column];
       const valueB = b[column];
       if (direction) {
-        if (typeof valueA === "number" && typeof valueB === "number") {
+        if (typeof valueA === 'number' && typeof valueB === 'number') {
           return valueA - valueB;
-        } else if (typeof valueA === "string" && typeof valueB === "string") {
+        } else if (typeof valueA === 'string' && typeof valueB === 'string') {
           return Number(new Date(valueA)) - Number(new Date(valueB));
         }
         return 0;
       } else {
-        if (typeof valueA === "number" && typeof valueB === "number") {
+        if (typeof valueA === 'number' && typeof valueB === 'number') {
           return valueB - valueA;
-        } else if (typeof valueA === "string" && typeof valueB === "string") {
+        } else if (typeof valueA === 'string' && typeof valueB === 'string') {
           return Number(new Date(valueB)) - Number(new Date(valueA));
         }
         return 0;
@@ -57,18 +59,14 @@ const Table: React.FC<Props> = ({ tableArray }) => {
                 return (
                   <th key={key} className={styles.tableHeader}>
                     <button onClick={() => sortArray(key as keyof ITableRow)}>
-                      {key.replace(FIRSTSYMBOLREG, " $1").toUpperCase()}
+                      {key.replace(FIRSTSYMBOLREG, ' $1').toUpperCase()}
                       <img
                         data-testid="headerImg"
                         src={triangle}
                         className={clsx(
-                          sortConfig.column === key
-                            ? styles.active
-                            : styles.inactive,
+                          sortConfig.column === key ? styles.active : styles.inactive,
                           sortConfig.column === key &&
-                            (sortConfig.direction
-                              ? styles.rotateDown
-                              : styles.rotateUp)
+                            (sortConfig.direction ? styles.rotateDown : styles.rotateUp)
                         )}
                         alt="triangle"
                       />

@@ -1,13 +1,14 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import "./styles.css";
-import MainBtn from "@/src/shared/mainBtn/MainBtn";
-import { oldNewsArray } from "@/src/shared/mock/oldNewsArray";
-import NewsSlider from "@/src/features/newsSlider/NewsSlider";
-import { NewsNavigation } from "@/src/features/newsNavigation/NewsNavigation";
-import { INews } from "@/src/shared/types/types";
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import useGetNews from "@/src/widgets/news/hooks/useGetNews";
-import useElementWidth from "@/src/widgets/news/hooks/useElementWidth";
+import { NewsNavigation } from '@/src/features/newsNavigation/NewsNavigation';
+import NewsSlider from '@/src/features/newsSlider/NewsSlider';
+import MainBtn from '@/src/shared/mainBtn/MainBtn';
+import { oldNewsArray } from '@/src/shared/mock/oldNewsArray';
+import { INews } from '@/src/shared/types/types';
+import useElementWidth from '@/src/widgets/news/hooks/useElementWidth';
+import useGetNews from '@/src/widgets/news/hooks/useGetNews';
+
+import './styles.css';
 
 const News = () => {
   const [offset, setOffset] = useState(0);
@@ -31,11 +32,11 @@ const News = () => {
   };
 
   const handleNavigate = useCallback(
-    (direction: "prev" | "next") => {
+    (direction: 'prev' | 'next') => {
       setOffset((prev) => {
         setVisibleItems(Math.max(1, Math.floor(newsWidth / itemWidth)));
         const maxOffset = -(newsArray.length - visibleItems) * itemWidth;
-        if (direction === "prev") {
+        if (direction === 'prev') {
           return Math.min(0, prev + itemWidth);
         } else {
           return Math.max(maxOffset, prev - itemWidth);
@@ -53,11 +54,7 @@ const News = () => {
         </h2>
         <div data-testid="error" className="news__alert">
           Failed to fetch actual news
-          <MainBtn
-            data-testid="button"
-            onClick={showOldNews}
-            title="Show latest news"
-          />
+          <MainBtn data-testid="button" onClick={showOldNews} title="Show latest news" />
         </div>
       </section>
     );
@@ -73,8 +70,8 @@ const News = () => {
         Current news from the world of finance
       </h2>
       <h3 data-testid="subtitle" className="news__subtitle">
-        We update the news feed every 15 minutes. You can learn more by clicking
-        on the news you are interested in.
+        We update the news feed every 15 minutes. You can learn more by clicking on the news you are
+        interested in.
       </h3>
 
       <div data-testid="carousel" className="carousel">

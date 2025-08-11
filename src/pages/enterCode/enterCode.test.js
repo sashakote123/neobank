@@ -1,13 +1,16 @@
-import { render, screen } from "@testing-library/react";
-import EnterCode from "./EnterCode";
-import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
-import { BrowserRouter } from "react-router";
-import { Provider } from "react-redux";
-import { store } from "@/src/app/store/store";
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router';
 
-jest.mock("@/src/shared/hooks/useApplicationStep");
+import { render, screen } from '@testing-library/react';
 
-describe("EnterCode", () => {
+import { store } from '@/src/app/store/store';
+import useApplicationStep from '@/src/shared/hooks/useApplicationStep';
+
+import EnterCode from './EnterCode';
+
+jest.mock('@/src/shared/hooks/useApplicationStep');
+
+describe('EnterCode', () => {
   const mockUseApplicationStep = useApplicationStep;
 
   beforeEach(() => {
@@ -32,18 +35,16 @@ describe("EnterCode", () => {
     );
   };
 
-  test("Компонент отрисовывается с корректными элементами", () => {
+  test('Компонент отрисовывается с корректными элементами', () => {
     renderWithProvider();
 
-    expect(
-      screen.getByText("Please enter confirmation code")
-    ).toBeInTheDocument();
-    expect(screen.getByTestId("codeForm")).toBeInTheDocument();
-    expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
-    expect(screen.queryByText("Congratulations!")).not.toBeInTheDocument();
+    expect(screen.getByText('Please enter confirmation code')).toBeInTheDocument();
+    expect(screen.getByTestId('codeForm')).toBeInTheDocument();
+    expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
+    expect(screen.queryByText('Congratulations!')).not.toBeInTheDocument();
   });
 
-  test("Отображается состояние загрузки", () => {
+  test('Отображается состояние загрузки', () => {
     mockUseApplicationStep.mockReturnValue({
       isShowForm: false,
       setIsShowForm: jest.fn(),
@@ -52,12 +53,12 @@ describe("EnterCode", () => {
 
     renderWithProvider();
 
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
-    expect(screen.getByText("Please, wait")).toBeInTheDocument();
-    expect(screen.queryByTestId("codeForm")).not.toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByText('Please, wait')).toBeInTheDocument();
+    expect(screen.queryByTestId('codeForm')).not.toBeInTheDocument();
   });
 
-  test("Отображается состояние после успешного ввода кода", () => {
+  test('Отображается состояние после успешного ввода кода', () => {
     mockUseApplicationStep.mockReturnValue({
       isShowForm: true,
       setIsShowForm: jest.fn(),
@@ -67,15 +68,11 @@ describe("EnterCode", () => {
     renderWithProvider();
 
     expect(
-      screen.getByText(
-        "Congratulations! You have completed your new credit card."
-      )
+      screen.getByText('Congratulations! You have completed your new credit card.')
     ).toBeInTheDocument();
     expect(
-      screen.getByText(
-        "Your credit card will arrive soon. Thank you for choosing us!"
-      )
+      screen.getByText('Your credit card will arrive soon. Thank you for choosing us!')
     ).toBeInTheDocument();
-    expect(screen.queryByTestId("codeForm")).not.toBeInTheDocument();
+    expect(screen.queryByTestId('codeForm')).not.toBeInTheDocument();
   });
 });

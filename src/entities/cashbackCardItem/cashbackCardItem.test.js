@@ -1,21 +1,22 @@
-import { getByTestId, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import CashbackCardItem from "./CashbackCardItem";
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 
-describe("cashbackCardItem", () => {
-  test("Item rendered", () => {
+import CashbackCardItem from './CashbackCardItem';
+
+describe('cashbackCardItem', () => {
+  test('Item rendered', () => {
     render(<CashbackCardItem title="CardTitle" subtitle="CardSubTitle" />);
-    const title = screen.getByTestId("header");
-    const subtitle = screen.getByTestId("subtitle");
+    const title = screen.getByTestId('header');
+    const subtitle = screen.getByTestId('subtitle');
 
-    expect(title).toHaveTextContent("CardTitle");
-    expect(subtitle).toHaveTextContent("CardSubTitle");
+    expect(title).toHaveTextContent('CardTitle');
+    expect(subtitle).toHaveTextContent('CardSubTitle');
   });
 
-  test("Missing props", () => {
+  test('Missing props', () => {
     render(<CashbackCardItem title={undefined} subtitle={undefined} />);
-    const title = screen.getByTestId("header");
-    const subtitle = screen.getByTestId("subtitle");
+    const title = screen.getByTestId('header');
+    const subtitle = screen.getByTestId('subtitle');
 
     expect(title).toBeEmptyDOMElement();
     expect(subtitle).toBeEmptyDOMElement();

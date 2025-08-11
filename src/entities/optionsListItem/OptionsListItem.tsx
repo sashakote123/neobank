@@ -1,5 +1,6 @@
-import "./styles.css";
-import checkImage from "@images/mainPage/check.svg";
+import checkImage from '@images/mainPage/check.svg';
+
+import './styles.css';
 
 interface Props {
   text: string;

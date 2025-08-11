@@ -1,11 +1,14 @@
-import { render, screen } from "@testing-library/react";
-import LoanPage from "./LoanPage";
-import { Provider } from "react-redux";
-import { store } from "@/src/app/store/store";
-import { configureStore } from "@reduxjs/toolkit";
-import offersSlice from "@/src/app/store/offersSlice";
+import { Provider } from 'react-redux';
 
-describe("LoanPage", () => {
+import { configureStore } from '@reduxjs/toolkit';
+import { render, screen } from '@testing-library/react';
+
+import offersSlice from '@/src/app/store/offersSlice';
+import { store } from '@/src/app/store/store';
+
+import LoanPage from './LoanPage';
+
+describe('LoanPage', () => {
   beforeEach(() => {
     localStorage.clear();
     jest.clearAllMocks();
@@ -18,15 +21,15 @@ describe("LoanPage", () => {
       </Provider>
     );
   };
-  test("Компонент отрисован с корректными элементами", () => {
+  test('Компонент отрисован с корректными элементами', () => {
     renderWithStore();
-    expect(screen.getByTestId("loanPage")).toBeInTheDocument();
-    expect(screen.getByTestId("loanBanner")).toBeInTheDocument();
-    expect(screen.getByTestId("loanNavigation")).toBeInTheDocument();
-    expect(screen.getByTestId("getCard")).toBeInTheDocument();
+    expect(screen.getByTestId('loanPage')).toBeInTheDocument();
+    expect(screen.getByTestId('loanBanner')).toBeInTheDocument();
+    expect(screen.getByTestId('loanNavigation')).toBeInTheDocument();
+    expect(screen.getByTestId('getCard')).toBeInTheDocument();
   });
 
-  test("Отображает CustomizeCard когда нет офферов", () => {
+  test('Отображает CustomizeCard когда нет офферов', () => {
     const mockStore = {
       ...store,
       getState: () => ({
@@ -43,11 +46,11 @@ describe("LoanPage", () => {
       </Provider>
     );
 
-    expect(screen.getByTestId("customizeCard")).toBeInTheDocument();
-    expect(screen.queryByTestId("offers")).not.toBeInTheDocument();
+    expect(screen.getByTestId('customizeCard')).toBeInTheDocument();
+    expect(screen.queryByTestId('offers')).not.toBeInTheDocument();
   });
 
-  test("Отображает MessageSendAlert когда форма заполнена", async () => {
+  test('Отображает MessageSendAlert когда форма заполнена', async () => {
     const testStore = configureStore({
       reducer: {
         offers: offersSlice,
@@ -55,7 +58,7 @@ describe("LoanPage", () => {
       preloadedState: {
         offers: {
           offersArray: [],
-          currentOffer: { id: 1, name: "Current Offer" },
+          currentOffer: { id: 1, name: 'Current Offer' },
         },
       },
     });
@@ -65,11 +68,11 @@ describe("LoanPage", () => {
       </Provider>
     );
 
-    expect(screen.getByTestId("messageSendAlert")).toBeInTheDocument();
+    expect(screen.getByTestId('messageSendAlert')).toBeInTheDocument();
   });
 
-  test("Устанавливает showForm из localStorage", () => {
-    localStorage.setItem("messageSend", "1");
+  test('Устанавливает showForm из localStorage', () => {
+    localStorage.setItem('messageSend', '1');
 
     render(
       <Provider store={store}>
@@ -77,6 +80,6 @@ describe("LoanPage", () => {
       </Provider>
     );
 
-    expect(screen.getByTestId("messageSendAlert")).toBeInTheDocument();
+    expect(screen.getByTestId('messageSendAlert')).toBeInTheDocument();
   });
 });

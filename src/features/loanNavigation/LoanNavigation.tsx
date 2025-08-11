@@ -1,13 +1,10 @@
-import styles from "./styles.module.css";
-import clsx from "clsx";
-import { Dispatch, useState } from "react";
+import clsx from 'clsx';
 
-const linksArray: string[] = [
-  "About card",
-  "Rates and conditions",
-  "Cashback",
-  "FAQ",
-];
+import { Dispatch, useState } from 'react';
+
+import styles from './styles.module.css';
+
+const linksArray: string[] = ['About card', 'Rates and conditions', 'Cashback', 'FAQ'];
 
 interface Props {
   setPage: Dispatch<React.SetStateAction<number | undefined>>;

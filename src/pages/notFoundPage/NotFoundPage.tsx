@@ -1,7 +1,7 @@
-import { Link } from "react-router";
-import styles from "./styles.module.css";
+import { Link } from 'react-router';
 
-import notFound from "./assets/notfound.png";
+import notFound from './assets/notfound.png';
+import styles from './styles.module.css';
 
 const NotFoundPage = () => {
   return (

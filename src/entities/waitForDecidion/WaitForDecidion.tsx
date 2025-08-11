@@ -1,5 +1,6 @@
-import styles from "./styles.module.css";
-import LinkBtn from "@/src/shared/linkBtn/LinkBtn";
+import LinkBtn from '@/src/shared/linkBtn/LinkBtn';
+
+import styles from './styles.module.css';
 
 interface Props {
   title: string;

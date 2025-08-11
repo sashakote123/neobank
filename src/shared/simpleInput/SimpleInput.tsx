@@ -1,10 +1,13 @@
-import { useFormContext } from "react-hook-form";
-import { IForms } from "@/src/shared/types/types";
-import styles from "./styles.module.css";
-import check from "./assets/check.svg";
-import error from "./assets/error.svg";
-import { useIMask } from "react-imask";
-import { useRef } from "react";
+import { useFormContext } from 'react-hook-form';
+import { useIMask } from 'react-imask';
+
+import { useRef } from 'react';
+
+import { IForms } from '@/src/shared/types/types';
+
+import check from './assets/check.svg';
+import error from './assets/error.svg';
+import styles from './styles.module.css';
 
 interface Props {
   item: IForms;
@@ -47,17 +50,14 @@ const SimpleInput: React.FC<Props> = ({ item }) => {
           placeholder={item.placeholder}
           ref={(el) => {
             registerRef(el);
-            item.mask && imaskRef
-              ? (imaskRef.current = el)
-              : (backupRef.current = el);
+            item.mask && imaskRef ? (imaskRef.current = el) : (backupRef.current = el);
           }}
         />
         {errors[item.name] ? (
           <div>
             <img src={error} alt="error" className={styles.alert} />
             <div className={styles.errorAlert}>
-              {errorMessage ||
-                (item.required ? item.requiredAlert : item.errorAlert)}
+              {errorMessage || (item.required ? item.requiredAlert : item.errorAlert)}
             </div>
           </div>
         ) : (

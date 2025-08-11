@@ -1,7 +1,9 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import offersSlice from "./offersSlice";
-import { loanApi } from "@/src/shared/api/service";
-import { currencyApi } from "@/src/entities/currency/api/service";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
+import { currencyApi } from '@/src/entities/currency/api/service';
+import { loanApi } from '@/src/shared/api/service';
+
+import offersSlice from './offersSlice';
 
 const rootReducer = combineReducers({
   offers: offersSlice,

@@ -1,10 +1,11 @@
-import "./styles.css";
+import clsx from 'clsx';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import inputImg from "./assets/inputImg.svg";
-import sendBtnImage from "./assets/sendBtnImage.svg";
-import clsx from "clsx";
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from 'react';
+
+import inputImg from './assets/inputImg.svg';
+import sendBtnImage from './assets/sendBtnImage.svg';
+import './styles.css';
 
 interface IForm {
   mail: string;
@@ -22,10 +23,10 @@ const Support = () => {
   });
 
   const submit: SubmitHandler<IForm> = (data) => {
-    fetch("http://localhost:8080/email", {
-      method: "POST",
+    fetch('http://localhost:8080/email', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
 
       body: JSON.stringify(data),
@@ -38,11 +39,11 @@ const Support = () => {
   };
 
   const isMail = (data: string) => {
-    return data.includes("@mail.com");
+    return data.includes('@mail.com');
   };
 
-  const buttonClass = clsx("form__input", {
-    "form__input--error": errors.mail,
+  const buttonClass = clsx('form__input', {
+    'form__input--error': errors.mail,
   });
 
   return (
@@ -56,35 +57,25 @@ const Support = () => {
       <h4 data-testid="subsubtitle" className="support__subsubtitle">
         Bank News
       </h4>
-      <form
-        data-testid="form"
-        className="support__form"
-        onSubmit={handleSubmit(submit)}
-      >
+      <form data-testid="form" className="support__form" onSubmit={handleSubmit(submit)}>
         <div className={buttonClass}>
           <img data-testid="inputimg" src={inputImg} alt="inputImg" />
           <input
             data-testid="input"
             placeholder="Your email"
             type="mail"
-            {...register("mail", { required: true, validate: isMail })}
+            {...register('mail', { required: true, validate: isMail })}
           />
           <div data-testid="error" className="form__error">
-            {errors.mail?.type === "required" ? (
+            {errors.mail?.type === 'required' ? (
               <div data-testid="requireError">Это поле обязательно</div>
-            ) : errors.mail?.type === "validate" ? (
-              <div data-testid="validateError">
-                Введите корректный адрес почты
-              </div>
+            ) : errors.mail?.type === 'validate' ? (
+              <div data-testid="validateError">Введите корректный адрес почты</div>
             ) : null}
           </div>
         </div>
         <button data-testid="button" className="form__button">
-          <img
-            data-testid="sendBtnImage"
-            src={sendBtnImage}
-            alt="sendBtnImage"
-          />
+          <img data-testid="sendBtnImage" src={sendBtnImage} alt="sendBtnImage" />
           <div className="button__text">Subscribe</div>
         </button>
 
@@ -92,8 +83,8 @@ const Support = () => {
           data-testid="alert"
           className="form__alert"
           style={{
-            transform: isShow ? "translateX(270px)" : "",
-            transition: isShow ? "transform 0.2s ease-in" : "",
+            transform: isShow ? 'translateX(270px)' : '',
+            transition: isShow ? 'transform 0.2s ease-in' : '',
           }}
         >
           Вы подписались на рассылку!

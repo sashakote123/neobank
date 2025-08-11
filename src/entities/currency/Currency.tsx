@@ -1,9 +1,9 @@
-import "./styles.css";
+import bankIcon from '@images/currency/bank.svg';
 
-import bankIcon from "@images/currency/bank.svg";
-import { ICurrency } from "./types";
-import { currencyApi } from "./api/service";
-import { CURRENCY_IMAGES } from "./data";
+import { currencyApi } from './api/service';
+import { CURRENCY_IMAGES } from './data';
+import './styles.css';
+import { ICurrency } from './types';
 
 const Currency = () => {
   const { data, isError } = currencyApi.useGetCurrencyQuery(CURRENCY_IMAGES);
@@ -18,20 +18,14 @@ const Currency = () => {
           Currency
         </div>
         {isError ? (
-          <div className="converter__alert">
-            Failed to fetch actual currency
-          </div>
+          <div className="converter__alert">Failed to fetch actual currency</div>
         ) : (
           <ul className="currency__list">
             {data
               ? data.map((item: ICurrency) => {
                   return (
                     <li key={item.name} className="currency__item">
-                      <img
-                        src={item.img}
-                        alt="itemImage"
-                        className="item__image"
-                      />
+                      <img src={item.img} alt="itemImage" className="item__image" />
                       <div id="usdName" className="item__name">
                         {item.name}:
                       </div>

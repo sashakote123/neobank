@@ -1,9 +1,9 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 const stepsArray: string[] = [
-  "Fill out an online application - you do not need to visit the bank",
+  'Fill out an online application - you do not need to visit the bank',
   "Find out the bank's decision immediately after filling out the application",
-  "The bank will deliver the card free of charge, wherever convenient, to your city",
+  'The bank will deliver the card free of charge, wherever convenient, to your city',
 ];
 
 const GetCard = () => {

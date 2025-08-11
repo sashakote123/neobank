@@ -1,6 +1,7 @@
-import styles from "./styles.module.css";
-import close from "./assets/close.svg";
-import MainBtn from "@/src/shared/mainBtn/MainBtn";
+import MainBtn from '@/src/shared/mainBtn/MainBtn';
+
+import close from './assets/close.svg';
+import styles from './styles.module.css';
 
 interface Props {
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,21 +18,11 @@ const DenyApplication: React.FC<Props> = ({ setIsShow }) => {
           </button>
         </div>
 
-        <div className={styles.alert}>
-          You exactly sure, you want to cancel this application?
-        </div>
+        <div className={styles.alert}>You exactly sure, you want to cancel this application?</div>
         <div className={styles.buttons}>
-          <MainBtn
-            title="Deny"
-            small
-            style={{ background: "rgba(217, 55, 55, 0.8)" }}
-          />
+          <MainBtn title="Deny" small style={{ background: 'rgba(217, 55, 55, 0.8)' }} />
 
-          <MainBtn
-            title="Cancel"
-            small
-            onClick={() => setIsShow((prev) => !prev)}
-          />
+          <MainBtn title="Cancel" small onClick={() => setIsShow((prev) => !prev)} />
         </div>
       </div>
     </section>

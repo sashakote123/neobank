@@ -1,6 +1,7 @@
-import "./styles.css";
-import { INews } from "@/src/shared/types/types";
-import NewsItem from "@/src/entities/newsItem/NewsItem";
+import NewsItem from '@/src/entities/newsItem/NewsItem';
+import { INews } from '@/src/shared/types/types';
+
+import './styles.css';
 
 interface Props {
   offset: number;

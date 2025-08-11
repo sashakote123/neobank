@@ -1,26 +1,20 @@
-import "./styles.css";
+import OptionsListItem from '@/src/entities/optionsListItem/OptionsListItem';
+import LinkBtn from '@/src/shared/linkBtn/LinkBtn';
 
-import OptionsListItem from "@/src/entities/optionsListItem/OptionsListItem";
-
-import bankCardImage1 from "./assets/cardImage1.png";
-import bankCardImage2 from "./assets/cardImage2.png";
-import bankCardImage3 from "./assets/cardImage3.png";
-import bankCardImage4 from "./assets/cardImage4.png";
-import illustration from "./assets/Illustration.svg";
-import LinkBtn from "@/src/shared/linkBtn/LinkBtn";
+import bankCardImage1 from './assets/cardImage1.png';
+import bankCardImage2 from './assets/cardImage2.png';
+import bankCardImage3 from './assets/cardImage3.png';
+import bankCardImage4 from './assets/cardImage4.png';
+import illustration from './assets/Illustration.svg';
+import './styles.css';
 
 const optionsArray: string[] = [
-  "Powerfull online protection.",
-  "Cashback without borders.",
-  "Personal design.",
-  "Work anywhere in the world.",
+  'Powerfull online protection.',
+  'Cashback without borders.',
+  'Personal design.',
+  'Work anywhere in the world.',
 ];
-const imagesArray: string[] = [
-  bankCardImage1,
-  bankCardImage2,
-  bankCardImage3,
-  bankCardImage4,
-];
+const imagesArray: string[] = [bankCardImage1, bankCardImage2, bankCardImage3, bankCardImage4];
 
 const CardBanner = () => {
   return (
@@ -35,9 +29,7 @@ const CardBanner = () => {
 
         <div className="banner__grid">
           {imagesArray.map((item: string, index: number) => {
-            return (
-              <img key={index} className="grid__image" src={item} alt="img" />
-            );
+            return <img key={index} className="grid__image" src={item} alt="img" />;
           })}
         </div>
       </div>
@@ -48,8 +40,8 @@ const CardBanner = () => {
           We Provide Many Features You Can Use
         </h2>
         <h3 data-testid="header3" className="options__desc">
-          You can explore the features that we provide with fun and have their
-          own functions each feature
+          You can explore the features that we provide with fun and have their own functions each
+          feature
         </h3>
         <ul className="options__list">
           {optionsArray.map((item: string) => (

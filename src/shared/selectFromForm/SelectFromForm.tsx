@@ -1,6 +1,8 @@
-import { IForms } from "@/src/shared/types/types";
-import styles from "./styles.module.css";
-import { useFormContext } from "react-hook-form";
+import { useFormContext } from 'react-hook-form';
+
+import { IForms } from '@/src/shared/types/types';
+
+import styles from './styles.module.css';
 
 interface ISelectProps {
   item: IForms;
@@ -30,17 +32,13 @@ const SelectFromForm: React.FC<ISelectProps> = ({ item }) => {
             value={String(option)}
             className={styles.option}
           >
-            {option}{" "}
-            {typeof option === "number" ? (
-              <>month{option !== 1 ? "s" : ""}</>
-            ) : null}
+            {option} {typeof option === 'number' ? <>month{option !== 1 ? 's' : ''}</> : null}
           </option>
         ))}
       </select>
       {errors[item.name] && (
         <div className={styles.errorAlert}>
-          {errors[item.name]?.message?.toString() ||
-            (item.errorAlert ?? "Invalid selection")}
+          {errors[item.name]?.message?.toString() || (item.errorAlert ?? 'Invalid selection')}
         </div>
       )}
     </div>

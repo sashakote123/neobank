@@ -1,15 +1,16 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { NewsNavigation } from "./NewsNavigation";
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-describe("NewsNavigation", () => {
+import { NewsNavigation } from './NewsNavigation';
+
+describe('NewsNavigation', () => {
   const mockOnNavigate = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  test("Компонент отрисован с корректными элементами", () => {
+  test('Компонент отрисован с корректными элементами', () => {
     render(
       <NewsNavigation
         currentIndex={0}
@@ -20,12 +21,12 @@ describe("NewsNavigation", () => {
       />
     );
 
-    expect(screen.getByTestId("prevBtn")).toBeInTheDocument();
-    expect(screen.getByTestId("nextBtn")).toBeInTheDocument();
-    expect(screen.getByTestId("navContainer")).toHaveClass("news-navigation");
+    expect(screen.getByTestId('prevBtn')).toBeInTheDocument();
+    expect(screen.getByTestId('nextBtn')).toBeInTheDocument();
+    expect(screen.getByTestId('navContainer')).toHaveClass('news-navigation');
   });
 
-  test("Кнопки имеют правильные классы в зависимости от состояния", () => {
+  test('Кнопки имеют правильные классы в зависимости от состояния', () => {
     render(
       <NewsNavigation
         currentIndex={0}
@@ -36,21 +37,18 @@ describe("NewsNavigation", () => {
       />
     );
 
-    const prevButton = screen.getByTestId("prevBtn");
-    const nextButton = screen.getByTestId("nextBtn");
+    const prevButton = screen.getByTestId('prevBtn');
+    const nextButton = screen.getByTestId('nextBtn');
 
-    expect(prevButton).toHaveClass("navigation-button");
-    expect(prevButton).not.toHaveClass("navigation-button--active");
+    expect(prevButton).toHaveClass('navigation-button');
+    expect(prevButton).not.toHaveClass('navigation-button--active');
     expect(prevButton).toBeDisabled();
 
-    expect(nextButton).toHaveClass(
-      "navigation-button",
-      "navigation-button--active"
-    );
+    expect(nextButton).toHaveClass('navigation-button', 'navigation-button--active');
     expect(nextButton).not.toBeDisabled();
   });
 
-  test("Правильно определяет isAtStart и isAtEnd", () => {
+  test('Правильно определяет isAtStart и isAtEnd', () => {
     const { rerender } = render(
       <NewsNavigation
         currentIndex={0}
@@ -61,7 +59,7 @@ describe("NewsNavigation", () => {
       />
     );
 
-    expect(screen.getByTestId("prevBtn")).toBeDisabled();
+    expect(screen.getByTestId('prevBtn')).toBeDisabled();
 
     rerender(
       <NewsNavigation
@@ -72,8 +70,8 @@ describe("NewsNavigation", () => {
         visibleItems={2}
       />
     );
-    expect(screen.getByTestId("prevBtn")).not.toBeDisabled();
-    expect(screen.getByTestId("nextBtn")).not.toBeDisabled();
+    expect(screen.getByTestId('prevBtn')).not.toBeDisabled();
+    expect(screen.getByTestId('nextBtn')).not.toBeDisabled();
 
     rerender(
       <NewsNavigation
@@ -84,10 +82,10 @@ describe("NewsNavigation", () => {
         visibleItems={2}
       />
     );
-    expect(screen.getByTestId("nextBtn")).toBeDisabled();
+    expect(screen.getByTestId('nextBtn')).toBeDisabled();
   });
 
-  test("onNavigate с правильным направлением", () => {
+  test('onNavigate с правильным направлением', () => {
     render(
       <NewsNavigation
         currentIndex={-400}
@@ -98,14 +96,14 @@ describe("NewsNavigation", () => {
       />
     );
 
-    fireEvent.click(screen.getByTestId("prevBtn"));
-    expect(mockOnNavigate).toHaveBeenCalledWith("prev");
+    fireEvent.click(screen.getByTestId('prevBtn'));
+    expect(mockOnNavigate).toHaveBeenCalledWith('prev');
 
-    fireEvent.click(screen.getByTestId("nextBtn"));
-    expect(mockOnNavigate).toHaveBeenCalledWith("next");
+    fireEvent.click(screen.getByTestId('nextBtn'));
+    expect(mockOnNavigate).toHaveBeenCalledWith('next');
   });
 
-  test("отображает правильные иконки для кнопок", () => {
+  test('отображает правильные иконки для кнопок', () => {
     render(
       <NewsNavigation
         currentIndex={0}
@@ -116,10 +114,10 @@ describe("NewsNavigation", () => {
       />
     );
 
-    const prevImg = screen.getByTestId("prevImg");
-    const nextImg = screen.getByTestId("nextImg");
+    const prevImg = screen.getByTestId('prevImg');
+    const nextImg = screen.getByTestId('nextImg');
 
-    expect(prevImg).toHaveAttribute("src", "left.svg");
-    expect(nextImg).toHaveAttribute("src", "right-end.svg");
+    expect(prevImg).toHaveAttribute('src', 'left.svg');
+    expect(nextImg).toHaveAttribute('src', 'right-end.svg');
   });
 });

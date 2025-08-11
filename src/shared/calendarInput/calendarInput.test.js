@@ -1,20 +1,22 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import CalendarInput from "./CalendarInput";
-import { FormProvider, useForm } from "react-hook-form";
-import userEvent from "@testing-library/user-event";
+import { FormProvider, useForm } from 'react-hook-form';
 
-describe("CalendarInput", () => {
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import CalendarInput from './CalendarInput';
+
+describe('CalendarInput', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   const mockItem = {
-    name: "birthDate",
-    title: "Date of Birth",
+    name: 'birthDate',
+    title: 'Date of Birth',
     required: true,
-    placeholder: "DD.MM.YYYY",
-    errorAlert: "Invalid date",
-    requiredAlert: "Date is required",
+    placeholder: 'DD.MM.YYYY',
+    errorAlert: 'Invalid date',
+    requiredAlert: 'Date is required',
   };
 
   const Wrapper = ({ item = mockItem }) => {
@@ -34,8 +36,8 @@ describe("CalendarInput", () => {
         <button
           onClick={() => {
             methods.setError(mockItem.name, {
-              type: "manual",
-              message: "Test error",
+              type: 'manual',
+              message: 'Test error',
             });
           }}
         >
@@ -43,7 +45,7 @@ describe("CalendarInput", () => {
         </button>
         <button
           onClick={async () => {
-            methods.setValue(mockItem.name, "01.01.2000");
+            methods.setValue(mockItem.name, '01.01.2000');
             await methods.trigger(mockItem.name);
           }}
         >
@@ -53,69 +55,65 @@ describe("CalendarInput", () => {
     );
   };
 
-  test("Компонент отрисовывается с корректными элементами", () => {
+  test('Компонент отрисовывается с корректными элементами', () => {
     render(<Wrapper />);
 
-    expect(screen.getByTestId("inputContainer")).toBeInTheDocument();
+    expect(screen.getByTestId('inputContainer')).toBeInTheDocument();
     expect(screen.getByText(mockItem.title)).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText(mockItem.placeholder)
-    ).toBeInTheDocument();
-    expect(screen.getByAltText("calendar")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(mockItem.placeholder)).toBeInTheDocument();
+    expect(screen.getByAltText('calendar')).toBeInTheDocument();
   });
 
-  test("Отображает звездочку для обязательных полей", () => {
+  test('Отображает звездочку для обязательных полей', () => {
     render(<Wrapper />);
 
-    expect(screen.getByText("*")).toBeInTheDocument();
+    expect(screen.getByText('*')).toBeInTheDocument();
   });
 
-  test("Не отображает звездочку для необязательных полей", () => {
+  test('Не отображает звездочку для необязательных полей', () => {
     const nonRequiredItem = { ...mockItem, required: false };
     render(<Wrapper item={nonRequiredItem} />);
 
-    expect(screen.queryByText("*")).not.toBeInTheDocument();
+    expect(screen.queryByText('*')).not.toBeInTheDocument();
   });
 
-  test("Отображает кастомное сообщение об ошибке", async () => {
+  test('Отображает кастомное сообщение об ошибке', async () => {
     render(<TestWrapper />);
 
-    fireEvent.click(screen.getByText("Set Error"));
-    expect(screen.getByText("Test error")).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Set Error'));
+    expect(screen.getByText('Test error')).toBeInTheDocument();
   });
 
-  test("Отображает иконку ошибки при невалидном значении", async () => {
+  test('Отображает иконку ошибки при невалидном значении', async () => {
     render(<TestWrapper />);
 
-    fireEvent.click(screen.getByText("Set Error"));
-    expect(screen.getByAltText("error")).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Set Error'));
+    expect(screen.getByAltText('error')).toBeInTheDocument();
   });
 
-  test("Отображает placeholder", () => {
+  test('Отображает placeholder', () => {
     render(<Wrapper />);
 
-    expect(
-      screen.getByPlaceholderText(mockItem.placeholder)
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(mockItem.placeholder)).toBeInTheDocument();
   });
 
-  test("Добавляет класс error при наличии ошибки", async () => {
+  test('Добавляет класс error при наличии ошибки', async () => {
     render(<TestWrapper />);
-    fireEvent.click(screen.getByText("Set Error"));
+    fireEvent.click(screen.getByText('Set Error'));
     const input = screen.getByPlaceholderText(mockItem.placeholder);
-    expect(input).toHaveClass("error");
+    expect(input).toHaveClass('error');
   });
 
-  test("Отображает календарь при клике на кнопку", async () => {
+  test('Отображает календарь при клике на кнопку', async () => {
     render(<Wrapper />);
-    fireEvent.click(screen.getByAltText("calendar"));
-    expect(screen.getByTestId("calendar")).toBeInTheDocument();
+    fireEvent.click(screen.getByAltText('calendar'));
+    expect(screen.getByTestId('calendar')).toBeInTheDocument();
   });
 
-  test("Устанавливает значение даты при выборе из календаря", async () => {
+  test('Устанавливает значение даты при выборе из календаря', async () => {
     render(<Wrapper />);
-    fireEvent.click(screen.getByAltText("calendar"));
-    const dayTile = screen.getByText("15");
+    fireEvent.click(screen.getByAltText('calendar'));
+    const dayTile = screen.getByText('15');
     fireEvent.click(dayTile);
 
     await waitFor(() => {
@@ -123,18 +121,18 @@ describe("CalendarInput", () => {
     });
   });
 
-  test("Отображает иконку успеха при валидном значении", async () => {
+  test('Отображает иконку успеха при валидном значении', async () => {
     render(<TestWrapper />);
-    fireEvent.click(screen.getByText("Set Valid Value"));
+    fireEvent.click(screen.getByText('Set Valid Value'));
     await waitFor(() => {
-      expect(screen.getByAltText("check")).toBeInTheDocument();
+      expect(screen.getByAltText('check')).toBeInTheDocument();
     });
   });
 
-  test("Форматирует введенное значение в маску DD.MM.YYYY", async () => {
+  test('Форматирует введенное значение в маску DD.MM.YYYY', async () => {
     render(<Wrapper />);
     const input = screen.getByPlaceholderText(mockItem.placeholder);
-    await userEvent.type(input, "01012000");
-    expect(input).toHaveValue("01.01.2000");
+    await userEvent.type(input, '01012000');
+    expect(input).toHaveValue('01.01.2000');
   });
 });

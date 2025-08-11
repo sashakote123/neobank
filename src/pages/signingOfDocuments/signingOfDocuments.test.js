@@ -1,13 +1,16 @@
-import { render, screen } from "@testing-library/react";
-import SigningOfDocuments from "./SigningOfDocuments";
-import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
-import { BrowserRouter } from "react-router";
-import { Provider } from "react-redux";
-import { store } from "@/src/app/store/store";
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router';
 
-jest.mock("@/src/shared/hooks/useApplicationStep");
+import { render, screen } from '@testing-library/react';
 
-describe("SigningOfDocuments", () => {
+import { store } from '@/src/app/store/store';
+import useApplicationStep from '@/src/shared/hooks/useApplicationStep';
+
+import SigningOfDocuments from './SigningOfDocuments';
+
+jest.mock('@/src/shared/hooks/useApplicationStep');
+
+describe('SigningOfDocuments', () => {
   const mockUseApplicationStep = useApplicationStep;
 
   beforeEach(() => {
@@ -31,16 +34,16 @@ describe("SigningOfDocuments", () => {
       </Provider>
     );
   };
-  test("Компонент отрисовывается с корректными элементами", () => {
+  test('Компонент отрисовывается с корректными элементами', () => {
     renderWithProvider();
 
-    expect(screen.getByText("Signing of documents")).toBeInTheDocument();
+    expect(screen.getByText('Signing of documents')).toBeInTheDocument();
 
-    expect(screen.getByText("Information on your card")).toBeInTheDocument();
-    expect(screen.getByTestId("btnbox")).toBeInTheDocument();
+    expect(screen.getByText('Information on your card')).toBeInTheDocument();
+    expect(screen.getByTestId('btnbox')).toBeInTheDocument();
   });
 
-  test("Отображается состояние после успешной отправки", () => {
+  test('Отображается состояние после успешной отправки', () => {
     mockUseApplicationStep.mockReturnValue({
       isShowForm: true,
       setIsShowForm: jest.fn(),
@@ -50,30 +53,28 @@ describe("SigningOfDocuments", () => {
     renderWithProvider();
 
     expect(
-      screen.getByText(
-        "Documents have been successfully signed and sent for approval"
-      )
+      screen.getByText('Documents have been successfully signed and sent for approval')
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Within 10 minutes you will be sent a PIN code to your email for confirmation"
+        'Within 10 minutes you will be sent a PIN code to your email for confirmation'
       )
     ).toBeInTheDocument();
   });
 
-  test("Ссылка на файл имеет правильный href", () => {
+  test('Ссылка на файл имеет правильный href', () => {
     renderWithProvider();
 
-    const link = screen.getByTestId("fileRef");
+    const link = screen.getByTestId('fileRef');
     expect(link).toHaveAttribute(
-      "href",
-      "https://neostudy.neoflex.ru/pluginfile.php/155185/mod_assign/intro/credit-card-offer.pdf"
+      'href',
+      'https://neostudy.neoflex.ru/pluginfile.php/155185/mod_assign/intro/credit-card-offer.pdf'
     );
   });
 
-  test("Отображается правильный шаг в заголовке", () => {
+  test('Отображается правильный шаг в заголовке', () => {
     renderWithProvider();
 
-    expect(screen.getByText("Step 4 of 5")).toBeInTheDocument();
+    expect(screen.getByText('Step 4 of 5')).toBeInTheDocument();
   });
 });

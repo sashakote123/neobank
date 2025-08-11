@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import styles from "./styles.module.css";
-import { IQuestion } from "./types";
+import clsx from 'clsx';
 
-import open from "./assets/open.svg";
-import clsx from "clsx";
+import React, { useEffect, useRef, useState } from 'react';
+
+import open from './assets/open.svg';
+import styles from './styles.module.css';
+import { IQuestion } from './types';
 
 interface Props {
   question: IQuestion;
@@ -13,13 +14,13 @@ interface Props {
 
 const QuestionItem: React.FC<Props> = ({ question, isOpen, onToggle }) => {
   const itemRef = useRef<HTMLLIElement>(null);
-  const [height, setHeight] = useState(isOpen ? "auto" : "84px");
+  const [height, setHeight] = useState(isOpen ? 'auto' : '84px');
 
   useEffect(() => {
     if (isOpen) {
       setHeight(`${itemRef.current?.scrollHeight}px`);
     } else {
-      setHeight("84px");
+      setHeight('84px');
     }
   }, [isOpen]);
 
@@ -34,8 +35,8 @@ const QuestionItem: React.FC<Props> = ({ question, isOpen, onToggle }) => {
       className={styles.listItem}
       style={{
         height,
-        transition: "height 0.3s ease",
-        overflow: "hidden",
+        transition: 'height 0.3s ease',
+        overflow: 'hidden',
       }}
     >
       <div className={styles.heading}>
@@ -45,8 +46,8 @@ const QuestionItem: React.FC<Props> = ({ question, isOpen, onToggle }) => {
             src={open}
             alt="open"
             style={{
-              transform: isOpen ? "rotate(180deg)" : "rotate(0)",
-              transition: "transform 0.3s ease",
+              transform: isOpen ? 'rotate(180deg)' : 'rotate(0)',
+              transition: 'transform 0.3s ease',
             }}
           />
         </button>
