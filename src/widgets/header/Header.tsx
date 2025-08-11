@@ -30,7 +30,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="container">
+    <div data-testid="header" className="container">
       <header className="header">
         <NavLink to="/">
           <img className="header__logo" src={logo} alt="logo" />
@@ -53,6 +53,7 @@ const Header = () => {
 
           {!isOpen ? (
             <img
+              data-testid="burger"
               onClick={menuHandler}
               className="btn-burger"
               src={burger}

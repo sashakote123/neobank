@@ -10,7 +10,7 @@ const SigningOfDocuments = () => {
     useApplicationStep("signing");
 
   return (
-    <section className={styles.container}>
+    <section data-testid="signingDocuments" className={styles.container}>
       {isLoading ? (
         <WaitForDecidion title="Loading..." subtitle="Please, wait" />
       ) : isShowForm ? (

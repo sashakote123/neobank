@@ -17,7 +17,7 @@ const linksArray: ILink[] = [
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
+    <footer data-testid="footer" className="footer">
       <div className="container">
         <div className="footer__heading">
           <img src={logo} alt="logo" className="footer__logo" />

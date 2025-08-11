@@ -18,8 +18,9 @@ const linksArray: ILink[] = [
 const SideMenu = ({ handler }: { handler: () => void }) => {
   const setActive = ({ isActive }: active) => clsx({ "active-link": isActive });
   return (
-    <nav className="menu__nav">
+    <nav data-testid="sideMenu" className="menu__nav">
       <img
+        data-testid="close"
         onClick={handler}
         className="side-burger"
         src={burger}

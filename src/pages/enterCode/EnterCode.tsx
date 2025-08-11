@@ -8,7 +8,7 @@ const EnterCode = () => {
     useApplicationStep("enterCode");
 
   return (
-    <section className={styles.container}>
+    <section data-testid="enterCode" className={styles.container}>
       {isLoading ? (
         <WaitForDecidion title="Loading..." subtitle="Please, wait" />
       ) : isShowForm ? (

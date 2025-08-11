@@ -40,9 +40,7 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
           try {
             await enterCode({ data: values, applicationId }).unwrap();
             setIsShowForm(true);
-          } catch (error) {
-            console.error(error);
-          }
+          } catch (error) {}
         }
       };
 
@@ -91,8 +89,19 @@ const CodeForm: React.FC<Props> = ({ setIsShowForm }) => {
           )}
         </div>
       ))}
-      {isLoading && <img className={styles.loader} src={loader} alt="loader" />}
-      {isError && <div className={styles.error}>Invalid confirmation code</div>}
+      {isLoading && (
+        <img
+          data-testid="loading"
+          className={styles.loader}
+          src={loader}
+          alt="loader"
+        />
+      )}
+      {isError && (
+        <div data-testid="error" className={styles.error}>
+          Invalid confirmation code
+        </div>
+      )}
     </form>
   );
 };

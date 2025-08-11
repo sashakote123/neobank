@@ -9,7 +9,7 @@ const ContinuationOfApplication = () => {
     useApplicationStep("continuation");
 
   return (
-    <section className={styles.container}>
+    <section data-testid="continuationPage" className={styles.container}>
       {isLoading ? (
         <WaitForDecidion title="Loading..." subtitle="Please, wait" />
       ) : isShowForm ? (

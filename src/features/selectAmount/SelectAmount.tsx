@@ -89,7 +89,6 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
     setValue("amount", current);
   }, [current, setValue]);
 
-  console.log(currentPosition);
   return (
     <div data-testid="selectAmount" className={styles.amount}>
       <h3 className={styles.amountTitle}>Select amount</h3>

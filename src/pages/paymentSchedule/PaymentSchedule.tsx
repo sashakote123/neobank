@@ -10,7 +10,7 @@ const PaymentSchedule = () => {
     useApplicationStep("schedule");
 
   return (
-    <section className={styles.container}>
+    <section data-testid="paymentSchedule" className={styles.container}>
       {isLoading ? (
         <WaitForDecidion title="Loading..." subtitle="Please, wait" />
       ) : isShowForm ? (
