@@ -27,7 +27,6 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
 
   const acceptDocument = async () => {
     if (!isChecked) return;
-
     await applySchedule({ applicationId });
     setIsShowForm(true);
   };
@@ -61,7 +60,7 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
           />
         </div>
       </div>
-      {isShowAlert ? <DenyApplication setIsShow={setIsShowAlert} /> : null}
+      {isShowAlert && <DenyApplication setIsShow={setIsShowAlert} />}
     </>
   );
 };

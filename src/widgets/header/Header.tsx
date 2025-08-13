@@ -54,7 +54,7 @@ const Header = () => {
         <div className="header__buttons">
           <LinkBtn title="Online Bank" />
 
-          {!isOpen ? (
+          {!isOpen && (
             <img
               data-testid="burger"
               onClick={menuHandler}
@@ -62,9 +62,9 @@ const Header = () => {
               src={burger}
               alt="burger"
             />
-          ) : null}
+          )}
         </div>
-        {isOpen ? <SideMenu handler={menuHandler} /> : null}
+        {isOpen && <SideMenu handler={menuHandler} />}
       </header>
     </div>
   );

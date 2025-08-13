@@ -21,21 +21,20 @@ const Currency = () => {
           <div className="converter__alert">Failed to fetch actual currency</div>
         ) : (
           <ul className="currency__list">
-            {data
-              ? data.map((item: ICurrency) => {
-                  return (
-                    <li key={item.name} className="currency__item">
-                      <img src={item.img} alt="itemImage" className="item__image" />
-                      <div id="usdName" className="item__name">
-                        {item.name}:
-                      </div>
-                      <div id="usd" className="item__value">
-                        {item.value}
-                      </div>
-                    </li>
-                  );
-                })
-              : null}
+            {data &&
+              data.map((item: ICurrency) => {
+                return (
+                  <li key={item.name} className="currency__item">
+                    <img src={item.img} alt="itemImage" className="item__image" />
+                    <div id="usdName" className="item__name">
+                      {item.name}:
+                    </div>
+                    <div id="usd" className="item__value">
+                      {item.value}
+                    </div>
+                  </li>
+                );
+              })}
           </ul>
         )}
       </div>

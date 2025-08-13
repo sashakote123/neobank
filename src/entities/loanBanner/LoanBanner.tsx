@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-scroll';
 
+import { RootState } from '@/src/app/store/store';
 import MainBtn from '@/src/shared/mainBtn/MainBtn';
 
 import card from './assets/card.png';
@@ -13,6 +15,8 @@ const bannerInfoArray: IInfo[] = [
 ];
 
 const LoanBanner = () => {
+  const isLoanArray = !!useSelector((store: RootState) => store.offers.offersArray);
+
   return (
     <div data-testid="loanBanner" className={styles.container}>
       <section className={styles.loanBanner}>
@@ -34,8 +38,14 @@ const LoanBanner = () => {
               );
             })}
           </ul>
-          <Link data-testid="link" to="form" smooth={true} duration={500} offset={-100}>
-            <MainBtn title="Apply for a card" />
+          <Link
+            data-testid="link"
+            to={!isLoanArray ? 'form' : 'offers'}
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
+            <MainBtn title={!isLoanArray ? 'Apply for a card' : 'Choose an offer'} />
           </Link>
         </div>
         <div className={styles.bannerImage}>

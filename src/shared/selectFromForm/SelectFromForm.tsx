@@ -32,7 +32,7 @@ const SelectFromForm: React.FC<ISelectProps> = ({ item }) => {
             value={String(option)}
             className={styles.option}
           >
-            {option} {typeof option === 'number' ? <>month{option !== 1 ? 's' : ''}</> : null}
+            {option} {typeof option === 'number' && <>month{option !== 1 ? 's' : ''}</>}
           </option>
         ))}
       </select>

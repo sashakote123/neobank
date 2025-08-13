@@ -13,11 +13,11 @@
     flex-direction: column;
     align-items: center;
 
-    transition: scale 0.1s ease-in;
+    transition: transform 0.1s ease-in;
 }
 
 .item:hover {
-    scale: 1.05;
+    transform: scale(105%);
     border: 2px solid #003cff;
 }
 

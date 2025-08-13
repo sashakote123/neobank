@@ -6,6 +6,7 @@ import StepsHeader from '@/src/entities/stepsHeader/StepsHeader';
 import ContactInformationForms from '@/src/features/contactInformationForms/ContactInformationForms';
 import SelectAmount from '@/src/features/selectAmount/SelectAmount';
 import { loanApi } from '@/src/shared/api/service';
+import ErrorAlert from '@/src/shared/errorAlert/ErrorAlert';
 import { FormFields, formSchema } from '@/src/shared/formSchema/formSchema';
 import MainBtn from '@/src/shared/mainBtn/MainBtn';
 
@@ -17,7 +18,7 @@ const CustomizeCard = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const [createLoan, { isLoading }] = loanApi.useCreateLoanApplicationMutation();
+  const [createLoan, { isLoading, isError }] = loanApi.useCreateLoanApplicationMutation();
   const fillForm = () => {
     methods.setValue('amount', '200000');
     methods.setValue('firstName', 'Alex');
@@ -33,7 +34,6 @@ const CustomizeCard = () => {
   const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
     await createLoan(transformData(data));
   };
-
   return (
     <div data-testid="customizeCard" className={styles.container}>
       <FormProvider {...methods}>
@@ -54,7 +54,7 @@ const CustomizeCard = () => {
             </div>
           </div>
           <ContactInformationForms />
-
+          {isError && <ErrorAlert alertMessage="Failed to fetch" />}
           <MainBtn type="submit" title={isLoading ? 'Loading...' : 'Continue'} />
           <button data-testid="fillBtn" className={styles.fillBtn} type="button" onClick={fillForm}>
             Fill fields

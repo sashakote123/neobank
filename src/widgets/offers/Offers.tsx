@@ -9,7 +9,7 @@ interface Props {
 
 const Offers: React.FC<Props> = ({ array }) => {
   return (
-    <section className={styles.container}>
+    <section id="offers" className={styles.container}>
       <ul className={styles.offersList}>
         {array.map((item) => {
           return (

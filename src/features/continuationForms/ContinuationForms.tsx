@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import UniInput from '@/src/entities/uniInput/UniInput';
 import { loanApi } from '@/src/shared/api/service';
+import ErrorAlert from '@/src/shared/errorAlert/ErrorAlert';
 import { FormFields, secondFormSchema } from '@/src/shared/formSchema/secondFormSchema';
 import MainBtn from '@/src/shared/mainBtn/MainBtn';
 import { IForms } from '@/src/shared/types/types';
@@ -24,11 +25,15 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
 
   const { applicationId } = useParams();
 
-  const [sendEmployerInfo, { isLoading }] = loanApi.useSendEmployerInfoMutation();
+  const [sendEmployerInfo, { isLoading, isError }] = loanApi.useSendEmployerInfoMutation();
 
   const onSubmit: SubmitHandler<FormFields> = async (data: FormFields) => {
-    await sendEmployerInfo({ data: transformData(data), applicationId });
-    setIsShowForm(true);
+    try {
+      await sendEmployerInfo({ data: transformData(data), applicationId }).unwrap();
+      setIsShowForm(true);
+    } catch (error) {
+      setIsShowForm(false);
+    }
   };
 
   return (
@@ -50,6 +55,7 @@ const ContinuationForms: React.FC<Props> = ({ setIsShowForm }) => {
             <UniInput key={item.name} item={item} />
           ))}
         </div>
+        {isError && <ErrorAlert alertMessage="Failed to fetch" />}
         <MainBtn title={isLoading ? 'Loading...' : 'Continue'} />
       </form>
     </FormProvider>

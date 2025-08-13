@@ -54,27 +54,26 @@ const Table: React.FC<Props> = ({ tableArray }) => {
     <table data-testid="table" className={styles.table}>
       <thead>
         <tr className={styles.tableRow}>
-          {array.length > 0
-            ? Object.keys(array[0]).map((key) => {
-                return (
-                  <th key={key} className={styles.tableHeader}>
-                    <button onClick={() => sortArray(key as keyof ITableRow)}>
-                      {key.replace(FIRSTSYMBOLREG, ' $1').toUpperCase()}
-                      <img
-                        data-testid="headerImg"
-                        src={triangle}
-                        className={clsx(
-                          sortConfig.column === key ? styles.active : styles.inactive,
-                          sortConfig.column === key &&
-                            (sortConfig.direction ? styles.rotateDown : styles.rotateUp)
-                        )}
-                        alt="triangle"
-                      />
-                    </button>
-                  </th>
-                );
-              })
-            : null}
+          {array.length > 0 &&
+            Object.keys(array[0]).map((key) => {
+              return (
+                <th key={key} className={styles.tableHeader}>
+                  <button onClick={() => sortArray(key as keyof ITableRow)}>
+                    {key.replace(FIRSTSYMBOLREG, ' $1').toUpperCase()}
+                    <img
+                      data-testid="headerImg"
+                      src={triangle}
+                      className={clsx(
+                        sortConfig.column === key ? styles.active : styles.inactive,
+                        sortConfig.column === key &&
+                          (sortConfig.direction ? styles.rotateDown : styles.rotateUp)
+                      )}
+                      alt="triangle"
+                    />
+                  </button>
+                </th>
+              );
+            })}
         </tr>
       </thead>
       <tbody>

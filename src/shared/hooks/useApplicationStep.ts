@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import { ITableRow } from "../types/types";
-import { loanApi } from "../api/service";
+import { useNavigate, useParams } from 'react-router';
 
-type step = "continuation" | "schedule" | "signing" | "enterCode";
+import { useEffect, useState } from 'react';
+
+import { loanApi } from '../api/service';
+import { ITableRow } from '../types/types';
+
+type step = 'continuation' | 'schedule' | 'signing' | 'enterCode';
 enum status {
-  CC_APPROVED = "CC_APPROVED",
-  DOCUMENT_CREATED = "DOCUMENT_CREATED",
-  CREDIT_ISSUED = "CREDIT_ISSUED",
-  APPROVED = "APPROVED",
+  CC_APPROVED = 'CC_APPROVED',
+  DOCUMENT_CREATED = 'DOCUMENT_CREATED',
+  CREDIT_ISSUED = 'CREDIT_ISSUED',
+  APPROVED = 'APPROVED',
 }
 
 const useApplicationStep = (step: step) => {
@@ -17,58 +19,40 @@ const useApplicationStep = (step: step) => {
   const [isShowForm, setIsShowForm] = useState<boolean>(false);
   const [tableArray, setTableArray] = useState<ITableRow[]>([]);
 
-  const { data, isLoading, isError } =
-    loanApi.useFetchLoanStatusQuery(applicationId);
+  const { data, isLoading, isError } = loanApi.useFetchLoanStatusQuery(applicationId);
   useEffect(() => {
     if (isLoading) return;
     if (isError) {
-      navigate("/*");
+      navigate('/*');
       return;
     }
     if (!data) return;
 
     switch (step) {
-      case "continuation":
-        data.status === status.CC_APPROVED
-          ? setIsShowForm(true)
-          : setIsShowForm(false);
-        if (
-          data.status === status.DOCUMENT_CREATED ||
-          data.status === status.CREDIT_ISSUED ||
-          data.sesCode
-        )
-          navigate("/*");
+      case 'continuation':
+        setIsShowForm(data.status === status.CC_APPROVED);
+        if ([status.DOCUMENT_CREATED, status.CREDIT_ISSUED].includes(data.status) || data.sesCode) {
+          navigate('/*');
+        }
         break;
-      case "schedule":
+      case 'schedule':
         if (data.credit) setTableArray(data.credit.paymentSchedule);
-        data.status === status.DOCUMENT_CREATED
-          ? setIsShowForm(true)
-          : setIsShowForm(false);
-        if (
-          data.status === status.APPROVED ||
-          data.status === status.CREDIT_ISSUED ||
-          data.sesCode
-        )
-          navigate("/*");
+        setIsShowForm(data.status === status.DOCUMENT_CREATED);
+        if ([status.APPROVED, status.CREDIT_ISSUED].includes(data.status) || data.sesCode) {
+          navigate('/*');
+        }
         break;
-      case "signing":
-        data.sesCode ? setIsShowForm(true) : setIsShowForm(false);
-        if (
-          data.status === status.APPROVED ||
-          data.status === status.CC_APPROVED ||
-          data.status === status.CREDIT_ISSUED
-        )
-          navigate("/*");
+      case 'signing':
+        setIsShowForm(!!data.sesCode);
+        if ([status.APPROVED, status.CC_APPROVED, status.CREDIT_ISSUED].includes(data.status)) {
+          navigate('/*');
+        }
         break;
-      case "enterCode":
-        data.status === status.CREDIT_ISSUED
-          ? setIsShowForm(true)
-          : setIsShowForm(false);
-        if (
-          data.status === status.APPROVED ||
-          data.status === status.CC_APPROVED
-        )
-          navigate("/*");
+      case 'enterCode':
+        setIsShowForm(data.status === status.CREDIT_ISSUED);
+        if ([status.APPROVED, status.CC_APPROVED].includes(data.status)) {
+          navigate('/*');
+        }
         break;
     }
   }, [data, isError, isLoading, navigate, step]);

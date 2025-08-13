@@ -25,7 +25,7 @@ function App() {
           <Route path="/loan/:applicationId/document" element={<PaymentSchedule />} />
           <Route path="/loan/:applicationId/document/sign" element={<SigningOfDocuments />} />
           <Route path="/loan/:applicationId/code" element={<EnterCode />} />
-          <Route path="/product" element={<NotFoundPage />} />
+          <Route path="/product" element={<EnterCode />} />
           <Route path="/account" element={<NotFoundPage />} />
           <Route path="/resoures" element={<EnterCode />} />
 
