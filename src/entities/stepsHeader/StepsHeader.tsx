@@ -2,7 +2,7 @@ import styles from './styles.module.css';
 
 interface Props {
   title: string;
-  step: number;
+  step: 1 | 2 | 3 | 4 | 5;
 }
 
 const StepsHeader: React.FC<Props> = ({ title, step }) => {

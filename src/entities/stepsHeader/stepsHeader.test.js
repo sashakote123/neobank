@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import StepsHeader from './StepsHeader';
 
 describe('StepsHeader', () => {
-  test('корректно отрисовывает заголовок и номер шага', () => {
+  test('Корректно отрисовывает заголовок и номер шага', () => {
     const testTitle = 'Test Title';
     const testStep = 2;
 
