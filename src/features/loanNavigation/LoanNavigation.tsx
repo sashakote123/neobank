@@ -1,13 +1,10 @@
-import styles from "./styles.module.css";
-import clsx from "clsx";
-import { Dispatch, useState } from "react";
+import clsx from 'clsx';
 
-const linksArray: string[] = [
-  "About card",
-  "Rates and conditions",
-  "Cashback",
-  "FAQ",
-];
+import { Dispatch, useState } from 'react';
+
+import styles from './styles.module.css';
+
+const linksArray: string[] = ['About card', 'Rates and conditions', 'Cashback', 'FAQ'];
 
 interface Props {
   setPage: Dispatch<React.SetStateAction<number | undefined>>;
@@ -21,11 +18,12 @@ const LoanNavigation: React.FC<Props> = ({ setPage }) => {
     });
 
   return (
-    <nav className={styles.container}>
+    <nav data-testid="loanNavigation" className={styles.container}>
       <ul className={styles.navigatinList}>
         {linksArray.map((item: string, index) => {
           return (
             <li
+              data-testid="listitem"
               className={setActive(item)}
               onClick={() => {
                 setPage(index);

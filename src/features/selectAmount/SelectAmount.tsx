@@ -1,7 +1,9 @@
-import { ChangeEvent, PointerEvent, useEffect, useRef, useState } from "react";
-import styles from "./styles.module.css";
-import { getCurrent, getPosition } from "./functions";
-import { useFormContext } from "react-hook-form";
+import { useFormContext } from 'react-hook-form';
+
+import { ChangeEvent, PointerEvent, useEffect, useRef, useState } from 'react';
+
+import { getCurrent, getPosition } from './functions';
+import styles from './styles.module.css';
 
 interface Props {
   minAmount: number;
@@ -30,8 +32,7 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
     const handleMouseMove = (e: PointerEvent) => {
       if (!sliderRef.current) return;
 
-      let newPos =
-        e.clientX - startX - sliderRef.current.getBoundingClientRect().left;
+      let newPos = e.clientX - startX - sliderRef.current.getBoundingClientRect().left;
 
       if (newPos <= 0) {
         setCurrentPosition(0);
@@ -42,30 +43,18 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
       } else {
         setCurrentPosition(newPos);
         setCurrent(
-          getCurrent(
-            newPos,
-            sliderRef.current.clientWidth,
-            sliderRect.width,
-            maxAmount,
-            minAmount
-          )
+          getCurrent(newPos, sliderRef.current.clientWidth, sliderRect.width, maxAmount, minAmount)
         );
       }
     };
 
     const handleMouseUp = () => {
-      document.removeEventListener(
-        "pointermove",
-        handleMouseMove as unknown as EventListener
-      );
-      document.removeEventListener("pointerup", handleMouseUp as EventListener);
+      document.removeEventListener('pointermove', handleMouseMove as unknown as EventListener);
+      document.removeEventListener('pointerup', handleMouseUp as EventListener);
     };
 
-    document.addEventListener(
-      "pointermove",
-      handleMouseMove as unknown as EventListener
-    );
-    document.addEventListener("pointerup", handleMouseUp as EventListener);
+    document.addEventListener('pointermove', handleMouseMove as unknown as EventListener);
+    document.addEventListener('pointerup', handleMouseUp as EventListener);
   };
 
   const changeForm = (e: ChangeEvent<HTMLInputElement>) => {
@@ -86,27 +75,30 @@ const SelectAmount: React.FC<Props> = ({ minAmount, maxAmount }) => {
   };
 
   useEffect(() => {
-    setValue("amount", current);
+    setValue('amount', current);
   }, [current, setValue]);
 
   return (
-    <div className={styles.amount}>
+    <div data-testid="selectAmount" className={styles.amount}>
       <h3 className={styles.amountTitle}>Select amount</h3>
       <div className={styles.amountSlider}>
         <input
-          {...register("amount")}
+          data-testid="input"
+          {...register('amount')}
           value={current}
           onChange={changeForm}
           type="number"
           className={styles.sliderCurrent}
         />
-        <div ref={sliderRef} className={styles.sliderLine}>
+        <div ref={sliderRef} className={styles.sliderLine} data-testid="sliderTrack">
           <div
+            data-testid="coloredLine"
             style={{ width: `${currentPosition}px` }}
             className={styles.coloredLine}
           ></div>
           <div className={styles.line}></div>
           <div
+            data-testid="sliderThumb"
             ref={thumbRef}
             onPointerDown={(e) => dragndropHandler(e)}
             className={styles.btn}

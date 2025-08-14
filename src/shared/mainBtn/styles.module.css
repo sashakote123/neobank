@@ -1,0 +1,30 @@
+.button {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: var(--white);
+
+    height: 50px;
+    min-width: 140px;
+    border-radius: 8px;
+    padding: 8px 16px;
+
+    background: var(--primary-blue);
+
+    transition: all 0.4s ease;
+
+    background: linear-gradient(90deg, #002190 0%, #002fca 50%, var(--primary-blue) 50%);
+    background-size: 200% 100%;
+    background-position: right;
+}
+
+.small {
+    height: 40px;
+    min-width: 96px;
+}
+
+.button:hover {
+    background-position: left;
+}

@@ -1,8 +1,12 @@
-import { useState } from "react";
-import styles from "./styles.module.css";
-import DenyApplication from "@/src/entities/denyApplication/DenyApplication";
-import { useParams } from "react-router";
-import { loanApi } from "@/src/shared/api/service";
+import { useParams } from 'react-router';
+
+import { useState } from 'react';
+
+import DenyApplication from '@/src/entities/denyApplication/DenyApplication';
+import { loanApi } from '@/src/shared/api/service';
+import MainBtn from '@/src/shared/mainBtn/MainBtn';
+
+import styles from './styles.module.css';
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,42 +27,40 @@ const ScheduleButtons: React.FC<Props> = ({ setIsShowForm }) => {
 
   const acceptDocument = async () => {
     if (!isChecked) return;
-
     await applySchedule({ applicationId });
     setIsShowForm(true);
   };
-
   return (
     <>
-      <div className={styles.buttons}>
-        <button
+      <div data-testid="buttons" className={styles.buttons}>
+        <MainBtn
+          title="Deny"
+          small
           onClick={() => setIsShowAlert((prev) => !prev)}
-          className={styles.denyBtn}
-        >
-          Deny
-        </button>
+          style={{ background: 'rgba(217, 55, 55, 0.8)' }}
+        />
         <div className={styles.rBtn}>
           <div className={styles.check}>
             <input
+              data-testid="checkbox"
               checked={isChecked}
               onChange={handleChangeCheck}
               type="checkbox"
             />
             <div>I agree with the payment schedule</div>
           </div>
-          <button
-            className={styles.sendBtn}
+          <MainBtn
+            title={isLoading ? 'Loading...' : 'Send'}
+            small
             onClick={acceptDocument}
             style={{
-              opacity: isChecked ? "1" : "0.5",
-              cursor: isChecked ? "pointer" : "default",
+              opacity: isChecked ? '1' : '0.5',
+              cursor: isChecked ? 'pointer' : 'default',
             }}
-          >
-            {isLoading ? "Loading..." : "Send"}
-          </button>
+          />
         </div>
       </div>
-      {isShowAlert ? <DenyApplication setIsShow={setIsShowAlert} /> : null}
+      {isShowAlert && <DenyApplication setIsShow={setIsShowAlert} />}
     </>
   );
 };

@@ -1,16 +1,16 @@
-import Table from "@/src/features/table/Table";
-import styles from "./styles.module.css";
-import ScheduleButtons from "@/src/features/scheduleButtons/ScheduleButtons";
-import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
-import StepsHeader from "@/src/entities/stepsHeader/StepsHeader";
-import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
+import StepsHeader from '@/src/entities/stepsHeader/StepsHeader';
+import WaitForDecidion from '@/src/entities/waitForDecidion/WaitForDecidion';
+import ScheduleButtons from '@/src/features/scheduleButtons/ScheduleButtons';
+import Table from '@/src/features/table/Table';
+import useApplicationStep from '@/src/shared/hooks/useApplicationStep';
+
+import styles from './styles.module.css';
 
 const PaymentSchedule = () => {
-  const { isShowForm, setIsShowForm, tableArray, isLoading } =
-    useApplicationStep("schedule");
+  const { isShowForm, setIsShowForm, tableArray, isLoading } = useApplicationStep('schedule');
 
   return (
-    <section className={styles.container}>
+    <section data-testid="paymentSchedule" className={styles.container}>
       {isLoading ? (
         <WaitForDecidion title="Loading..." subtitle="Please, wait" />
       ) : isShowForm ? (

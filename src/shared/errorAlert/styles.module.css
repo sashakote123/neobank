@@ -1,0 +1,39 @@
+.error {
+    position: fixed;
+    padding: 20px;
+
+    left: -100%;
+    top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50px;
+    min-width: 150px;
+
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 1px var(--alert-color) solid;
+    background-color: var(--white);
+
+    color: var(--alert-color);
+    font-size: 15px;
+
+    animation: slideInOut 5s ease-in-out forwards;
+}
+
+@keyframes slideInOut {
+    0% {
+        left: -100%;
+    }
+    16.67% {
+        left: 0;
+    }
+    83.33% {
+        left: 0;
+    }
+    100% {
+        left: -100%;
+        display: none;
+    }
+}

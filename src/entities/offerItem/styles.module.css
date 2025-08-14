@@ -13,11 +13,11 @@
     flex-direction: column;
     align-items: center;
 
-    transition: scale 0.1s ease-in;
+    transition: transform 0.1s ease-in;
 }
 
 .item:hover {
-    scale: 1.05;
+    transform: scale(105%);
     border: 2px solid #003cff;
 }
 
@@ -38,19 +38,4 @@
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.selectBtn {
-    border-radius: 8px;
-    padding: 8px;
-    width: 148px;
-    height: 48px;
-    background: #003cff;
-
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    letter-spacing: 0.02em;
-    text-align: center;
-    color: #fff;
 }

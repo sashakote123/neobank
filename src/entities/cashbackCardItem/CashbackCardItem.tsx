@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 interface Props {
   subtitle: string;
@@ -8,8 +8,12 @@ interface Props {
 const CashbackCardItem: React.FC<Props> = ({ subtitle, title }) => {
   return (
     <li className={styles.cardItem}>
-      <div className={styles.subtitle}>{subtitle}</div>
-      <div className={styles.title}>{title}</div>
+      <div data-testid="subtitle" className={styles.subtitle}>
+        {subtitle}
+      </div>
+      <div data-testid="header" className={styles.title}>
+        {title}
+      </div>
     </li>
   );
 };

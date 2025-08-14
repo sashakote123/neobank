@@ -1,7 +1,11 @@
-import { useParams } from "react-router";
-import styles from "./styles.module.css";
-import { useState } from "react";
-import { loanApi } from "@/src/shared/api/service";
+import { useParams } from 'react-router';
+
+import { useState } from 'react';
+
+import { loanApi } from '@/src/shared/api/service';
+import MainBtn from '@/src/shared/mainBtn/MainBtn';
+
+import styles from './styles.module.css';
 
 interface Props {
   setIsShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,25 +29,25 @@ const SigningButtons: React.FC<Props> = ({ setIsShowForm }) => {
   };
 
   return (
-    <div className={styles.btnbox}>
+    <div data-testid="btnbox" className={styles.btnbox}>
       <div className={styles.checkbox}>
         <input
+          data-testid="checkbox"
           checked={isChecked}
           onChange={handleChangeCheck}
           type="checkbox"
         />
         <div>I agree</div>
       </div>
-      <button
-        className={styles.btn}
+      <MainBtn
+        small
+        title={isLoading ? 'Loading...' : 'Send'}
         onClick={signDocumentHandler}
         style={{
-          opacity: isChecked ? "1" : "0.5",
-          cursor: isChecked ? "pointer" : "default",
+          opacity: isChecked ? '1' : '0.5',
+          cursor: isChecked ? 'pointer' : 'default',
         }}
-      >
-        {isLoading ? "Loading..." : "Send"}
-      </button>
+      />
     </div>
   );
 };

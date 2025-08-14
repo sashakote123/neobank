@@ -8,7 +8,6 @@ export const secondFormSchema = z.object({
   maritalStatus: z
     .string()
     .refine((val) => ![""].includes(val), "Select one of the options"),
-
   dependentAmount: z
     .string()
     .min(1, "Enter number of dependents")
@@ -32,7 +31,8 @@ export const secondFormSchema = z.object({
 
   employmentStatus: z
     .string()
-    .refine((val) => ![""].includes(val), "Select one of the options"),
+    .refine((val) => ![""].includes(val), "Select one of the options")
+    .refine((val) => val !== "Unemployed", "The application will be rejected"),
 
   employerINN: z
     .string()
@@ -54,6 +54,10 @@ export const secondFormSchema = z.object({
     .refine(
       (val) => /^\d{1,3}$/.test(val) && Number(val) <= 100,
       "Enter a number between 0 and 100"
+    )
+    .refine(
+      (val) => /^\d{1,3}$/.test(val) && Number(val) >= 12,
+      "The application will be rejected"
     ),
 
   workExperienceCurrent: z

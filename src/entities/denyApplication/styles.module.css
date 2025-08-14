@@ -57,33 +57,3 @@
     gap: 40px;
     justify-content: flex-end;
 }
-
-.denyBtn {
-    border-radius: 8px;
-    width: 96px;
-    height: 40px;
-
-    background: var(--alert-color);
-
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    letter-spacing: 0.02em;
-    text-align: center;
-    color: var(--white);
-}
-
-.cancelBtn {
-    border-radius: 8px;
-    width: 96px;
-    height: 40px;
-
-    background: var(--primary-blue);
-
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 112%;
-    letter-spacing: 0.02em;
-    text-align: center;
-    color: var(--white);
-}

@@ -1,13 +1,13 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css';
 
 interface Props {
   title: string;
-  step: number;
+  step: 1 | 2 | 3 | 4 | 5;
 }
 
 const StepsHeader: React.FC<Props> = ({ title, step }) => {
   return (
-    <div className={styles.heading}>
+    <div data-testid="stepsHeader" className={styles.heading}>
       <h1 className={styles.title}>{title}</h1>
       <div className={styles.step}>Step {step} of 5</div>
     </div>

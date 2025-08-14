@@ -1,14 +1,14 @@
-import CodeForm from "@/src/features/codeForm/CodeForm";
-import styles from "./styles.module.css";
-import WaitForDecidion from "@/src/entities/waitForDecidion/WaitForDecidion";
-import useApplicationStep from "@/src/shared/hooks/useApplicationStep";
+import WaitForDecidion from '@/src/entities/waitForDecidion/WaitForDecidion';
+import CodeForm from '@/src/features/codeForm/CodeForm';
+import useApplicationStep from '@/src/shared/hooks/useApplicationStep';
+
+import styles from './styles.module.css';
 
 const EnterCode = () => {
-  const { isShowForm, setIsShowForm, isLoading } =
-    useApplicationStep("enterCode");
+  const { isShowForm, setIsShowForm, isLoading } = useApplicationStep('enterCode');
 
   return (
-    <section className={styles.container}>
+    <section data-testid="enterCode" className={styles.container}>
       {isLoading ? (
         <WaitForDecidion title="Loading..." subtitle="Please, wait" />
       ) : isShowForm ? (

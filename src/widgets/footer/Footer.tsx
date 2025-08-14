@@ -1,23 +1,25 @@
-import { ILink } from "@/src/shared/types/types";
-import "./styles.css";
-import logo from "@images/footer/footerLogo.svg";
+import logo from '@images/footer/footerLogo.svg';
+
+import { ILink } from '@/src/shared/types/types';
+
+import './styles.css';
 
 const linksArray: ILink[] = [
-  { text: "About bank", to: "!#" },
-  { text: "Ask a Question", to: "!#" },
-  { text: "Quality of service", to: "!#" },
-  { text: "Requisites", to: "!#" },
-  { text: "Press center", to: "!#" },
-  { text: "Bank career", to: "!#" },
-  { text: "Investors", to: "!#" },
-  { text: "Analytics", to: "!#" },
-  { text: "Business and processes", to: "!#" },
-  { text: "Compliance and business ethics", to: "!#" },
+  { text: 'About bank', to: '!#' },
+  { text: 'Ask a Question', to: '!#' },
+  { text: 'Quality of service', to: '!#' },
+  { text: 'Requisites', to: '!#' },
+  { text: 'Press center', to: '!#' },
+  { text: 'Bank career', to: '!#' },
+  { text: 'Investors', to: '!#' },
+  { text: 'Analytics', to: '!#' },
+  { text: 'Business and processes', to: '!#' },
+  { text: 'Compliance and business ethics', to: '!#' },
 ];
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
+    <footer data-testid="footer" className="footer">
       <div className="container">
         <div className="footer__heading">
           <img src={logo} alt="logo" className="footer__logo" />
@@ -40,10 +42,9 @@ const Footer: React.FC = () => {
           })}
         </ul>
         <div className="footer__alert">
-          We use cookies to personalize our services and improve the user
-          experience of our website. Cookies are small files containing
-          information about previous visits to a website. If you do not want to
-          use cookies, please change your browser settings
+          We use cookies to personalize our services and improve the user experience of our website.
+          Cookies are small files containing information about previous visits to a website. If you
+          do not want to use cookies, please change your browser settings
         </div>
       </div>
     </footer>

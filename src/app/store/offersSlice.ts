@@ -1,15 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IOfferItem, IOffersState } from "@/src/shared/types/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { IOfferItem, IOffersState } from '@/src/shared/types/types';
 
 const initialState: IOffersState = {
   offersArray: null,
-  currentOffer: localStorage.getItem("currentOffer")
-    ? JSON.parse(localStorage.getItem("currentOffer")!)
+  currentOffer: localStorage.getItem('currentOffer')
+    ? JSON.parse(localStorage.getItem('currentOffer')!)
     : null,
 };
 
 const offersSlice = createSlice({
-  name: "offers",
+  name: 'offers',
   initialState,
   reducers: {
     updateArray: (state, action: PayloadAction<IOfferItem[] | null>) => {

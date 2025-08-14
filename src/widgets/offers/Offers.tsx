@@ -1,6 +1,7 @@
-import OfferItem from "@/src/entities/offerItem/OfferItem";
-import styles from "./styles.module.css";
-import { IOfferItem } from "@/src/shared/types/types";
+import OfferItem from '@/src/entities/offerItem/OfferItem';
+import { IOfferItem } from '@/src/shared/types/types';
+
+import styles from './styles.module.css';
 
 interface Props {
   array: IOfferItem[];
@@ -8,7 +9,7 @@ interface Props {
 
 const Offers: React.FC<Props> = ({ array }) => {
   return (
-    <section className={styles.container}>
+    <section id="offers" className={styles.container}>
       <ul className={styles.offersList}>
         {array.map((item) => {
           return (

@@ -1,35 +1,36 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IOfferItem, ITransformedData } from "../types/types";
-import { updateArray, updateCurrentOffer } from "@/src/app/store/offersSlice";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const BASE_URL = "http://localhost:8080";
+import { updateArray, updateCurrentOffer } from '@/src/app/store/offersSlice';
+
+import { IOfferItem, ITransformedData } from '../types/types';
+
+const BASE_URL = 'http://localhost:8080';
 
 export const loanApi = createApi({
-  reducerPath: "loanApi",
+  reducerPath: 'loanApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   }),
-  //   tagTypes: ['loan'],
   endpoints: (build) => ({
     fetchLoanStatus: build.query({
-      query: (applicationId: string | undefined) => ({
+      query: (applicationId?: string) => ({
         url: `/admin/application/${applicationId}`,
       }),
     }),
     createLoanApplication: build.mutation<IOfferItem[], ITransformedData>({
-      query: (data: any) => ({
-        url: "/application",
-        method: "POST",
+      query: (data) => ({
+        url: '/application',
+        method: 'POST',
         body: data,
       }),
       onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
         try {
           const data = await queryFulfilled;
           dispatch(updateArray(data.data));
-          localStorage.setItem("currentAppArray", JSON.stringify(data.data));
+          localStorage.setItem('currentAppArray', JSON.stringify(data.data));
         } catch (error) {
           console.log(error);
         }
@@ -37,14 +38,14 @@ export const loanApi = createApi({
     }),
     chooseOffer: build.mutation({
       query: (offer) => ({
-        url: "/application/apply",
-        method: "POST",
+        url: '/application/apply',
+        method: 'POST',
         body: { ...offer },
       }),
       onQueryStarted: async (offer, { dispatch, queryFulfilled }) => {
         try {
           await queryFulfilled;
-          localStorage.setItem("currentOffer", JSON.stringify(offer));
+          localStorage.setItem('currentOffer', JSON.stringify(offer));
           dispatch(updateCurrentOffer(offer));
         } catch (error) {
           console.error(error);
@@ -54,35 +55,29 @@ export const loanApi = createApi({
     sendEmployerInfo: build.mutation({
       query: ({ data, applicationId }) => ({
         url: `/application/registration/${applicationId}`,
-        method: "PUT",
+        method: 'PUT',
         body: { ...data },
       }),
     }),
     applySchedule: build.mutation({
       query: ({ applicationId }) => ({
         url: `/document/${applicationId}`,
-        method: "POST",
+        method: 'POST',
       }),
     }),
 
     signDocument: build.mutation({
       query: ({ applicationId }) => ({
         url: `/document/${applicationId}/sign`,
-        method: "POST",
+        method: 'POST',
       }),
     }),
 
     enterCode: build.mutation({
-      query: ({
-        data,
-        applicationId,
-      }: {
-        data: string[];
-        applicationId: string | undefined;
-      }) => ({
+      query: ({ data, applicationId }: { data: string[]; applicationId?: string }) => ({
         url: `/document/${applicationId}/sign/code`,
-        method: "POST",
-        body: JSON.stringify(data.join("")),
+        method: 'POST',
+        body: JSON.stringify(data.join('')),
       }),
     }),
   }),

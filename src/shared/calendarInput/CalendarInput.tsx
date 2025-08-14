@@ -1,18 +1,19 @@
-import { IForms } from "@/src/shared/types/types";
-import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
-import { formatDate } from "./functions";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import Calendar from 'react-calendar';
+import { Value } from 'react-calendar/dist/shared/types';
+import { useFormContext } from 'react-hook-form';
+import { useIMask } from 'react-imask';
 
-import calendar from "./assets/Calendar_duotone.svg";
-import { useFormContext } from "react-hook-form";
+import { useEffect, useState } from 'react';
 
-import check from "./assets/check.svg";
-import error from "./assets/error.svg";
-import { Value } from "react-calendar/dist/shared/types";
+import { IForms } from '@/src/shared/types/types';
 
-import { useIMask } from "react-imask";
+import calendar from './assets/Calendar_duotone.svg';
+import check from './assets/check.svg';
+import error from './assets/error.svg';
+import { formatDate } from './functions';
+import styles from './styles.module.css';
+
+import 'react-calendar/dist/Calendar.css';
 
 interface CalendarInputProps {
   item: IForms;
@@ -30,7 +31,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
   } = useFormContext();
 
   const { ref, value } = useIMask<HTMLInputElement>(
-    { mask: "00.00.0000" },
+    { mask: '00.00.0000' },
     {
       onAccept: (value) => {
         setValue(item.name, value);
@@ -62,11 +63,12 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
       </div>
       <div className={styles.inputArea}>
         <input
+          data-testid="inputContainer"
           {...register(item.name)}
           ref={ref}
           className={`${styles.area} ${errors[item.name] && styles.error}`}
           placeholder={item.placeholder}
-          value={watch(item.name) ? watch(item.name) : ""}
+          value={watch(item.name) ? watch(item.name) : ''}
         />
         <button
           type="button"
@@ -79,8 +81,7 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
           <div>
             <img src={error} alt="error" className={styles.alert} />
             <div className={styles.errorAlert}>
-              {errorMessage ||
-                (item.required ? item.requiredAlert : item.errorAlert)}
+              {errorMessage || (item.required ? item.requiredAlert : item.errorAlert)}
             </div>
           </div>
         ) : (
@@ -88,7 +89,9 @@ const CalendarInput: React.FC<CalendarInputProps> = ({ item }) => {
         )}
 
         {isShow && (
-          <Calendar className={styles.calendar} onChange={handleDateChange} />
+          <div data-testid="calendar">
+            <Calendar className={styles.calendar} onChange={handleDateChange} />
+          </div>
         )}
       </div>
     </div>
